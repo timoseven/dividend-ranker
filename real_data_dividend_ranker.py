@@ -421,9 +421,26 @@ class DividendYieldRanker:
                         <th onclick="sortTable(this, 1)">股票名称 <span class="sort-indicator">▼</span></th>
                         <th onclick="sortTable(this, 2)">最新收盘价 (元) <span class="sort-indicator">▼</span></th>'''
         
-        # 添加年份表头
+        # 计算每个股票的2020-2025年累计股息率
+        cumulative_dividend_yields = {}
+        for code, name in all_stocks:
+            total_yield = 0.0
+            for year in years:
+                key = (code, name)
+                if key in stock_data and year in stock_data[key]:
+                    total_yield += stock_data[key][year]['dividend_yield']
+            cumulative_dividend_yields[(code, name)] = round(total_yield, 2)
+        
+        # 添加年份表头（股息率 + 当年价格）
         for i, year in enumerate(years):
-            comparison_html += f'''                    <th onclick="sortTable(this, {i+3})">{year}年股息率 (%) <span class="sort-indicator">▼</span></th>'''
+            # 计算列索引：基础3列 + 每年2列（股息率+价格）* 前面的年份数
+            base_index = 3 + i * 2
+            comparison_html += f'''                    <th onclick="sortTable(this, {base_index})">{year}年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, {base_index + 1})">{year}年首价 (元) <span class="sort-indicator">▼</span></th>'''
+        
+        # 添加累计股息率列
+        cumulative_index = 3 + len(years) * 2
+        comparison_html += f'''                    <th onclick="sortTable(this, {cumulative_index})"><累计股息率 (%) <span class="sort-indicator">▼</span></th>'''
         
         comparison_html += '''                </tr>
                 </thead>
@@ -440,14 +457,21 @@ class DividendYieldRanker:
                     <td>{name}</td>
                     <td class="price" data-value="{latest_price if latest_price is not None else ''}">{price_display}</td>'''
             
-            # 添加各年份的股息率
+            # 添加各年份的股息率和当年价格
             for year in years:
                 key = (code, name)
                 if key in stock_data and year in stock_data[key]:
                     dividend_yield = stock_data[key][year]['dividend_yield']
-                    comparison_html += f'''                    <td class="dividend-yield" data-value="{dividend_yield}">{dividend_yield}</td>'''
+                    price = stock_data[key][year]['price']
+                    comparison_html += f'''                    <td class="dividend-yield" data-value="{dividend_yield}">{dividend_yield}</td>
+                    <td class="price" data-value="{price}">{price}</td>'''
                 else:
-                    comparison_html += '''                    <td class="dividend-yield" data-value="">-</td>'''
+                    comparison_html += '''                    <td class="dividend-yield" data-value="">-</td>
+                    <td class="price" data-value="">-</td>'''
+            
+            # 添加累计股息率
+            cumulative_yield = cumulative_dividend_yields[(code, name)]
+            comparison_html += f'''                    <td class="dividend-yield" data-value="{cumulative_yield}">{cumulative_yield}</td>'''
             
             comparison_html += '''                </tr>\n'''
         
