@@ -9,7 +9,7 @@ import os
 import json
 import requests
 from datetime import datetime
-import tushare as ts
+import baostock as bs
 
 class DividendYieldRanker:
     def __init__(self):
@@ -17,41 +17,36 @@ class DividendYieldRanker:
         os.makedirs(self.data_dir, exist_ok=True)
         self.stock_basic = None
         
-        # 尝试初始化TuShare API
+        # 尝试初始化Baostock API
         try:
-            # 尝试从环境变量获取token
-            token = os.getenv('TUSHARE_TOKEN')
-            if token:
-                self.pro = ts.pro_api(token)
+            lg = bs.login()
+            if lg.error_code == '0':
                 self.use_real_data = True
-                print("成功初始化TuShare API")
+                print("成功初始化Baostock API")
             else:
-                self.pro = None
                 self.use_real_data = False
-                print("未设置TUSHARE_TOKEN环境变量，将使用模拟数据")
+                print(f"初始化Baostock API失败: {lg.error_msg}，将使用模拟数据")
         except Exception as e:
-            self.pro = None
             self.use_real_data = False
-            print(f"初始化TuShare API失败: {e}，将使用模拟数据")
+            print(f"初始化Baostock API失败: {e}，将使用模拟数据")
     
     def get_stock_list(self):
-        """获取股票列表 - 使用TuShare API或模拟数据"""
+        """获取股票列表 - 使用Baostock API或模拟数据"""
         print("正在获取股票列表...")
         
-        if self.use_real_data and self.pro is not None:
+        if self.use_real_data:
             try:
-                # 使用TuShare获取A股股票列表
-                self.stock_basic = self.pro.stock_basic(
+                # 使用Baostock获取A股股票列表
+                rs = bs.query_stock_basic(
                     exchange='',
-                    list_status='L',  # 上市
-                    fields='ts_code,symbol,name'
+                    list_status='L'  # 上市
                 )
                 
                 stock_list = []
-                for _, row in self.stock_basic.iterrows():
-                    ts_code = row['ts_code']
-                    symbol = row['symbol']
-                    name = row['name']
+                while (rs.error_code == '0') & rs.next():
+                    row = rs.get_row_data()
+                    symbol = row[1]  # 股票代码
+                    name = row[2]  # 股票名称
                     stock_list.append((symbol, name))
                 
                 print(f"成功获取到{len(stock_list)}只股票")
@@ -93,30 +88,37 @@ class DividendYieldRanker:
         return mock_stocks
     
     def get_stock_price(self, code, year):
-        """获取指定年份1月1日的股票价格 - 使用TuShare API或模拟数据"""
-        if self.use_real_data and self.pro is not None:
+        """获取指定年份1月1日的股票价格 - 使用Baostock API或模拟数据"""
+        if self.use_real_data:
             try:
-                # 转换为TuShare的ts_code格式
+                # 转换为Baostock的股票代码格式
                 if code.startswith('6'):
-                    ts_code = f"{code}.SH"  # 上海
+                    bs_code = f"sh.{code}"  # 上海
                 else:
-                    ts_code = f"{code}.SZ"  # 深圳
+                    bs_code = f"sz.{code}"  # 深圳
                 
-                # 获取指定年份第一个交易日的价格
-                date = f"{year}0101"
+                # 获取指定年份1月的K线数据
+                start_date = f"{year}-01-01"
+                end_date = f"{year}-01-31"
                 
                 # 获取日K线数据
-                df = self.pro.daily(
-                    ts_code=ts_code,
-                    start_date=date,
-                    end_date=f"{year}0131",
-                    fields='ts_code,trade_date,open,close'
+                rs = bs.query_history_k_data_plus(
+                    bs_code,
+                    "date,close",
+                    start_date=start_date,
+                    end_date=end_date,
+                    frequency="d",
+                    adjustflag="3"  # 不复权
                 )
                 
-                if not df.empty:
+                data_list = []
+                while (rs.error_code == '0') & rs.next():
+                    data_list.append(rs.get_row_data())
+                
+                if data_list:
                     # 取第一个交易日的收盘价
-                    price = df.iloc[0]['close']
-                    return round(price, 2)
+                    close_price = float(data_list[0][1])
+                    return round(close_price, 2)
                 else:
                     # 如果没有数据，使用模拟数据
                     import random
@@ -144,36 +146,53 @@ class DividendYieldRanker:
             return round(random.uniform(5, 200), 2)
     
     def get_dividend_yield(self, code, year):
-        """获取指定年份的股息率 - 使用TuShare API或模拟数据"""
-        if self.use_real_data and self.pro is not None:
+        """获取指定年份的股息率 - 使用Baostock API或模拟数据"""
+        if self.use_real_data:
             try:
-                # 转换为TuShare的ts_code格式
+                # 转换为Baostock的股票代码格式
                 if code.startswith('6'):
-                    ts_code = f"{code}.SH"  # 上海
+                    bs_code = f"sh.{code}"  # 上海
                 else:
-                    ts_code = f"{code}.SZ"  # 深圳
+                    bs_code = f"sz.{code}"  # 深圳
                 
-                # 获取指定年份的利润分配数据
-                start_date = f"{year}0101"
-                end_date = f"{year}1231"
+                # 获取指定年份的分红数据
+                start_date = f"{year}-01-01"
+                end_date = f"{year}-12-31"
                 
-                df = self.pro.fina_div(
-                    ts_code=ts_code,
-                    ann_date=start_date,
-                    end_date=end_date,
-                    fields='ts_code,ann_date,div_proc,stk_div,cf_div'
+                # 使用Baostock获取分红数据
+                rs = bs.query_dividend_data(
+                    code=bs_code,
+                    year=str(year)
                 )
                 
-                if not df.empty:
-                    # 获取每股现金分红
-                    cf_div = df.iloc[0]['cf_div']
+                dividend_list = []
+                while (rs.error_code == '0') & rs.next():
+                    dividend_list.append(rs.get_row_data())
+                
+                if dividend_list:
+                    # 查看Baostock返回的分红数据格式
+                    print(f"{code}在{year}年的分红数据: {dividend_list[0]}")
+                    # 正确处理数据，假设格式为[code, date, dividend_per_share, ...]
+                    # 我们需要找到包含每股现金红利的字段
+                    # 尝试不同的索引位置
+                    cash_dividend = 0.0
+                    for item in dividend_list[0]:
+                        try:
+                            # 尝试转换为浮点数
+                            value = float(item)
+                            if value > 0:
+                                cash_dividend = value
+                                break
+                        except ValueError:
+                            # 如果不是浮点数，继续尝试下一个字段
+                            continue
                     
                     # 获取当年1月1日的股价
                     price = self.get_stock_price(code, year)
                     
                     # 计算股息率
-                    if price > 0 and cf_div > 0:
-                        dividend_yield = (cf_div / price) * 100
+                    if price > 0 and cash_dividend > 0:
+                        dividend_yield = (cash_dividend / price) * 100
                         return round(dividend_yield, 2)
                     else:
                         return 0.0
@@ -557,7 +576,7 @@ class DividendYieldRanker:
     <div class="container">
         <h1>股票股息率排名</h1>
         <div class="header-info">
-            统计范围：2020年 - 2025年 | 股票价格：当年1月1日收盘价 | 数据来源：TuShare API
+            统计范围：2020年 - 2025年 | 股票价格：当年1月1日收盘价 | 数据来源：Baostock API
         </div>
         
         <div class="section">
