@@ -103,7 +103,7 @@ class DividendYieldRanker:
                 start_date=f"{year}-01-01",
                 end_date=f"{year}-01-31",
                 frequency="d",
-                adjustflag="1"  # 前复权
+                adjustflag="3"  # 不复权
             )
             
             data_list = []
@@ -201,7 +201,7 @@ class DividendYieldRanker:
                 start_date="2025-12-01",  # 最近1个月的数据
                 end_date="2025-12-31",
                 frequency="d",
-                adjustflag="1"  # 前复权
+                adjustflag="3"  # 不复权
             )
             
             data_list = []
