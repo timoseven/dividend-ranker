@@ -32,7 +32,7 @@ class DividendYieldRanker:
     def get_stock_list(self):
         """获取沪深A股股票列表"""
         print("正在获取股票列表...")
-        rs = bs.query_stock_basic(code_type="A")
+        rs = bs.query_stock_basic()
         if rs.error_code != '0':
             print(f"获取股票列表失败: {rs.error_msg}")
             return []
