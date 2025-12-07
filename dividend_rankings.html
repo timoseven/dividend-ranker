@@ -231,23 +231,25 @@
             <table class="stock-table comparison-table sortable">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(this, 0)">股票代码 <span class="sort-indicator">▼</span></th>
-                        <th onclick="sortTable(this, 1)">股票名称 <span class="sort-indicator">▼</span></th>
-                        <th onclick="sortTable(this, 2)">最新收盘价 (元) <span class="sort-indicator">▼</span></th>
-                        <th onclick="sortTable(this, 3)">累计股息率 (%) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 4)">2020年股息率 (%) <span class="sort-indicator">▼</span></th>
-                    <th onclick="sortTable(this, 5)">2020年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 6)">2021年股息率 (%) <span class="sort-indicator">▼</span></th>
-                    <th onclick="sortTable(this, 7)">2021年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 8)">2022年股息率 (%) <span class="sort-indicator">▼</span></th>
-                    <th onclick="sortTable(this, 9)">2022年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 10)">2023年股息率 (%) <span class="sort-indicator">▼</span></th>
-                    <th onclick="sortTable(this, 11)">2023年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 12)">2024年股息率 (%) <span class="sort-indicator">▼</span></th>
-                    <th onclick="sortTable(this, 13)">2024年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 14)">2025年股息率 (%) <span class="sort-indicator">▼</span></th>
-                    <th onclick="sortTable(this, 15)">2025年首价 (元) <span class="sort-indicator">▼</span></th>                </tr>
+                    <th onclick="sortTable(this, 0)">股票代码 <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 1)">股票名称 <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 2)">最新收盘价 (元) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 3)">累计股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 4)">股息率方差 <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 5)">2020年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 6)">2020年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 7)">2021年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 8)">2021年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 9)">2022年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 10)">2022年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 11)">2023年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 12)">2023年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 13)">2024年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 14)">2024年首价 (元) <span class="sort-indicator">▼</span></th>                    <th onclick="sortTable(this, 15)">2025年股息率 (%) <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(this, 16)">2025年首价 (元) <span class="sort-indicator">▼</span></th>                </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td class="stock-info">000100</td>
                     <td>TCL科技</td>
                     <td class="price" data-value="4.55">4.55</td>
-                    <td class="dividend-yield" data-value="11.79">11.79</td>                    <td class="dividend-yield" data-value="2.19">2.19</td>
+                    <td class="dividend-yield" data-value="11.79">11.79</td>
+                    <td class="dividend-yield" data-value="0.29">0.29</td>                    <td class="dividend-yield" data-value="2.19">2.19</td>
                     <td class="price" data-value="4.57">4.57</td>                    <td class="dividend-yield" data-value="1.67">1.67</td>
                     <td class="price" data-value="7.18">7.18</td>                    <td class="dividend-yield" data-value="2.4">2.4</td>
                     <td class="price" data-value="6.24">6.24</td>                    <td class="dividend-yield" data-value="2.65">2.65</td>
@@ -258,18 +260,20 @@
                     <td class="stock-info">000002</td>
                     <td>万科A</td>
                     <td class="price" data-value="4.95">4.95</td>
-                    <td class="dividend-yield" data-value="18.33">18.33</td>                    <td class="dividend-yield" data-value="3.12">3.12</td>
+                    <td class="dividend-yield" data-value="30.33">30.33</td>
+                    <td class="dividend-yield" data-value="2.43">2.43</td>                    <td class="dividend-yield" data-value="3.12">3.12</td>
                     <td class="price" data-value="32.56">32.56</td>                    <td class="dividend-yield" data-value="4.5">4.5</td>
                     <td class="price" data-value="27.78">27.78</td>                    <td class="dividend-yield" data-value="4.76">4.76</td>
                     <td class="price" data-value="20.49">20.49</td>                    <td class="dividend-yield" data-value="3.73">3.73</td>
-                    <td class="price" data-value="18.23">18.23</td>                    <td class="dividend-yield" data-value="0.85">0.85</td>
-                    <td class="price" data-value="10.15">10.15</td>                    <td class="dividend-yield" data-value="1.37">1.37</td>
+                    <td class="price" data-value="18.23">18.23</td>                    <td class="dividend-yield" data-value="7.44">7.44</td>
+                    <td class="price" data-value="10.15">10.15</td>                    <td class="dividend-yield" data-value="6.78">6.78</td>
                     <td class="price" data-value="7.11">7.11</td>                </tr>
                 <tr>
                     <td class="stock-info">600031</td>
                     <td>三一重工</td>
                     <td class="price" data-value="21.3">21.3</td>
-                    <td class="dividend-yield" data-value="10.92">10.92</td>                    <td class="dividend-yield" data-value="2.34">2.34</td>
+                    <td class="dividend-yield" data-value="10.92">10.92</td>
+                    <td class="dividend-yield" data-value="0.2">0.2</td>                    <td class="dividend-yield" data-value="2.34">2.34</td>
                     <td class="price" data-value="17.95">17.95</td>                    <td class="dividend-yield" data-value="1.72">1.72</td>
                     <td class="price" data-value="34.8">34.8</td>                    <td class="dividend-yield" data-value="1.97">1.97</td>
                     <td class="price" data-value="22.8">22.8</td>                    <td class="dividend-yield" data-value="1.01">1.01</td>
@@ -280,10 +284,11 @@
                     <td class="stock-info">600009</td>
                     <td>上海机场</td>
                     <td class="price" data-value="31.81">31.81</td>
-                    <td class="dividend-yield" data-value="20.5">20.5</td>                    <td class="dividend-yield" data-value="1.02">1.02</td>
-                    <td class="price" data-value="77.36">77.36</td>                    <td class="dividend-yield" data-value="2.79">2.79</td>
-                    <td class="price" data-value="77.49">77.49</td>                    <td class="dividend-yield" data-value="5.63">5.63</td>
-                    <td class="price" data-value="48.52">48.52</td>                    <td class="dividend-yield" data-value="9.79">9.79</td>
+                    <td class="dividend-yield" data-value="19.03">19.03</td>
+                    <td class="dividend-yield" data-value="6.28">6.28</td>                    <td class="dividend-yield" data-value="1.02">1.02</td>
+                    <td class="price" data-value="77.36">77.36</td>                    <td class="dividend-yield" data-value="4.31">4.31</td>
+                    <td class="price" data-value="77.49">77.49</td>                    <td class="dividend-yield" data-value="6.55">6.55</td>
+                    <td class="price" data-value="48.52">48.52</td>                    <td class="dividend-yield" data-value="5.88">5.88</td>
                     <td class="price" data-value="56.25">56.25</td>                    <td class="dividend-yield" data-value="0.37">0.37</td>
                     <td class="price" data-value="32.18">32.18</td>                    <td class="dividend-yield" data-value="0.9">0.9</td>
                     <td class="price" data-value="33.31">33.31</td>                </tr>
@@ -291,7 +296,8 @@
                     <td class="stock-info">600018</td>
                     <td>上港集团</td>
                     <td class="price" data-value="5.65">5.65</td>
-                    <td class="dividend-yield" data-value="17.05">17.05</td>                    <td class="dividend-yield" data-value="2.48">2.48</td>
+                    <td class="dividend-yield" data-value="17.05">17.05</td>
+                    <td class="dividend-yield" data-value="0.17">0.17</td>                    <td class="dividend-yield" data-value="2.48">2.48</td>
                     <td class="price" data-value="5.85">5.85</td>                    <td class="dividend-yield" data-value="2.73">2.73</td>
                     <td class="price" data-value="4.69">4.69</td>                    <td class="dividend-yield" data-value="3.36">3.36</td>
                     <td class="price" data-value="5.65">5.65</td>                    <td class="dividend-yield" data-value="2.61">2.61</td>
@@ -302,7 +308,8 @@
                     <td class="stock-info">600030</td>
                     <td>中信证券</td>
                     <td class="price" data-value="27.86">27.86</td>
-                    <td class="dividend-yield" data-value="11.22">11.22</td>                    <td class="dividend-yield" data-value="1.96">1.96</td>
+                    <td class="dividend-yield" data-value="11.22">11.22</td>
+                    <td class="dividend-yield" data-value="0.27">0.27</td>                    <td class="dividend-yield" data-value="1.96">1.96</td>
                     <td class="price" data-value="25.49">25.49</td>                    <td class="dividend-yield" data-value="1.37">1.37</td>
                     <td class="price" data-value="29.18">29.18</td>                    <td class="dividend-yield" data-value="2.04">2.04</td>
                     <td class="price" data-value="26.44">26.44</td>                    <td class="dividend-yield" data-value="2.46">2.46</td>
@@ -313,7 +320,8 @@
                     <td class="stock-info">000063</td>
                     <td>中兴通讯</td>
                     <td class="price" data-value="41.95">41.95</td>
-                    <td class="dividend-yield" data-value="7.88">7.88</td>                    <td class="dividend-yield" data-value="0.56">0.56</td>
+                    <td class="dividend-yield" data-value="7.88">7.88</td>
+                    <td class="dividend-yield" data-value="0.54">0.54</td>                    <td class="dividend-yield" data-value="0.56">0.56</td>
                     <td class="price" data-value="35.45">35.45</td>                    <td class="dividend-yield" data-value="0.58">0.58</td>
                     <td class="price" data-value="34.33">34.33</td>                    <td class="dividend-yield" data-value="0.9">0.9</td>
                     <td class="price" data-value="33.42">33.42</td>                    <td class="dividend-yield" data-value="1.54">1.54</td>
@@ -324,7 +332,8 @@
                     <td class="stock-info">601628</td>
                     <td>中国人寿</td>
                     <td class="price" data-value="45.4">45.4</td>
-                    <td class="dividend-yield" data-value="9.93">9.93</td>                    <td class="dividend-yield" data-value="2.09">2.09</td>
+                    <td class="dividend-yield" data-value="9.93">9.93</td>
+                    <td class="dividend-yield" data-value="0.14">0.14</td>                    <td class="dividend-yield" data-value="2.09">2.09</td>
                     <td class="price" data-value="34.95">34.95</td>                    <td class="dividend-yield" data-value="1.69">1.69</td>
                     <td class="price" data-value="37.83">37.83</td>                    <td class="dividend-yield" data-value="2.14">2.14</td>
                     <td class="price" data-value="30.31">30.31</td>                    <td class="dividend-yield" data-value="1.34">1.34</td>
@@ -335,7 +344,8 @@
                     <td class="stock-info">601318</td>
                     <td>中国平安</td>
                     <td class="price" data-value="61.99">61.99</td>
-                    <td class="dividend-yield" data-value="16.26">16.26</td>                    <td class="dividend-yield" data-value="1.51">1.51</td>
+                    <td class="dividend-yield" data-value="16.26">16.26</td>
+                    <td class="dividend-yield" data-value="0.71">0.71</td>                    <td class="dividend-yield" data-value="1.51">1.51</td>
                     <td class="price" data-value="86.12">86.12</td>                    <td class="dividend-yield" data-value="1.64">1.64</td>
                     <td class="price" data-value="85.18">85.18</td>                    <td class="dividend-yield" data-value="2.94">2.94</td>
                     <td class="price" data-value="51.0">51.0</td>                    <td class="dividend-yield" data-value="3.18">3.18</td>
@@ -346,7 +356,8 @@
                     <td class="stock-info">600028</td>
                     <td>中国石化</td>
                     <td class="price" data-value="5.96">5.96</td>
-                    <td class="dividend-yield" data-value="24.31">24.31</td>                    <td class="dividend-yield" data-value="3.68">3.68</td>
+                    <td class="dividend-yield" data-value="24.31">24.31</td>
+                    <td class="dividend-yield" data-value="2.55">2.55</td>                    <td class="dividend-yield" data-value="3.68">3.68</td>
                     <td class="price" data-value="5.17">5.17</td>                    <td class="dividend-yield" data-value="3.23">3.23</td>
                     <td class="price" data-value="4.03">4.03</td>                    <td class="dividend-yield" data-value="7.28">7.28</td>
                     <td class="price" data-value="4.26">4.26</td>                    <td class="dividend-yield" data-value="4.43">4.43</td>
@@ -357,7 +368,8 @@
                     <td class="stock-info">601857</td>
                     <td>中国石油</td>
                     <td class="price" data-value="9.9">9.9</td>
-                    <td class="dividend-yield" data-value="15.62">15.62</td>                    <td class="dividend-yield" data-value="1.12">1.12</td>
+                    <td class="dividend-yield" data-value="15.62">15.62</td>
+                    <td class="dividend-yield" data-value="1.09">1.09</td>                    <td class="dividend-yield" data-value="1.12">1.12</td>
                     <td class="price" data-value="5.87">5.87</td>                    <td class="dividend-yield" data-value="2.09">2.09</td>
                     <td class="price" data-value="4.19">4.19</td>                    <td class="dividend-yield" data-value="1.95">1.95</td>
                     <td class="price" data-value="4.94">4.94</td>                    <td class="dividend-yield" data-value="4.39">4.39</td>
@@ -368,7 +380,8 @@
                     <td class="stock-info">601988</td>
                     <td>中国银行</td>
                     <td class="price" data-value="5.81">5.81</td>
-                    <td class="dividend-yield" data-value="34.04">34.04</td>                    <td class="dividend-yield" data-value="5.13">5.13</td>
+                    <td class="dividend-yield" data-value="34.04">34.04</td>
+                    <td class="dividend-yield" data-value="2.9">2.9</td>                    <td class="dividend-yield" data-value="5.13">5.13</td>
                     <td class="price" data-value="3.72">3.72</td>                    <td class="dividend-yield" data-value="6.21">6.21</td>
                     <td class="price" data-value="3.17">3.17</td>                    <td class="dividend-yield" data-value="7.2">7.2</td>
                     <td class="price" data-value="3.07">3.07</td>                    <td class="dividend-yield" data-value="7.34">7.34</td>
@@ -379,18 +392,20 @@
                     <td class="stock-info">000066</td>
                     <td>中国长城</td>
                     <td class="price" data-value="14.66">14.66</td>
-                    <td class="dividend-yield" data-value="10.19">10.19</td>                    <td class="dividend-yield" data-value="0.55">0.55</td>
+                    <td class="dividend-yield" data-value="10.89">10.89</td>
+                    <td class="dividend-yield" data-value="4.45">4.45</td>                    <td class="dividend-yield" data-value="0.55">0.55</td>
                     <td class="price" data-value="15.93">15.93</td>                    <td class="dividend-yield" data-value="0.42">0.42</td>
                     <td class="price" data-value="20.7">20.7</td>                    <td class="dividend-yield" data-value="0.32">0.32</td>
                     <td class="price" data-value="14.67">14.67</td>                    <td class="dividend-yield" data-value="0.07">0.07</td>
-                    <td class="price" data-value="10.73">10.73</td>                    <td class="dividend-yield" data-value="4.79">4.79</td>
-                    <td class="price" data-value="10.01">10.01</td>                    <td class="dividend-yield" data-value="4.04">4.04</td>
+                    <td class="price" data-value="10.73">10.73</td>                    <td class="dividend-yield" data-value="4.27">4.27</td>
+                    <td class="price" data-value="10.01">10.01</td>                    <td class="dividend-yield" data-value="5.26">5.26</td>
                     <td class="price" data-value="13.95">13.95</td>                </tr>
                 <tr>
                     <td class="stock-info">000157</td>
                     <td>中联重科</td>
                     <td class="price" data-value="8.64">8.64</td>
-                    <td class="dividend-yield" data-value="25.59">25.59</td>                    <td class="dividend-yield" data-value="3.06">3.06</td>
+                    <td class="dividend-yield" data-value="25.59">25.59</td>
+                    <td class="dividend-yield" data-value="0.93">0.93</td>                    <td class="dividend-yield" data-value="3.06">3.06</td>
                     <td class="price" data-value="6.87">6.87</td>                    <td class="dividend-yield" data-value="3.13">3.13</td>
                     <td class="price" data-value="10.22">10.22</td>                    <td class="dividend-yield" data-value="4.44">4.44</td>
                     <td class="price" data-value="7.21">7.21</td>                    <td class="dividend-yield" data-value="5.84">5.84</td>
@@ -401,9 +416,10 @@
                     <td class="stock-info">600026</td>
                     <td>中远海能</td>
                     <td class="price" data-value="11.44">11.44</td>
-                    <td class="dividend-yield" data-value="11.29">11.29</td>                    <td class="dividend-yield" data-value="0.58">0.58</td>
+                    <td class="dividend-yield" data-value="10.88">10.88</td>
+                    <td class="dividend-yield" data-value="0.69">0.69</td>                    <td class="dividend-yield" data-value="0.58">0.58</td>
                     <td class="price" data-value="6.93">6.93</td>                    <td class="dividend-yield" data-value="2.96">2.96</td>
-                    <td class="price" data-value="6.76">6.76</td>                    <td class="dividend-yield" data-value="1.97">1.97</td>
+                    <td class="price" data-value="6.76">6.76</td>                    <td class="dividend-yield" data-value="1.56">1.56</td>
                     <td class="price" data-value="6.11">6.11</td>                    <td class="dividend-yield" data-value="1.19">1.19</td>
                     <td class="price" data-value="12.58">12.58</td>                    <td class="dividend-yield" data-value="2.74">2.74</td>
                     <td class="price" data-value="12.79">12.79</td>                    <td class="dividend-yield" data-value="1.85">1.85</td>
@@ -412,7 +428,8 @@
                     <td class="stock-info">000538</td>
                     <td>云南白药</td>
                     <td class="price" data-value="55.93">55.93</td>
-                    <td class="dividend-yield" data-value="17.04">17.04</td>                    <td class="dividend-yield" data-value="3.36">3.36</td>
+                    <td class="dividend-yield" data-value="17.04">17.04</td>
+                    <td class="dividend-yield" data-value="0.76">0.76</td>                    <td class="dividend-yield" data-value="3.36">3.36</td>
                     <td class="price" data-value="89.31">89.31</td>                    <td class="dividend-yield" data-value="3.12">3.12</td>
                     <td class="price" data-value="124.96">124.96</td>                    <td class="dividend-yield" data-value="1.53">1.53</td>
                     <td class="price" data-value="104.55">104.55</td>                    <td class="dividend-yield" data-value="2.78">2.78</td>
@@ -423,7 +440,8 @@
                     <td class="stock-info">000858</td>
                     <td>五粮液</td>
                     <td class="price" data-value="114.96">114.96</td>
-                    <td class="dividend-yield" data-value="11.75">11.75</td>                    <td class="dividend-yield" data-value="1.67">1.67</td>
+                    <td class="dividend-yield" data-value="11.75">11.75</td>
+                    <td class="dividend-yield" data-value="0.66">0.66</td>                    <td class="dividend-yield" data-value="1.67">1.67</td>
                     <td class="price" data-value="132.08">132.08</td>                    <td class="dividend-yield" data-value="0.87">0.87</td>
                     <td class="price" data-value="298.05">298.05</td>                    <td class="dividend-yield" data-value="1.35">1.35</td>
                     <td class="price" data-value="223.56">223.56</td>                    <td class="dividend-yield" data-value="2.12">2.12</td>
@@ -434,7 +452,8 @@
                     <td class="stock-info">601328</td>
                     <td>交通银行</td>
                     <td class="price" data-value="7.42">7.42</td>
-                    <td class="dividend-yield" data-value="37.3">37.3</td>                    <td class="dividend-yield" data-value="5.55">5.55</td>
+                    <td class="dividend-yield" data-value="37.3">37.3</td>
+                    <td class="dividend-yield" data-value="3.18">3.18</td>                    <td class="dividend-yield" data-value="5.55">5.55</td>
                     <td class="price" data-value="5.68">5.68</td>                    <td class="dividend-yield" data-value="7.09">7.09</td>
                     <td class="price" data-value="4.47">4.47</td>                    <td class="dividend-yield" data-value="7.68">7.68</td>
                     <td class="price" data-value="4.62">4.62</td>                    <td class="dividend-yield" data-value="7.87">7.87</td>
@@ -445,7 +464,8 @@
                     <td class="stock-info">000725</td>
                     <td>京东方A</td>
                     <td class="price" data-value="4.26">4.26</td>
-                    <td class="dividend-yield" data-value="9.98">9.98</td>                    <td class="dividend-yield" data-value="0.43">0.43</td>
+                    <td class="dividend-yield" data-value="9.98">9.98</td>
+                    <td class="dividend-yield" data-value="1.44">1.44</td>                    <td class="dividend-yield" data-value="0.43">0.43</td>
                     <td class="price" data-value="4.61">4.61</td>                    <td class="dividend-yield" data-value="1.69">1.69</td>
                     <td class="price" data-value="5.92">5.92</td>                    <td class="dividend-yield" data-value="4.13">4.13</td>
                     <td class="price" data-value="5.08">5.08</td>                    <td class="dividend-yield" data-value="1.77">1.77</td>
@@ -456,7 +476,8 @@
                     <td class="stock-info">600048</td>
                     <td>保利地产</td>
                     <td class="price" data-value="6.53">6.53</td>
-                    <td class="dividend-yield" data-value="22.71">22.71</td>                    <td class="dividend-yield" data-value="5.04">5.04</td>
+                    <td class="dividend-yield" data-value="22.71">22.71</td>
+                    <td class="dividend-yield" data-value="1.16">1.16</td>                    <td class="dividend-yield" data-value="5.04">5.04</td>
                     <td class="price" data-value="16.26">16.26</td>                    <td class="dividend-yield" data-value="4.77">4.77</td>
                     <td class="price" data-value="15.29">15.29</td>                    <td class="dividend-yield" data-value="3.67">3.67</td>
                     <td class="price" data-value="15.8">15.8</td>                    <td class="dividend-yield" data-value="2.92">2.92</td>
@@ -467,7 +488,8 @@
                     <td class="stock-info">601166</td>
                     <td>兴业银行</td>
                     <td class="price" data-value="20.8">20.8</td>
-                    <td class="dividend-yield" data-value="32.56">32.56</td>                    <td class="dividend-yield" data-value="3.77">3.77</td>
+                    <td class="dividend-yield" data-value="32.56">32.56</td>
+                    <td class="dividend-yield" data-value="1.45">1.45</td>                    <td class="dividend-yield" data-value="3.77">3.77</td>
                     <td class="price" data-value="20.21">20.21</td>                    <td class="dividend-yield" data-value="4.08">4.08</td>
                     <td class="price" data-value="19.65">19.65</td>                    <td class="dividend-yield" data-value="5.41">5.41</td>
                     <td class="price" data-value="19.13">19.13</td>                    <td class="dividend-yield" data-value="6.69">6.69</td>
@@ -478,7 +500,8 @@
                     <td class="stock-info">601288</td>
                     <td>农业银行</td>
                     <td class="price" data-value="7.82">7.82</td>
-                    <td class="dividend-yield" data-value="34.2">34.2</td>                    <td class="dividend-yield" data-value="4.88">4.88</td>
+                    <td class="dividend-yield" data-value="34.2">34.2</td>
+                    <td class="dividend-yield" data-value="2.92">2.92</td>                    <td class="dividend-yield" data-value="4.88">4.88</td>
                     <td class="price" data-value="3.73">3.73</td>                    <td class="dividend-yield" data-value="5.91">5.91</td>
                     <td class="price" data-value="3.13">3.13</td>                    <td class="dividend-yield" data-value="7.03">7.03</td>
                     <td class="price" data-value="2.94">2.94</td>                    <td class="dividend-yield" data-value="7.66">7.66</td>
@@ -489,40 +512,44 @@
                     <td class="stock-info">600010</td>
                     <td>包钢股份</td>
                     <td class="price" data-value="2.47">2.47</td>
-                    <td class="dividend-yield" data-value="28.9">28.9</td>                    <td class="dividend-yield" data-value="8.47">8.47</td>
-                    <td class="price" data-value="1.33">1.33</td>                    <td class="dividend-yield" data-value="8.64">8.64</td>
+                    <td class="dividend-yield" data-value="14.37">14.37</td>
+                    <td class="dividend-yield" data-value="5.95">5.95</td>                    <td class="dividend-yield" data-value="1.96">1.96</td>
+                    <td class="price" data-value="1.33">1.33</td>                    <td class="dividend-yield" data-value="7.55">7.55</td>
                     <td class="price" data-value="1.18">1.18</td>                    <td class="dividend-yield" data-value="0.68">0.68</td>
-                    <td class="price" data-value="2.79">2.79</td>                    <td class="dividend-yield" data-value="5.18">5.18</td>
-                    <td class="price" data-value="1.93">1.93</td>                    <td class="dividend-yield" data-value="5.82">5.82</td>
+                    <td class="price" data-value="2.79">2.79</td>                    <td class="dividend-yield" data-value="1.54">1.54</td>
+                    <td class="price" data-value="1.93">1.93</td>                    <td class="dividend-yield" data-value="2.53">2.53</td>
                     <td class="price" data-value="1.45">1.45</td>                    <td class="dividend-yield" data-value="0.11">0.11</td>
                     <td class="price" data-value="1.81">1.81</td>                </tr>
                 <tr>
                     <td class="stock-info">000069</td>
                     <td>华侨城A</td>
                     <td class="price" data-value="2.56">2.56</td>
-                    <td class="dividend-yield" data-value="27.65">27.65</td>                    <td class="dividend-yield" data-value="3.91">3.91</td>
+                    <td class="dividend-yield" data-value="20.64">20.64</td>
+                    <td class="dividend-yield" data-value="4.23">4.23</td>                    <td class="dividend-yield" data-value="3.91">3.91</td>
                     <td class="price" data-value="7.78">7.78</td>                    <td class="dividend-yield" data-value="5.81">5.81</td>
                     <td class="price" data-value="6.89">6.89</td>                    <td class="dividend-yield" data-value="1.38">1.38</td>
-                    <td class="price" data-value="7.26">7.26</td>                    <td class="dividend-yield" data-value="1.83">1.83</td>
-                    <td class="price" data-value="5.29">5.29</td>                    <td class="dividend-yield" data-value="4.92">4.92</td>
-                    <td class="price" data-value="3.03">3.03</td>                    <td class="dividend-yield" data-value="9.8">9.8</td>
+                    <td class="price" data-value="7.26">7.26</td>                    <td class="dividend-yield" data-value="6.3">6.3</td>
+                    <td class="price" data-value="5.29">5.29</td>                    <td class="dividend-yield" data-value="2.13">2.13</td>
+                    <td class="price" data-value="3.03">3.03</td>                    <td class="dividend-yield" data-value="1.11">1.11</td>
                     <td class="price" data-value="2.62">2.62</td>                </tr>
                 <tr>
                     <td class="stock-info">688001</td>
                     <td>华兴源创</td>
                     <td class="price" data-value="27.59">27.59</td>
-                    <td class="dividend-yield" data-value="5.51">5.51</td>                    <td class="dividend-yield" data-value="0.29">0.29</td>
+                    <td class="dividend-yield" data-value="8.32">8.32</td>
+                    <td class="dividend-yield" data-value="3.25">3.25</td>                    <td class="dividend-yield" data-value="0.29">0.29</td>
                     <td class="price" data-value="46.05">46.05</td>                    <td class="dividend-yield" data-value="0.47">0.47</td>
                     <td class="price" data-value="39.46">39.46</td>                    <td class="dividend-yield" data-value="0.6">0.6</td>
                     <td class="price" data-value="35.98">35.98</td>                    <td class="dividend-yield" data-value="1.09">1.09</td>
                     <td class="price" data-value="27.6">27.6</td>                    <td class="dividend-yield" data-value="0.49">0.49</td>
-                    <td class="price" data-value="34.72">34.72</td>                    <td class="dividend-yield" data-value="2.57">2.57</td>
+                    <td class="price" data-value="34.72">34.72</td>                    <td class="dividend-yield" data-value="5.38">5.38</td>
                     <td class="price" data-value="26.29">26.29</td>                </tr>
                 <tr>
                     <td class="stock-info">600015</td>
                     <td>华夏银行</td>
                     <td class="price" data-value="6.85">6.85</td>
-                    <td class="dividend-yield" data-value="32.11">32.11</td>                    <td class="dividend-yield" data-value="3.23">3.23</td>
+                    <td class="dividend-yield" data-value="32.11">32.11</td>
+                    <td class="dividend-yield" data-value="2.18">2.18</td>                    <td class="dividend-yield" data-value="3.23">3.23</td>
                     <td class="price" data-value="7.7">7.7</td>                    <td class="dividend-yield" data-value="4.85">4.85</td>
                     <td class="price" data-value="6.21">6.21</td>                    <td class="dividend-yield" data-value="6.0">6.0</td>
                     <td class="price" data-value="5.63">5.63</td>                    <td class="dividend-yield" data-value="7.35">7.35</td>
@@ -533,7 +560,8 @@
                     <td class="stock-info">600027</td>
                     <td>华电国际</td>
                     <td class="price" data-value="5.28">5.28</td>
-                    <td class="dividend-yield" data-value="24.75">24.75</td>                    <td class="dividend-yield" data-value="3.95">3.95</td>
+                    <td class="dividend-yield" data-value="24.75">24.75</td>
+                    <td class="dividend-yield" data-value="2.93">2.93</td>                    <td class="dividend-yield" data-value="3.95">3.95</td>
                     <td class="price" data-value="3.7">3.7</td>                    <td class="dividend-yield" data-value="7.42">7.42</td>
                     <td class="price" data-value="3.37">3.37</td>                    <td class="dividend-yield" data-value="5.08">5.08</td>
                     <td class="price" data-value="4.92">4.92</td>                    <td class="dividend-yield" data-value="3.09">3.09</td>
@@ -544,10 +572,11 @@
                     <td class="stock-info">600011</td>
                     <td>华能国际</td>
                     <td class="price" data-value="7.89">7.89</td>
-                    <td class="dividend-yield" data-value="24.46">24.46</td>                    <td class="dividend-yield" data-value="2.39">2.39</td>
+                    <td class="dividend-yield" data-value="28.43">28.43</td>
+                    <td class="dividend-yield" data-value="6.2">6.2</td>                    <td class="dividend-yield" data-value="2.39">2.39</td>
                     <td class="price" data-value="5.64">5.64</td>                    <td class="dividend-yield" data-value="4.0">4.0</td>
-                    <td class="price" data-value="4.5">4.5</td>                    <td class="dividend-yield" data-value="8.52">8.52</td>
-                    <td class="price" data-value="9.0">9.0</td>                    <td class="dividend-yield" data-value="2.93">2.93</td>
+                    <td class="price" data-value="4.5">4.5</td>                    <td class="dividend-yield" data-value="5.7">5.7</td>
+                    <td class="price" data-value="9.0">9.0</td>                    <td class="dividend-yield" data-value="9.72">9.72</td>
                     <td class="price" data-value="7.91">7.91</td>                    <td class="dividend-yield" data-value="2.5">2.5</td>
                     <td class="price" data-value="8.0">8.0</td>                    <td class="dividend-yield" data-value="4.12">4.12</td>
                     <td class="price" data-value="6.56">6.56</td>                </tr>
@@ -555,7 +584,8 @@
                     <td class="stock-info">600019</td>
                     <td>宝钢股份</td>
                     <td class="price" data-value="7.33">7.33</td>
-                    <td class="dividend-yield" data-value="19.79">19.79</td>                    <td class="dividend-yield" data-value="4.83">4.83</td>
+                    <td class="dividend-yield" data-value="19.79">19.79</td>
+                    <td class="dividend-yield" data-value="1.79">1.79</td>                    <td class="dividend-yield" data-value="4.83">4.83</td>
                     <td class="price" data-value="5.8">5.8</td>                    <td class="dividend-yield" data-value="4.93">4.93</td>
                     <td class="price" data-value="6.09">6.09</td>                    <td class="dividend-yield" data-value="3.46">3.46</td>
                     <td class="price" data-value="7.23">7.23</td>                    <td class="dividend-yield" data-value="1.79">1.79</td>
@@ -566,7 +596,8 @@
                     <td class="stock-info">601398</td>
                     <td>工商银行</td>
                     <td class="price" data-value="7.99">7.99</td>
-                    <td class="dividend-yield" data-value="31.85">31.85</td>                    <td class="dividend-yield" data-value="4.4">4.4</td>
+                    <td class="dividend-yield" data-value="31.85">31.85</td>
+                    <td class="dividend-yield" data-value="2.38">2.38</td>                    <td class="dividend-yield" data-value="4.4">4.4</td>
                     <td class="price" data-value="5.97">5.97</td>                    <td class="dividend-yield" data-value="5.31">5.31</td>
                     <td class="price" data-value="5.01">5.01</td>                    <td class="dividend-yield" data-value="6.28">6.28</td>
                     <td class="price" data-value="4.67">4.67</td>                    <td class="dividend-yield" data-value="7.04">7.04</td>
@@ -577,7 +608,8 @@
                     <td class="stock-info">000001</td>
                     <td>平安银行</td>
                     <td class="price" data-value="11.53">11.53</td>
-                    <td class="dividend-yield" data-value="16.68">16.68</td>                    <td class="dividend-yield" data-value="1.29">1.29</td>
+                    <td class="dividend-yield" data-value="16.68">16.68</td>
+                    <td class="dividend-yield" data-value="5.57">5.57</td>                    <td class="dividend-yield" data-value="1.29">1.29</td>
                     <td class="price" data-value="16.87">16.87</td>                    <td class="dividend-yield" data-value="0.97">0.97</td>
                     <td class="price" data-value="18.6">18.6</td>                    <td class="dividend-yield" data-value="1.37">1.37</td>
                     <td class="price" data-value="16.66">16.66</td>                    <td class="dividend-yield" data-value="2.07">2.07</td>
@@ -588,7 +620,8 @@
                     <td class="stock-info">600036</td>
                     <td>招商银行</td>
                     <td class="price" data-value="43.45">43.45</td>
-                    <td class="dividend-yield" data-value="26.1">26.1</td>                    <td class="dividend-yield" data-value="3.09">3.09</td>
+                    <td class="dividend-yield" data-value="26.1">26.1</td>
+                    <td class="dividend-yield" data-value="2.29">2.29</td>                    <td class="dividend-yield" data-value="3.09">3.09</td>
                     <td class="price" data-value="38.88">38.88</td>                    <td class="dividend-yield" data-value="2.9">2.9</td>
                     <td class="price" data-value="43.17">43.17</td>                    <td class="dividend-yield" data-value="3.15">3.15</td>
                     <td class="price" data-value="48.35">48.35</td>                    <td class="dividend-yield" data-value="4.62">4.62</td>
@@ -599,7 +632,8 @@
                     <td class="stock-info">000651</td>
                     <td>格力电器</td>
                     <td class="price" data-value="40.87">40.87</td>
-                    <td class="dividend-yield" data-value="21.87">21.87</td>                    <td class="dividend-yield" data-value="1.77">1.77</td>
+                    <td class="dividend-yield" data-value="21.87">21.87</td>
+                    <td class="dividend-yield" data-value="3.77">3.77</td>                    <td class="dividend-yield" data-value="1.77">1.77</td>
                     <td class="price" data-value="67.9">67.9</td>                    <td class="dividend-yield" data-value="4.77">4.77</td>
                     <td class="price" data-value="62.9">62.9</td>                    <td class="dividend-yield" data-value="2.66">2.66</td>
                     <td class="price" data-value="37.58">37.58</td>                    <td class="dividend-yield" data-value="3.08">3.08</td>
@@ -610,7 +644,8 @@
                     <td class="stock-info">600016</td>
                     <td>民生银行</td>
                     <td class="price" data-value="4.01">4.01</td>
-                    <td class="dividend-yield" data-value="28.88">28.88</td>                    <td class="dividend-yield" data-value="5.82">5.82</td>
+                    <td class="dividend-yield" data-value="28.88">28.88</td>
+                    <td class="dividend-yield" data-value="2.57">2.57</td>                    <td class="dividend-yield" data-value="5.82">5.82</td>
                     <td class="price" data-value="6.36">6.36</td>                    <td class="dividend-yield" data-value="4.1">4.1</td>
                     <td class="price" data-value="5.2">5.2</td>                    <td class="dividend-yield" data-value="5.45">5.45</td>
                     <td class="price" data-value="3.91">3.91</td>                    <td class="dividend-yield" data-value="6.22">6.22</td>
@@ -621,7 +656,8 @@
                     <td class="stock-info">000568</td>
                     <td>泸州老窖</td>
                     <td class="price" data-value="128.35">128.35</td>
-                    <td class="dividend-yield" data-value="12.83">12.83</td>                    <td class="dividend-yield" data-value="1.86">1.86</td>
+                    <td class="dividend-yield" data-value="12.83">12.83</td>
+                    <td class="dividend-yield" data-value="1.03">1.03</td>                    <td class="dividend-yield" data-value="1.86">1.86</td>
                     <td class="price" data-value="85.45">85.45</td>                    <td class="dividend-yield" data-value="0.85">0.85</td>
                     <td class="price" data-value="240.85">240.85</td>                    <td class="dividend-yield" data-value="1.29">1.29</td>
                     <td class="price" data-value="250.64">250.64</td>                    <td class="dividend-yield" data-value="1.92">1.92</td>
@@ -632,7 +668,8 @@
                     <td class="stock-info">600000</td>
                     <td>浦发银行</td>
                     <td class="price" data-value="11.26">11.26</td>
-                    <td class="dividend-yield" data-value="27.88">27.88</td>                    <td class="dividend-yield" data-value="4.81">4.81</td>
+                    <td class="dividend-yield" data-value="27.88">27.88</td>
+                    <td class="dividend-yield" data-value="0.1">0.1</td>                    <td class="dividend-yield" data-value="4.81">4.81</td>
                     <td class="price" data-value="12.47">12.47</td>                    <td class="dividend-yield" data-value="4.95">4.95</td>
                     <td class="price" data-value="9.69">9.69</td>                    <td class="dividend-yield" data-value="4.78">4.78</td>
                     <td class="price" data-value="8.57">8.57</td>                    <td class="dividend-yield" data-value="4.43">4.43</td>
@@ -643,10 +680,11 @@
                     <td class="stock-info">600004</td>
                     <td>白云机场</td>
                     <td class="price" data-value="9.76">9.76</td>
-                    <td class="dividend-yield" data-value="11.21">11.21</td>                    <td class="dividend-yield" data-value="0.83">0.83</td>
+                    <td class="dividend-yield" data-value="9.89">9.89</td>
+                    <td class="dividend-yield" data-value="3.1">3.1</td>                    <td class="dividend-yield" data-value="0.83">0.83</td>
                     <td class="price" data-value="17.52">17.52</td>                    <td class="dividend-yield" data-value="0.3">0.3</td>
-                    <td class="price" data-value="14.04">14.04</td>                    <td class="dividend-yield" data-value="5.0">5.0</td>
-                    <td class="price" data-value="12.46">12.46</td>                    <td class="dividend-yield" data-value="2.63">2.63</td>
+                    <td class="price" data-value="14.04">14.04</td>                    <td class="dividend-yield" data-value="0.83">0.83</td>
+                    <td class="price" data-value="12.46">12.46</td>                    <td class="dividend-yield" data-value="5.48">5.48</td>
                     <td class="price" data-value="14.56">14.56</td>                    <td class="dividend-yield" data-value="0.77">0.77</td>
                     <td class="price" data-value="9.72">9.72</td>                    <td class="dividend-yield" data-value="1.68">1.68</td>
                     <td class="price" data-value="9.35">9.35</td>                </tr>
@@ -654,7 +692,8 @@
                     <td class="stock-info">600033</td>
                     <td>福建高速</td>
                     <td class="price" data-value="4.35">4.35</td>
-                    <td class="dividend-yield" data-value="20.88">20.88</td>                    <td class="dividend-yield" data-value="1.62">1.62</td>
+                    <td class="dividend-yield" data-value="20.88">20.88</td>
+                    <td class="dividend-yield" data-value="2.37">2.37</td>                    <td class="dividend-yield" data-value="1.62">1.62</td>
                     <td class="price" data-value="3.09">3.09</td>                    <td class="dividend-yield" data-value="3.8">3.8</td>
                     <td class="price" data-value="2.63">2.63</td>                    <td class="dividend-yield" data-value="5.23">5.23</td>
                     <td class="price" data-value="2.87">2.87</td>                    <td class="dividend-yield" data-value="5.14">5.14</td>
@@ -662,21 +701,11 @@
                     <td class="price" data-value="3.17">3.17</td>                    <td class="dividend-yield" data-value="1.3">1.3</td>
                     <td class="price" data-value="3.84">3.84</td>                </tr>
                 <tr>
-                    <td class="stock-info">000938</td>
-                    <td>紫光股份</td>
-                    <td class="price" data-value="24.99">24.99</td>
-                    <td class="dividend-yield" data-value="11.52">11.52</td>                    <td class="dividend-yield" data-value="0.46">0.46</td>
-                    <td class="price" data-value="32.48">32.48</td>                    <td class="dividend-yield" data-value="0.48">0.48</td>
-                    <td class="price" data-value="20.65">20.65</td>                    <td class="dividend-yield" data-value="0.44">0.44</td>
-                    <td class="price" data-value="22.84">22.84</td>                    <td class="dividend-yield" data-value="9.11">9.11</td>
-                    <td class="price" data-value="20.37">20.37</td>                    <td class="dividend-yield" data-value="0.74">0.74</td>
-                    <td class="price" data-value="18.84">18.84</td>                    <td class="dividend-yield" data-value="0.29">0.29</td>
-                    <td class="price" data-value="26.01">26.01</td>                </tr>
-                <tr>
                     <td class="stock-info">000333</td>
                     <td>美的集团</td>
                     <td class="price" data-value="82.23">82.23</td>
-                    <td class="dividend-yield" data-value="21.53">21.53</td>                    <td class="dividend-yield" data-value="2.68">2.68</td>
+                    <td class="dividend-yield" data-value="21.53">21.53</td>
+                    <td class="dividend-yield" data-value="2.13">2.13</td>                    <td class="dividend-yield" data-value="2.68">2.68</td>
                     <td class="price" data-value="59.75">59.75</td>                    <td class="dividend-yield" data-value="1.62">1.62</td>
                     <td class="price" data-value="99.01">99.01</td>                    <td class="dividend-yield" data-value="2.26">2.26</td>
                     <td class="price" data-value="75.36">75.36</td>                    <td class="dividend-yield" data-value="4.82">4.82</td>
@@ -687,7 +716,8 @@
                     <td class="stock-info">600008</td>
                     <td>首创股份</td>
                     <td class="price" data-value="3.04">3.04</td>
-                    <td class="dividend-yield" data-value="21.27">21.27</td>                    <td class="dividend-yield" data-value="2.4">2.4</td>
+                    <td class="dividend-yield" data-value="21.27">21.27</td>
+                    <td class="dividend-yield" data-value="1.2">1.2</td>                    <td class="dividend-yield" data-value="2.4">2.4</td>
                     <td class="price" data-value="3.33">3.33</td>                    <td class="dividend-yield" data-value="2.45">2.45</td>
                     <td class="price" data-value="2.86">2.86</td>                    <td class="dividend-yield" data-value="2.87">2.87</td>
                     <td class="price" data-value="3.49">3.49</td>                    <td class="dividend-yield" data-value="4.51">4.51</td>
