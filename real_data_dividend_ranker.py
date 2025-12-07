@@ -322,49 +322,61 @@ class DividendYieldRanker:
         start_year = years[0]
         end_year = years[-1]
         
-        # 生成年份标签
-        year_tabs = ''
+        # 收集所有股票代码，用于横向比较
+        all_stocks = set()
         for year in years:
-            active_class = 'active' if year == years[0] else ''
-            year_tabs += f'''                    <button class="year-tab {active_class}" 
-                            onclick="showYear({year})">
-                        {year}年
-                    </button>\n'''
+            for stock in rankings[year]:
+                all_stocks.add((stock['code'], stock['name']))
         
-        # 生成年份内容
-        year_contents = ''
+        # 转换为列表并排序
+        all_stocks = sorted(all_stocks, key=lambda x: x[1])
+        
+        # 构建股票数据字典，便于查询
+        stock_data = {}
         for year in years:
-            year_data = rankings[year]
-            active_class = 'active' if year == years[0] else ''
+            for stock in rankings[year]:
+                key = (stock['code'], stock['name'])
+                if key not in stock_data:
+                    stock_data[key] = {}
+                stock_data[key][year] = stock
+        
+        # 生成年份比较表格HTML
+        comparison_html = f'''        <div class="section">
+            <h2>{start_year}年至{end_year}年股息率横向比较</h2>
+            <table class="stock-table comparison-table">
+                <thead>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票名称</th>'''
+        
+        # 添加年份表头
+        for year in years:
+            comparison_html += f'''                    <th>{year}年股息率 (%)</th>'''
+        
+        comparison_html += '''                </tr>
+                </thead>
+                <tbody>\n'''
+        
+        # 添加股票数据行
+        for code, name in all_stocks[:50]:  # 只显示前50只股票
+            comparison_html += f'''                <tr>
+                    <td class="stock-info">{code}</td>
+                    <td>{name}</td>'''
             
-            year_content = f'''                    <div id="year-{year}" class="year-content {active_class}">
-                        <table class="stock-table">
-                            <thead>
-                                <tr>
-                                    <th>排名</th>
-                                    <th>股票代码</th>
-                                    <th>股票名称</th>
-                                    <th>当年1月1日价格 (元)</th>
-                                    <th>现金分红 (元/股)</th>
-                                    <th>股息率 (%)</th>
-                                </tr>
-                            </thead>
-                            <tbody>\n'''
+            # 添加各年份的股息率
+            for year in years:
+                key = (code, name)
+                if key in stock_data and year in stock_data[key]:
+                    dividend_yield = stock_data[key][year]['dividend_yield']
+                    comparison_html += f'''                    <td class="dividend-yield">{dividend_yield}</td>'''
+                else:
+                    comparison_html += '''                    <td>-</td>'''
             
-            for i, stock in enumerate(year_data):
-                year_content += f'''                                <tr>
-                                    <td>{i+1}</td>
-                                    <td class="stock-info">{stock['code']}</td>
-                                    <td>{stock['name']}</td>
-                                    <td class="price">{stock['price']}</td>
-                                    <td>{stock['dividend']}</td>
-                                    <td class="dividend-yield">{stock['dividend_yield']}</td>
-                                </tr>\n'''
-            
-            year_content += '''                            </tbody>
-                        </table>
-                    </div>\n'''
-            year_contents += year_content
+            comparison_html += '''                </tr>\n'''
+        
+        comparison_html += '''            </tbody>
+        </table>
+    </div>\n'''
         
         # 生成累计股息率排名HTML
         cumulative_html = f'''        <div class="section">
@@ -444,42 +456,15 @@ class DividendYieldRanker:
             padding-bottom: 10px;
         }
         
-        .year-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-        
-        .year-tab {
-            padding: 10px 20px;
-            background: #ecf0f1;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        
-        .year-tab:hover {
-            background: #3498db;
-            color: white;
-        }
-        
-        .year-tab.active {
-            background: #3498db;
-            color: white;
-            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
-        }
-        
         .stock-table {
             width: 100%;
             border-collapse: collapse;
             overflow-x: auto;
             display: block;
+        }
+        
+        .comparison-table {
+            table-layout: fixed;
         }
         
         .stock-table th,
@@ -495,6 +480,7 @@ class DividendYieldRanker:
             font-weight: 600;
             position: sticky;
             top: 0;
+            z-index: 10;
         }
         
         .stock-table tr:hover {
@@ -508,23 +494,17 @@ class DividendYieldRanker:
         .stock-info {
             font-weight: 600;
             color: #2c3e50;
+            white-space: nowrap;
         }
         
         .dividend-yield {
             color: #27ae60;
             font-weight: 600;
+            text-align: center;
         }
         
         .price {
             color: #e74c3c;
-        }
-        
-        .year-content {
-            display: none;
-        }
-        
-        .year-content.active {
-            display: block;
         }
         
         .header-info {
@@ -532,6 +512,10 @@ class DividendYieldRanker:
             margin-bottom: 20px;
             color: #666;
             font-size: 1.1rem;
+        }
+        
+        .comparison-table th {
+            min-width: 120px;
         }
     </style>
 </head>
@@ -542,50 +526,17 @@ class DividendYieldRanker:
             统计范围：2020年 - 2025年 | 股票价格：当年1月1日收盘价 | 数据来源：Baostock API
         </div>
         
-        <div class="section">
-            <h2>每年最高股息率前30名股票</h2>
-            <div class="year-tabs">
 '''
         
-        # 添加年份标签
-        html += year_tabs
-        
-        html += '''            </div>
-            
-'''
-        
-        # 添加年份内容
-        html += year_contents
+        # 添加年份比较表格
+        html += comparison_html
         
         # 添加累计股息率排名
         html += cumulative_html
         
         html += '''    </div>
-    
-    <script>
-        function showYear(year) {
-            // 隐藏所有年份内容
-            var contents = document.querySelectorAll('.year-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].classList.remove('active');
-            }
-            
-            // 移除所有标签的active类
-            var tabs = document.querySelectorAll('.year-tab');
-            for (var i = 0; i < tabs.length; i++) {
-                tabs[i].classList.remove('active');
-            }
-            
-            // 显示当前年份内容
-            document.getElementById('year-' + year).classList.add('active');
-            
-            // 添加当前标签的active类
-            event.target.classList.add('active');
-        }
-    </script>
 </body>
-</html>'''
-        
+</html>'''        
         # 保存HTML文件
         with open("dividend_rankings.html", "w", encoding="utf-8") as f:
             f.write(html)
