@@ -103,7 +103,7 @@ class DividendYieldRanker:
                 start_date=f"{year}-01-01",
                 end_date=f"{year}-01-31",
                 frequency="d",
-                adjustflag="3"  # 不复权
+                adjustflag="1"  # 前复权
             )
             
             data_list = []
@@ -201,7 +201,7 @@ class DividendYieldRanker:
                 start_date="2025-12-01",  # 最近1个月的数据
                 end_date="2025-12-31",
                 frequency="d",
-                adjustflag="3"  # 不复权
+                adjustflag="1"  # 前复权
             )
             
             data_list = []
@@ -411,16 +411,6 @@ class DividendYieldRanker:
             latest_price = self.get_latest_close_price(full_code)
             latest_prices[(code, name)] = latest_price
         
-        # 生成年份比较表格HTML
-        comparison_html = f'''        <div class="section">
-            <h2>{start_year}年至{end_year}年股息率横向比较</h2>
-            <table class="stock-table comparison-table sortable">
-                <thead>
-                    <tr>
-                        <th onclick="sortTable(this, 0)">股票代码 <span class="sort-indicator">▼</span></th>
-                        <th onclick="sortTable(this, 1)">股票名称 <span class="sort-indicator">▼</span></th>
-                        <th onclick="sortTable(this, 2)">最新收盘价 (元) <span class="sort-indicator">▼</span></th>'''
-        
         # 计算每个股票的2020-2025年累计股息率
         cumulative_dividend_yields = {}
         for code, name in all_stocks:
@@ -431,16 +421,22 @@ class DividendYieldRanker:
                     total_yield += stock_data[key][year]['dividend_yield']
             cumulative_dividend_yields[(code, name)] = round(total_yield, 2)
         
+        # 生成年份比较表格HTML
+        comparison_html = f'''        <div class="section">
+            <h2>{start_year}年至{end_year}年股息率横向比较</h2>
+            <table class="stock-table comparison-table sortable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(this, 0)">股票代码 <span class="sort-indicator">▼</span></th>
+                        <th onclick="sortTable(this, 1)">股票名称 <span class="sort-indicator">▼</span></th>
+                        <th onclick="sortTable(this, 2)">最新收盘价 (元) <span class="sort-indicator">▼</span></th>
+                        <th onclick="sortTable(this, 3)">累计股息率 (%) <span class="sort-indicator">▼</span></th>'''        
         # 添加年份表头（股息率 + 当年价格）
         for i, year in enumerate(years):
-            # 计算列索引：基础3列 + 每年2列（股息率+价格）* 前面的年份数
-            base_index = 3 + i * 2
+            # 计算列索引：基础4列（股票代码+名称+最新价格+累计股息率） + 每年2列（股息率+价格）* 前面的年份数
+            base_index = 4 + i * 2
             comparison_html += f'''                    <th onclick="sortTable(this, {base_index})">{year}年股息率 (%) <span class="sort-indicator">▼</span></th>
                     <th onclick="sortTable(this, {base_index + 1})">{year}年首价 (元) <span class="sort-indicator">▼</span></th>'''
-        
-        # 添加累计股息率列
-        cumulative_index = 3 + len(years) * 2
-        comparison_html += f'''                    <th onclick="sortTable(this, {cumulative_index})"><累计股息率 (%) <span class="sort-indicator">▼</span></th>'''
         
         comparison_html += '''                </tr>
                 </thead>
@@ -452,10 +448,14 @@ class DividendYieldRanker:
             latest_price = latest_prices[(code, name)]
             price_display = latest_price if latest_price is not None else '-'
             
+            # 获取累计股息率
+            cumulative_yield = cumulative_dividend_yields[(code, name)]
+            
             comparison_html += f'''                <tr>
                     <td class="stock-info">{code}</td>
                     <td>{name}</td>
-                    <td class="price" data-value="{latest_price if latest_price is not None else ''}">{price_display}</td>'''
+                    <td class="price" data-value="{latest_price if latest_price is not None else ''}">{price_display}</td>
+                    <td class="dividend-yield" data-value="{cumulative_yield}">{cumulative_yield}</td>'''
             
             # 添加各年份的股息率和当年价格
             for year in years:
@@ -468,10 +468,6 @@ class DividendYieldRanker:
                 else:
                     comparison_html += '''                    <td class="dividend-yield" data-value="">-</td>
                     <td class="price" data-value="">-</td>'''
-            
-            # 添加累计股息率
-            cumulative_yield = cumulative_dividend_yields[(code, name)]
-            comparison_html += f'''                    <td class="dividend-yield" data-value="{cumulative_yield}">{cumulative_yield}</td>'''
             
             comparison_html += '''                </tr>\n'''
         
@@ -597,6 +593,27 @@ class DividendYieldRanker:
         
         .comparison-table th {
             min-width: 120px;
+        }
+        
+        /* 固定列样式 */
+        .stock-table th:nth-child(1),
+        .stock-table td:nth-child(1),
+        .stock-table th:nth-child(2),
+        .stock-table td:nth-child(2) {
+            position: sticky;
+            left: 0;
+            background: white;
+            z-index: 1;
+        }
+        
+        .stock-table th:nth-child(1),
+        .stock-table th:nth-child(2) {
+            z-index: 11; /* 表头固定列优先级更高 */
+            background: #3498db;
+        }
+        
+        .stock-table td:nth-child(2) {
+            left: 80px; /* 第二列固定，左边距为第一列的宽度 */
         }
         
         /* 排序指示器样式 */
