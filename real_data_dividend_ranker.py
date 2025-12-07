@@ -131,7 +131,7 @@ class DividendYieldRanker:
             return price
     
     def get_dividend_yield(self, code, year):
-        """获取指定年份的股息率 - 使用Baostock API或模拟数据"""
+        """获取指定年份的股息率 - 使用Baostock API或模拟数据，累加一年中所有分红"""
         try:
             print(f"正在获取{code}在{year}年的股息率...")  # 打印调试信息
             # 使用完整的股票代码（已经是9位格式，如sh.600000）
@@ -148,27 +148,28 @@ class DividendYieldRanker:
             print(f"获取到{code}在{year}年的分红数据: {dividend_list}")  # 打印调试信息
             
             if dividend_list:
-                # 正确处理数据，找到包含每股现金红利的字段
-                cash_dividend = 0.0
-                for item in dividend_list[0]:
-                    try:
-                        # 尝试转换为浮点数
-                        value = float(item)
-                        if value > 0:
-                            cash_dividend = value
-                            break
-                    except ValueError:
-                        # 如果不是浮点数，继续尝试下一个字段
-                        continue
+                # 累加一年中所有分红的现金红利
+                total_cash_dividend = 0.0
+                for dividend_item in dividend_list:
+                    for item in dividend_item:
+                        try:
+                            # 尝试转换为浮点数
+                            value = float(item)
+                            if value > 0:
+                                total_cash_dividend += value
+                                break
+                        except ValueError:
+                            # 如果不是浮点数，继续尝试下一个字段
+                            continue
                 
                 # 获取当年1月1日的股价
                 price = self.get_stock_price(code, year)
                 
                 # 计算股息率
-                if price > 0 and cash_dividend > 0:
-                    dividend_yield = (cash_dividend / price) * 100
+                if price > 0 and total_cash_dividend > 0:
+                    dividend_yield = (total_cash_dividend / price) * 100
                     result = round(dividend_yield, 2)
-                    print(f"计算得到{code}在{year}年的股息率: {result}%")  # 打印调试信息
+                    print(f"计算得到{code}在{year}年的股息率: {result}% (累计分红: {total_cash_dividend}元)")  # 打印调试信息
                     return result
                 else:
                     # 如果没有有效的价格或分红数据，生成模拟数据
@@ -375,28 +376,33 @@ class DividendYieldRanker:
     
     def generate_html(self, rankings, cumulative_rankings, all_year_data):
         """生成HTML页面"""
-        years = sorted(rankings.keys())
-        start_year = years[0]
-        end_year = years[-1]
-        
-        # 收集所有股票代码，用于横向比较
-        all_stocks = set()
-        for year in years:
-            for stock in rankings[year]:
-                all_stocks.add((stock['code'], stock['name']))
-        
-        # 转换为列表并排序
-        all_stocks = sorted(all_stocks, key=lambda x: x[1])
+        # 调整年份顺序为从2025到2020的倒序
+        display_years = sorted(rankings.keys(), reverse=True)
+        # 原始正序年份，用于数据处理
+        all_years = sorted(rankings.keys())
+        start_year = all_years[0]
+        end_year = all_years[-1]
         
         # 构建股票数据字典，便于查询 - 使用完整数据确保所有年份的股息率都能显示
         stock_data = {}
-        for year in years:
-            # 使用完整数据而非仅前30名
+        for year in all_years:
+            # 使用完整数据而非仅前30名，确保所有股票都被考虑
             for stock in all_year_data[year]:
                 key = (stock['code'], stock['name'])
                 if key not in stock_data:
                     stock_data[key] = {}
                 stock_data[key][year] = stock
+        
+        # 筛选出2020-2025年间至少有一年股息率大于3%的股票
+        filtered_stocks = set()
+        for key, data in stock_data.items():
+            for year in all_years:  # 检查2020-2025年间的所有年份
+                if year in data and data[year]['dividend_yield'] > 3:
+                    filtered_stocks.add(key)
+                    break
+        
+        # 转换为列表并排序
+        all_stocks = sorted(filtered_stocks, key=lambda x: x[1])
         
         # 获取所有股票的最新收盘价
         latest_prices = {}
@@ -411,29 +417,36 @@ class DividendYieldRanker:
             latest_price = self.get_latest_close_price(full_code)
             latest_prices[(code, name)] = latest_price
         
-        # 计算每个股票的2020-2025年累计股息率和方差
+        # 计算每个股票的2020-2025年累计股息率和最近3年的股息率方差
         cumulative_dividend_yields = {}
         dividend_yield_variances = {}
         
+        # 确定最近3年的年份范围（2023-2025）
+        recent_years = [2023, 2024, 2025]
+        
         for code, name in all_stocks:
             total_yield = 0.0
-            yield_list = []
+            all_yield_list = []
+            recent_yield_list = []
             
             # 收集各年份的股息率数据
-            for year in years:
+            for year in all_years:
                 key = (code, name)
                 if key in stock_data and year in stock_data[key]:
                     yield_value = stock_data[key][year]['dividend_yield']
                     total_yield += yield_value
-                    yield_list.append(yield_value)
+                    all_yield_list.append(yield_value)
+                    # 只收集最近3年的数据用于方差计算
+                    if year in recent_years:
+                        recent_yield_list.append(yield_value)
             
             # 计算累计股息率
             cumulative_dividend_yields[(code, name)] = round(total_yield, 2)
             
-            # 计算方差
-            if len(yield_list) > 1:
-                mean_yield = sum(yield_list) / len(yield_list)
-                variance = sum((x - mean_yield) ** 2 for x in yield_list) / len(yield_list)
+            # 使用最近3年的数据计算方差
+            if len(recent_yield_list) > 1:
+                mean_yield = sum(recent_yield_list) / len(recent_yield_list)
+                variance = sum((x - mean_yield) ** 2 for x in recent_yield_list) / len(recent_yield_list)
                 dividend_yield_variances[(code, name)] = round(variance, 2)
             else:
                 dividend_yield_variances[(code, name)] = 0.0
@@ -449,8 +462,8 @@ class DividendYieldRanker:
                     <th onclick="sortTable(this, 2)">最新收盘价 (元) <span class="sort-indicator">▼</span></th>
                     <th onclick="sortTable(this, 3)">累计股息率 (%) <span class="sort-indicator">▼</span></th>
                     <th onclick="sortTable(this, 4)">股息率方差 <span class="sort-indicator">▼</span></th>'''        
-        # 添加年份表头（股息率 + 当年价格）
-        for i, year in enumerate(years):
+        # 添加年份表头（股息率 + 当年价格），按2025到2020的顺序
+        for i, year in enumerate(display_years):
             # 计算列索引：基础5列（股票代码+名称+最新价格+累计股息率+方差） + 每年2列（股息率+价格）* 前面的年份数
             base_index = 5 + i * 2
             comparison_html += f'''                    <th onclick="sortTable(this, {base_index})">{year}年股息率 (%) <span class="sort-indicator">▼</span></th>
@@ -477,8 +490,8 @@ class DividendYieldRanker:
                     <td class="dividend-yield" data-value="{cumulative_yield}">{cumulative_yield}</td>
                     <td class="dividend-yield" data-value="{variance}">{variance}</td>'''
             
-            # 添加各年份的股息率和当年价格
-            for year in years:
+            # 添加各年份的股息率和当年价格，按2025到2020的顺序
+            for year in display_years:
                 key = (code, name)
                 if key in stock_data and year in stock_data[key]:
                     dividend_yield = stock_data[key][year]['dividend_yield']
@@ -550,6 +563,8 @@ class DividendYieldRanker:
             border-collapse: collapse;
             overflow-x: auto;
             display: block;
+            max-height: 600px; /* 固定表格高度，启用滚动 */
+            overflow-y: auto;
         }
         
         .comparison-table {
@@ -650,6 +665,29 @@ class DividendYieldRanker:
         .sort-desc .sort-indicator {
             transform: rotate(0deg);
         }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
     <script>
         // 排序状态记录
@@ -730,6 +768,12 @@ class DividendYieldRanker:
         html += comparison_html
         
         html += '''    </div>
+    
+    <footer>
+        <p>Author：Timo & TRAE</p>
+        <p><a href="https://github.com/timoseven/dividend-ranker" target="_blank">https://github.com/timoseven/dividend-ranker</a></p>
+    </footer>
+</div>
 </body>
 </html>'''        
         # 保存HTML文件
