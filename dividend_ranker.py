@@ -178,7 +178,8 @@ class DividendYieldRanker:
         """生成HTML页面"""
         years = sorted(rankings.keys())
         
-        html = f"""
+        # 使用普通字符串模板，避免f-string大括号冲突
+        html_template = '''
         <!DOCTYPE html>
         <html lang="zh-CN">
         <head>
@@ -386,7 +387,7 @@ class DividendYieldRanker:
                 
                 <div class="stats">
                     <div class="stat-card">
-                        <div class="stat-value">{len(years)}</div>
+                        <div class="stat-value">{year_count}</div>
                         <div class="stat-label">统计年份</div>
                     </div>
                     <div class="stat-card">
@@ -394,7 +395,7 @@ class DividendYieldRanker:
                         <div class="stat-label">每年上榜股票数</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">{years[0]}-{years[-1]}</div>
+                        <div class="stat-value">{start_year}-{end_year}</div>
                         <div class="stat-label">统计区间</div>
                     </div>
                 </div>
@@ -402,63 +403,10 @@ class DividendYieldRanker:
                 <div class="section">
                     <h2>每年最高股息率前100名股票</h2>
                     <div class="year-tabs">
-                """
-        
-        # 添加年份标签
-        for year in years:
-            html += f"""
-                    <button class="year-tab {'active' if year == years[0] else ''}" 
-                            onclick="showYearContent({year})">
-                        {year}年
-                    </button>
-            """
-        
-        html += f"""
+                        {year_tabs}
                     </div>
-                """
-        
-        # 添加年份内容
-        for year in years:
-            year_data = rankings[year]
-            active_class = 'active' if year == years[0] else ''
-            
-            html += f"""
-                    <div id="year-{year}" class="year-content {active_class}">
-                        <table class="stock-table">
-                            <thead>
-                                <tr>
-                                    <th>排名</th>
-                                    <th>股票代码</th>
-                                    <th>股票名称</th>
-                                    <th>当年第一个交易日</th>
-                                    <th>收盘价 (元)</th>
-                                    <th>现金分红 (元/股)</th>
-                                    <th>股息率 (%)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            """
-            
-            for i, stock in enumerate(year_data):
-                html += f"""
-                                <tr>
-                                    <td>{i+1}</td>
-                                    <td class="stock-info">{stock['code']}</td>
-                                    <td>{stock['name']}</td>
-                                    <td>{stock['first_trading_day']}</td>
-                                    <td class="price">{stock['price']}</td>
-                                    <td>{stock['dividend']}</td>
-                                    <td class="dividend-yield">{stock['dividend_yield']}</td>
-                                </tr>
-                """
-            
-            html += f"""
-                            </tbody>
-                        </table>
-                    </div>
-            """
-        
-        html += f"""
+                    
+                    {year_contents}
                 </div>
             </div>
             
@@ -483,7 +431,62 @@ class DividendYieldRanker:
             </script>
         </body>
         </html>
-        """
+        '''
+        
+        # 生成年份标签
+        year_tabs = ''
+        for year in years:
+            active_class = 'active' if year == years[0] else ''
+            year_tabs += f'''                    <button class="year-tab {active_class}" 
+                            onclick="showYearContent({year})">
+                        {year}年
+                    </button>\n'''
+        
+        # 生成年份内容
+        year_contents = ''
+        for year in years:
+            year_data = rankings[year]
+            active_class = 'active' if year == years[0] else ''
+            
+            year_content = f'''                    <div id="year-{year}" class="year-content {active_class}">
+                        <table class="stock-table">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>当年第一个交易日</th>
+                                    <th>收盘价 (元)</th>
+                                    <th>现金分红 (元/股)</th>
+                                    <th>股息率 (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>\n'''
+            
+            for i, stock in enumerate(year_data):
+                year_content += f'''                                <tr>
+                                    <td>{i+1}</td>
+                                    <td class="stock-info">{stock['code']}</td>
+                                    <td>{stock['name']}</td>
+                                    <td>{stock['first_trading_day']}</td>
+                                    <td class="price">{stock['price']}</td>
+                                    <td>{stock['dividend']}</td>
+                                    <td class="dividend-yield">{stock['dividend_yield']}</td>
+                                </tr>\n'''
+            
+            year_content += '''                            </tbody>
+                        </table>
+                    </div>\n'''
+            year_contents += year_content
+        
+        # 替换模板中的变量
+        html = html_template.format(
+            year_count=len(years),
+            start_year=years[0],
+            end_year=years[-1],
+            year_tabs=year_tabs,
+            year_contents=year_contents
+        )
         
         # 保存HTML文件
         with open("dividend_rankings.html", "w", encoding="utf-8") as f:
