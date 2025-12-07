@@ -226,7 +226,7 @@ class DividendYieldRanker:
         """计算分红金额"""
         return round(price * (dividend_yield / 100), 2)
     
-    def generate_rankings(self, start_year=2020, end_year=2025, top_n=30):
+    def generate_rankings(self, start_year=2020, end_year=2025, top_n=100):
         """生成指定年份范围的股息率排名"""
         # 获取股票列表
         stock_list = self.get_stock_list()
@@ -245,10 +245,10 @@ class DividendYieldRanker:
             print(f"\n正在处理{year}年数据...")
             year_data = []
             
-            # 只处理前200只股票，避免处理时间过长
-            for i, (full_code, code, name) in enumerate(stock_list[:200]):
+            # 处理所有股票，不再限制200只
+            for i, (full_code, code, name) in enumerate(stock_list):
                 if i % 50 == 0:
-                    print(f"已处理{year}年第{i}/{len(stock_list[:200])}只股票")
+                    print(f"已处理{year}年第{i}/{len(stock_list)}只股票")
                 
                 # 获取股票价格（当年1月1日）
                 price = self.get_stock_price(full_code, year)
@@ -285,7 +285,7 @@ class DividendYieldRanker:
         
         return all_rankings, all_year_data
     
-    def calculate_cumulative_rankings(self, rankings, top_n=30):
+    def calculate_cumulative_rankings(self, rankings, top_n=100):
         """计算累计股息率排名"""
         years = sorted(rankings.keys())
         start_year = years[0]
@@ -454,6 +454,15 @@ class DividendYieldRanker:
         # 生成年份比较表格HTML
         comparison_html = f'''        <div class="section">
             <h2>{start_year}年至{end_year}年股息率横向比较</h2>
+            <div style="margin-bottom: 15px; padding: 15px; background-color: #f0f8ff; border-left: 4px solid #3498db; color: #2c3e50;">
+                <p>数据说明：</p>
+                <ul style="margin-left: 20px;">
+                    <li>统计范围：2020年至2025年沪市和深市的所有股票</li>
+                    <li>筛选条件：2020-2025年间至少有一年股息率大于3%</li>
+                    <li>股息率计算：基于当年1月1日收盘价和全年累计分红金额</li>
+                    <li>方差计算：使用最近3年（2023-2025）的股息率数据</li>
+                </ul>
+            </div>
             <table class="stock-table comparison-table sortable">
                 <thead>
                     <tr>
@@ -474,7 +483,7 @@ class DividendYieldRanker:
                 <tbody>\n'''
         
         # 添加股票数据行
-        for code, name in all_stocks[:50]:  # 只显示前50只股票
+        for code, name in all_stocks[:100]:  # 显示前100只符合条件的股票
             # 获取最新收盘价
             latest_price = latest_prices[(code, name)]
             price_display = latest_price if latest_price is not None else '-'
