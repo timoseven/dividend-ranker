@@ -178,261 +178,6 @@ class DividendYieldRanker:
         """生成HTML页面"""
         years = sorted(rankings.keys())
         
-        # 使用普通字符串模板，避免f-string大括号冲突
-        html_template = '''
-        <!DOCTYPE html>
-        <html lang="zh-CN">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>沪深股市股息率排名 (2020-2025)</title>
-            <style>
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-                
-                body {
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-                    background-color: #f5f7fa;
-                    color: #333;
-                    line-height: 1.6;
-                }
-                
-                .container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 20px;
-                }
-                
-                h1 {
-                    text-align: center;
-                    color: #2c3e50;
-                    margin-bottom: 30px;
-                    font-size: 2.5rem;
-                }
-                
-                .section {
-                    background: white;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                    margin-bottom: 30px;
-                    padding: 20px;
-                }
-                
-                h2 {
-                    color: #34495e;
-                    margin-bottom: 20px;
-                    font-size: 1.8rem;
-                    border-bottom: 2px solid #3498db;
-                    padding-bottom: 10px;
-                }
-                
-                .year-tabs {
-                    display: flex;
-                    gap: 10px;
-                    margin-bottom: 20px;
-                    overflow-x: auto;
-                    padding-bottom: 10px;
-                }
-                
-                .year-tab {
-                    padding: 10px 20px;
-                    background: #ecf0f1;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-size: 1rem;
-                    font-weight: 500;
-                    transition: all 0.3s ease;
-                    white-space: nowrap;
-                }
-                
-                .year-tab:hover {
-                    background: #3498db;
-                    color: white;
-                }
-                
-                .year-tab.active {
-                    background: #3498db;
-                    color: white;
-                    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
-                }
-                
-                .stock-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    overflow-x: auto;
-                    display: block;
-                }
-                
-                .stock-table th,
-                .stock-table td {
-                    padding: 12px;
-                    text-align: left;
-                    border-bottom: 1px solid #e0e0e0;
-                }
-                
-                .stock-table th {
-                    background: #3498db;
-                    color: white;
-                    font-weight: 600;
-                    position: sticky;
-                    top: 0;
-                }
-                
-                .stock-table tr:hover {
-                    background: #f8f9fa;
-                }
-                
-                .stock-table tr:nth-child(even) {
-                    background: #f5f7fa;
-                }
-                
-                .stock-table tr:nth-child(even):hover {
-                    background: #e9ecef;
-                }
-                
-                .stock-info {
-                    font-weight: 600;
-                    color: #2c3e50;
-                }
-                
-                .dividend-yield {
-                    color: #27ae60;
-                    font-weight: 600;
-                }
-                
-                .price {
-                    color: #e74c3c;
-                }
-                
-                .year-content {
-                    display: none;
-                }
-                
-                .year-content.active {
-                    display: block;
-                }
-                
-                .header-info {
-                    text-align: center;
-                    margin-bottom: 20px;
-                    color: #666;
-                    font-size: 1.1rem;
-                }
-                
-                .stats {
-                    display: flex;
-                    justify-content: space-around;
-                    margin-bottom: 20px;
-                    flex-wrap: wrap;
-                    gap: 20px;
-                }
-                
-                .stat-card {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    color: white;
-                    padding: 20px;
-                    border-radius: 8px;
-                    text-align: center;
-                    flex: 1;
-                    min-width: 200px;
-                    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-                }
-                
-                .stat-value {
-                    font-size: 2rem;
-                    font-weight: bold;
-                    margin-bottom: 5px;
-                }
-                
-                .stat-label {
-                    font-size: 0.9rem;
-                    opacity: 0.9;
-                }
-                
-                @media (max-width: 768px) {
-                    h1 {
-                        font-size: 2rem;
-                    }
-                    
-                    h2 {
-                        font-size: 1.5rem;
-                    }
-                    
-                    .stock-table {
-                        font-size: 0.9rem;
-                    }
-                    
-                    .stock-table th,
-                    .stock-table td {
-                        padding: 8px;
-                    }
-                    
-                    .year-tab {
-                        padding: 8px 15px;
-                        font-size: 0.9rem;
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>沪深股市股息率排名</h1>
-                <div class="header-info">
-                    统计范围：2020年 - 2025年 | 数据来源：东方财富网、网易财经 | 股票价格：统计当年第一个交易日收盘价
-                </div>
-                
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-value">{year_count}</div>
-                        <div class="stat-label">统计年份</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">100</div>
-                        <div class="stat-label">每年上榜股票数</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">{start_year}-{end_year}</div>
-                        <div class="stat-label">统计区间</div>
-                    </div>
-                </div>
-                
-                <div class="section">
-                    <h2>每年最高股息率前100名股票</h2>
-                    <div class="year-tabs">
-                        {year_tabs}
-                    </div>
-                    
-                    {year_contents}
-                </div>
-            </div>
-            
-            <script>
-                function showYearContent(year) {
-                    // Hide all year contents
-                    document.querySelectorAll('.year-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    
-                    // Remove active class from all tabs
-                    document.querySelectorAll('.year-tab').forEach(tab => {
-                        tab.classList.remove('active');
-                    });
-                    
-                    // Show selected year content
-                    document.getElementById(`year-${year}`).classList.add('active');
-                    
-                    // Add active class to selected tab
-                    event.target.classList.add('active');
-                }
-            </script>
-        </body>
-        </html>
-        '''
-        
         # 生成年份标签
         year_tabs = ''
         for year in years:
@@ -479,14 +224,276 @@ class DividendYieldRanker:
                     </div>\n'''
             year_contents += year_content
         
-        # 替换模板中的变量
-        html = html_template.format(
-            year_count=len(years),
-            start_year=years[0],
-            end_year=years[-1],
-            year_tabs=year_tabs,
-            year_contents=year_contents
-        )
+        # 使用字符串拼接构建HTML，避免format()方法与CSS大括号冲突
+        html = '''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>沪深股市股息率排名 (2020-2025)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .year-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+        
+        .year-tab {
+            padding: 10px 20px;
+            background: #ecf0f1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .year-tab:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .year-tab.active {
+            background: #3498db;
+            color: white;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+            display: block;
+        }
+        
+        .stock-table th,
+        .stock-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .stock-table th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        .stock-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .stock-table tr:nth-child(even) {
+            background: #f5f7fa;
+        }
+        
+        .stock-table tr:nth-child(even):hover {
+            background: #e9ecef;
+        }
+        
+        .stock-info {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .dividend-yield {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .price {
+            color: #e74c3c;
+        }
+        
+        .year-content {
+            display: none;
+        }
+        
+        .year-content.active {
+            display: block;
+        }
+        
+        .header-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .stock-table {
+                font-size: 0.9rem;
+            }
+            
+            .stock-table th,
+            .stock-table td {
+                padding: 8px;
+            }
+            
+            .year-tab {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>沪深股市股息率排名</h1>
+        <div class="header-info">
+            统计范围：2020年 - 2025年 | 数据来源：东方财富网、网易财经 | 股票价格：统计当年第一个交易日收盘价
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">'''
+        
+        # 添加年份数量
+        html += str(len(years))
+        
+        html += '''</div>
+                <div class="stat-label">统计年份</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100</div>
+                <div class="stat-label">每年上榜股票数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">'''
+        
+        # 添加年份区间
+        html += f"{years[0]}-{years[-1]}"
+        
+        html += '''</div>
+                <div class="stat-label">统计区间</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>每年最高股息率前100名股票</h2>
+            <div class="year-tabs">
+'''
+        
+        # 添加年份标签
+        html += year_tabs
+        
+        html += '''            </div>
+            
+'''
+        
+        # 添加年份内容
+        html += year_contents
+        
+        html += '''        </div>
+    </div>
+    
+    <script>
+        function showYearContent(year) {
+            // Hide all year contents
+            document.querySelectorAll('.year-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.year-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected year content
+            document.getElementById('year-' + year).classList.add('active');
+            
+            // Add active class to selected tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>'''
         
         # 保存HTML文件
         with open("dividend_rankings.html", "w", encoding="utf-8") as f:
