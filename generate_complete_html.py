@@ -30,14 +30,17 @@ def generate_complete_html():
         for row in reader:
             # 转换数值类型
             try:
-                # 获取最近3年的股息率
+                # 获取最近6年的股息率
                 recent_years = [
+                    float(row["2020年股息率(%)"]),
+                    float(row["2021年股息率(%)"]),
+                    float(row["2022年股息率(%)"]),
                     float(row["2023年股息率(%)"]),
                     float(row["2024年股息率(%)"]),
                     float(row["2025年股息率(%)"])
                 ]
                 
-                # 计算最近3年的方差
+                # 计算最近6年的方差
                 variance = calculate_variance(recent_years)
                 
                 stock_data.append({
@@ -45,7 +48,7 @@ def generate_complete_html():
                     "股票名称": row["股票名称"],
                     "2020-2025年累计分红": float(row["2020-2025年累计分红"]),
                     "2020-2025年平均股息率(%)": float(row["2020-2025年平均股息率(%)"]),
-                    "最近3年股息率方差": variance,
+                    "最近6年股息率方差": variance,
                     # 按2025年到2020年的顺序
                     "2025年分红": float(row["2025年分红"]),
                     "2025年收盘价": float(row["2025年收盘价"]),
@@ -92,13 +95,15 @@ def generate_complete_html():
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: #f5f7fa;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.4; /* 减小行间距，使内容更紧凑 */
         }
         
         .container {
-            max-width: 1400px; /* 增加容器宽度 */
+            max-width: 1600px; /* 增加容器宽度 */
             margin: 0 auto;
             padding: 20px;
+            width: 100%; /* 允许容器占满可用宽度 */
+            min-width: 1000px; /* 设置最小宽度 */
         }
         
         h1 {
@@ -198,6 +203,9 @@ def generate_complete_html():
             margin-bottom: 20px;
             color: #666;
             font-size: 1.1rem;
+            background-color: #e3f2fd; /* 浅蓝色背景 */
+            padding: 10px;
+            border-radius: 5px;
         }
         
         .comparison-table th {
@@ -208,7 +216,9 @@ def generate_complete_html():
         .stock-table th:nth-child(1),
         .stock-table td:nth-child(1),
         .stock-table th:nth-child(2),
-        .stock-table td:nth-child(2) {
+        .stock-table td:nth-child(2),
+        .stock-table th:nth-child(3),
+        .stock-table td:nth-child(3) {
             position: sticky;
             left: 0;
             background: white;
@@ -216,13 +226,18 @@ def generate_complete_html():
         }
         
         .stock-table th:nth-child(1),
-        .stock-table th:nth-child(2) {
+        .stock-table th:nth-child(2),
+        .stock-table th:nth-child(3) {
             z-index: 11;
             background: #3498db;
         }
         
         .stock-table td:nth-child(2) {
             left: 50px;
+        }
+        
+        .stock-table td:nth-child(3) {
+            left: 170px;
         }
         
         /* 调整各列宽度 */
@@ -235,14 +250,14 @@ def generate_complete_html():
         
         .stock-table th:nth-child(2),
         .stock-table td:nth-child(2) {
-            width: 100px;
-            min-width: 100px;
+            width: 120px;
+            min-width: 120px;
         }
         
         .stock-table th:nth-child(3),
         .stock-table td:nth-child(3) {
-            width: 120px;
-            min-width: 120px;
+            width: 100px;
+            min-width: 100px;
         }
         
         .stock-table th:nth-child(4),
@@ -281,6 +296,98 @@ def generate_complete_html():
             margin-left: 5px;
             transition: transform 0.2s;
         }
+        
+        /* 页脚样式 */
+        .footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f5f7fa;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 调整表格宽度和行间距 */
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto;
+            display: block;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+        
+        /* 调整行间距 */
+        .stock-table tr {
+            line-height: 1.3; /* 减小行高，使行间距更紧凑 */
+        }
+        
+        /* 筛选条件样式 */
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-item label {
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        .filter-item input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 120px;
+        }
+        
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-actions button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .filter-actions button:hover {
+            background-color: #2980b9;
+        }
+        
+        .filter-actions button:active {
+            background-color: #21618c;
+        }
     </style>
 </head>
 <body>
@@ -291,16 +398,45 @@ def generate_complete_html():
             <p>按2020-2025年平均股息率降序排列，点击表头可排序</p>
         </div>
         
+        <div class="section" style="background-color: #e3f2fd; border-radius: 5px;">
+            <h2>使用说明</h2>
+            <ul>
+                <li>点击表头可按对应列进行排序，再次点击可切换排序方向</li>
+                <li>表格支持横向滚动，方便查看完整数据</li>
+                <li>股票代码和名称列固定，方便浏览时参考</li>
+                <li>股息率以百分比形式显示，颜色标识为绿色</li>
+                <li>收盘价以红色显示，方便区分不同数据类型</li>
+            </ul>
+        </div>
+        
+        <div class="section" style="background-color: #e3f2fd; border-radius: 5px;">
+            <h2>筛选条件</h2>
+            <div class="filter-container">
+                <div class="filter-item">
+                    <label for="avgYieldFilter">2020-2025年平均股息率 > </label>
+                    <input type="number" id="avgYieldFilter" placeholder="例如: 5" step="0.1">
+                </div>
+                <div class="filter-item">
+                    <label for="varianceFilter">最近6年股息率方差 < </label>
+                    <input type="number" id="varianceFilter" placeholder="例如: 1.5" step="0.1">
+                </div>
+                <div class="filter-actions">
+                    <button onclick="applyFilters()">应用筛选</button>
+                    <button onclick="resetFilters()">重置</button>
+                </div>
+            </div>
+        </div>
+        
         <div class="section">
             <h2>2020-2025年股息率对比</h2>
             <table class="stock-table comparison-table">
                 <thead>
                     <tr>
                         <th onclick="sortTable(0)">排名 <span class="sort-indicator">▼</span></th>
-                        <th onclick="sortTable(1)">股票代码 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(2)">股票名称 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(1)">股票名称 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(2)">股票代码 <span class="sort-indicator"></span></th>
                         <th onclick="sortTable(3)">2020-2025年平均股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(4)">最近3年股息率方差 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(4)">最近6年股息率方差 <span class="sort-indicator"></span></th>
                         <th onclick="sortTable(5)">2025年分红 <span class="sort-indicator"></span></th>
                         <th onclick="sortTable(6)">2025年收盘价 <span class="sort-indicator"></span></th>
                         <th onclick="sortTable(7)">2025年股息率(%) <span class="sort-indicator"></span></th>
@@ -330,10 +466,10 @@ def generate_complete_html():
         html_content += f"""
                     <tr>
                         <td>{i}</td>
-                        <td class="stock-info">{stock['股票代码']}</td>
                         <td class="stock-info">{stock['股票名称']}</td>
+                        <td class="stock-info">{stock['股票代码']}</td>
                         <td class="dividend-yield"><strong>{stock['2020-2025年平均股息率(%)']:.2f}%</strong></td>
-                        <td>{stock['最近3年股息率方差']:.4f}</td>
+                        <td>{stock['最近6年股息率方差']:.4f}</td>
                         <td>{stock['2025年分红']:.4f}</td>
                         <td class="price">{stock['2025年收盘价']:.2f}</td>
                         <td class="dividend-yield">{stock['2025年股息率(%)']:.2f}%</td>
@@ -362,16 +498,13 @@ def generate_complete_html():
             </table>
         </div>
         
-        <div class="section">
-            <h2>使用说明</h2>
-            <ul>
-                <li>点击表头可按对应列进行排序，再次点击可切换排序方向</li>
-                <li>表格支持横向滚动，方便查看完整数据</li>
-                <li>股票代码和名称列固定，方便浏览时参考</li>
-                <li>股息率以百分比形式显示，颜色标识为绿色</li>
-                <li>收盘价以红色显示，方便区分不同数据类型</li>
-            </ul>
-        </div>
+        <!-- 页脚信息 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>Author：Timo & TRAE</p>
+                <p>GitHub：<a href="https://github.com/timoseven/dividend-ranker" target="_blank">https://github.com/timoseven/dividend-ranker</a></p>
+            </div>
+        </footer>
     </div>
     
     <script>
@@ -431,7 +564,96 @@ def generate_complete_html():
             rows.forEach(row => tbody.appendChild(row));
         }
         
-        // Initial sort - 按平均股息率排序
+        // 应用筛选条件
+        function applyFilters() {
+            const table = document.querySelector('.stock-table');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            
+            // 获取筛选条件
+            const avgYieldFilter = parseFloat(document.getElementById('avgYieldFilter').value);
+            const varianceFilter = parseFloat(document.getElementById('varianceFilter').value);
+            
+            let visibleCount = 0;
+            
+            // 遍历所有行
+            rows.forEach(row => {
+                const avgYieldCell = row.cells[3];
+                const varianceCell = row.cells[4];
+                
+                // 获取数值
+                const avgYield = parseFloat(avgYieldCell.textContent.replace('%', ''));
+                const variance = parseFloat(varianceCell.textContent);
+                
+                // 检查是否符合筛选条件
+                const meetsAvgYield = isNaN(avgYieldFilter) || avgYield > avgYieldFilter;
+                const meetsVariance = isNaN(varianceFilter) || variance < varianceFilter;
+                
+                if (meetsAvgYield && meetsVariance) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            // 更新排名列
+            updateRanks();
+            
+            // 显示筛选结果数量
+            const headerInfo = document.querySelector('.header-info');
+            const existingCount = headerInfo.querySelector('.filter-count');
+            if (existingCount) {
+                existingCount.textContent = `，筛选后显示${visibleCount}只股票`;
+            } else {
+                const countSpan = document.createElement('span');
+                countSpan.className = 'filter-count';
+                countSpan.textContent = `，筛选后显示${visibleCount}只股票`;
+                headerInfo.lastElementChild.appendChild(countSpan);
+            }
+        }
+        
+        // 重置筛选条件
+        function resetFilters() {
+            // 清除输入
+            document.getElementById('avgYieldFilter').value = '';
+            document.getElementById('varianceFilter').value = '';
+            
+            // 显示所有行
+            const table = document.querySelector('.stock-table');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            
+            rows.forEach(row => {
+                row.style.display = '';
+            });
+            
+            // 更新排名列
+            updateRanks();
+            
+            // 清除筛选结果数量
+            const headerInfo = document.querySelector('.header-info');
+            const existingCount = headerInfo.querySelector('.filter-count');
+            if (existingCount) {
+                existingCount.remove();
+            }
+        }
+        
+        // 更新排名列
+        function updateRanks() {
+            const table = document.querySelector('.stock-table');
+            const tbody = table.getElementsByTagName('tbody')[0];
+            const rows = Array.from(tbody.getElementsByTagName('tr'));
+            
+            let rank = 1;
+            rows.forEach(row => {
+                if (row.style.display !== 'none') {
+                    row.cells[0].textContent = rank++;
+                }
+            });
+        }
+        
+        // Initial sort
         sortTable(3);
     </script>
 </body>
