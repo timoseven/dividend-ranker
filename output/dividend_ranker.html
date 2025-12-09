@@ -1,0 +1,4462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>股息率排名 - 2025年</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        th:hover {
+            background-color: #e9e9e9;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .sort-indicator {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+        .stock-code {
+            font-weight: bold;
+        }
+        .high-yield {
+            color: red;
+        }
+        .medium-yield {
+            color: orange;
+        }
+        .low-yield {
+            color: green;
+        }
+        .stats {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>2025年股息率排名</h1>
+        <div class="stats">
+            <p>共包含 <strong>480</strong> 只股票，按股息率降序排列</p>
+            <p>数据来源：Baostock API，更新时间：2025年11月28日</p>
+        </div>
+        <table id="dividendTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">排名 <span class="sort-indicator">▼</span></th>
+                    <th onclick="sortTable(1)">股票代码 <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(2)">股票名称 <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(3)">2025年累计分红 <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(4)">2025-11-28收盘价 <span class="sort-indicator"></span></th>
+                    <th onclick="sortTable(5)">股息率(%) <span class="sort-indicator"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>1</td>
+                    <td class="stock-code">sz.002271</td>
+                    <td>东方雨虹</td>
+                    <td>1.8500</td>
+                    <td>12.52</td>
+                    <td class="high-yield">14.78%</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td class="stock-code">sh.600256</td>
+                    <td>广汇能源</td>
+                    <td>0.6220</td>
+                    <td>5.00</td>
+                    <td class="high-yield">12.44%</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td class="stock-code">sh.603565</td>
+                    <td>中谷物流</td>
+                    <td>1.2200</td>
+                    <td>10.26</td>
+                    <td class="high-yield">11.89%</td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td class="stock-code">sh.601919</td>
+                    <td>中远海控</td>
+                    <td>1.5900</td>
+                    <td>14.61</td>
+                    <td class="high-yield">10.88%</td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td class="stock-code">sh.603508</td>
+                    <td>思维列控</td>
+                    <td>3.2883</td>
+                    <td>30.98</td>
+                    <td class="high-yield">10.61%</td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td class="stock-code">sh.603303</td>
+                    <td>得邦照明</td>
+                    <td>1.3810</td>
+                    <td>13.30</td>
+                    <td class="high-yield">10.38%</td>
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td class="stock-code">sz.000937</td>
+                    <td>冀中能源</td>
+                    <td>0.6000</td>
+                    <td>5.91</td>
+                    <td class="high-yield">10.15%</td>
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td class="stock-code">sz.002818</td>
+                    <td>富森美</td>
+                    <td>1.0400</td>
+                    <td>10.98</td>
+                    <td class="high-yield">9.47%</td>
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td class="stock-code">sz.002582</td>
+                    <td>好想你</td>
+                    <td>1.0000</td>
+                    <td>10.58</td>
+                    <td class="high-yield">9.45%</td>
+                </tr>
+
+                <tr>
+                    <td>10</td>
+                    <td class="stock-code">sz.001323</td>
+                    <td>慕思股份</td>
+                    <td>2.4500</td>
+                    <td>26.70</td>
+                    <td class="high-yield">9.18%</td>
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td class="stock-code">sh.605368</td>
+                    <td>蓝天燃气</td>
+                    <td>0.8500</td>
+                    <td>9.55</td>
+                    <td class="high-yield">8.90%</td>
+                </tr>
+
+                <tr>
+                    <td>12</td>
+                    <td class="stock-code">sh.601318</td>
+                    <td>中国平安</td>
+                    <td>5.1400</td>
+                    <td>58.99</td>
+                    <td class="high-yield">8.71%</td>
+                </tr>
+
+                <tr>
+                    <td>13</td>
+                    <td class="stock-code">sh.603165</td>
+                    <td>荣晟环保</td>
+                    <td>1.1000</td>
+                    <td>12.90</td>
+                    <td class="high-yield">8.53%</td>
+                </tr>
+
+                <tr>
+                    <td>14</td>
+                    <td class="stock-code">sz.002327</td>
+                    <td>富安娜</td>
+                    <td>0.6200</td>
+                    <td>7.28</td>
+                    <td class="high-yield">8.52%</td>
+                </tr>
+
+                <tr>
+                    <td>15</td>
+                    <td class="stock-code">sz.002563</td>
+                    <td>森马服饰</td>
+                    <td>0.5000</td>
+                    <td>6.07</td>
+                    <td class="high-yield">8.24%</td>
+                </tr>
+
+                <tr>
+                    <td>16</td>
+                    <td class="stock-code">sh.603167</td>
+                    <td>渤海轮渡</td>
+                    <td>0.8000</td>
+                    <td>9.86</td>
+                    <td class="high-yield">8.11%</td>
+                </tr>
+
+                <tr>
+                    <td>17</td>
+                    <td class="stock-code">sz.002014</td>
+                    <td>永新股份</td>
+                    <td>0.9000</td>
+                    <td>11.22</td>
+                    <td class="high-yield">8.02%</td>
+                </tr>
+
+                <tr>
+                    <td>18</td>
+                    <td class="stock-code">sh.605377</td>
+                    <td>华旺科技</td>
+                    <td>0.6800</td>
+                    <td>8.50</td>
+                    <td class="high-yield">8.00%</td>
+                </tr>
+
+                <tr>
+                    <td>19</td>
+                    <td class="stock-code">sh.600566</td>
+                    <td>济川药业</td>
+                    <td>2.0900</td>
+                    <td>26.26</td>
+                    <td class="high-yield">7.96%</td>
+                </tr>
+
+                <tr>
+                    <td>20</td>
+                    <td class="stock-code">sh.603519</td>
+                    <td>立霸股份</td>
+                    <td>1.0000</td>
+                    <td>12.67</td>
+                    <td class="high-yield">7.89%</td>
+                </tr>
+
+                <tr>
+                    <td>21</td>
+                    <td class="stock-code">sh.601088</td>
+                    <td>中国神华</td>
+                    <td>3.2400</td>
+                    <td>41.14</td>
+                    <td class="high-yield">7.88%</td>
+                </tr>
+
+                <tr>
+                    <td>22</td>
+                    <td class="stock-code">sz.001299</td>
+                    <td>美能能源</td>
+                    <td>0.9500</td>
+                    <td>12.12</td>
+                    <td class="high-yield">7.84%</td>
+                </tr>
+
+                <tr>
+                    <td>23</td>
+                    <td class="stock-code">sh.603886</td>
+                    <td>元祖股份</td>
+                    <td>1.0000</td>
+                    <td>12.85</td>
+                    <td class="high-yield">7.78%</td>
+                </tr>
+
+                <tr>
+                    <td>24</td>
+                    <td class="stock-code">sh.601186</td>
+                    <td>中国铁建</td>
+                    <td>0.6000</td>
+                    <td>7.73</td>
+                    <td class="high-yield">7.76%</td>
+                </tr>
+
+                <tr>
+                    <td>25</td>
+                    <td class="stock-code">sh.601666</td>
+                    <td>平煤股份</td>
+                    <td>0.6000</td>
+                    <td>7.81</td>
+                    <td class="high-yield">7.68%</td>
+                </tr>
+
+                <tr>
+                    <td>26</td>
+                    <td class="stock-code">sh.601339</td>
+                    <td>百隆东方</td>
+                    <td>0.4100</td>
+                    <td>5.40</td>
+                    <td class="high-yield">7.59%</td>
+                </tr>
+
+                <tr>
+                    <td>27</td>
+                    <td class="stock-code">sh.600894</td>
+                    <td>广日股份</td>
+                    <td>0.7000</td>
+                    <td>9.26</td>
+                    <td class="high-yield">7.56%</td>
+                </tr>
+
+                <tr>
+                    <td>28</td>
+                    <td class="stock-code">sh.603207</td>
+                    <td>小方制药</td>
+                    <td>2.2000</td>
+                    <td>29.31</td>
+                    <td class="high-yield">7.51%</td>
+                </tr>
+
+                <tr>
+                    <td>29</td>
+                    <td class="stock-code">sh.603095</td>
+                    <td>越剑智能</td>
+                    <td>1.1000</td>
+                    <td>14.67</td>
+                    <td class="high-yield">7.50%</td>
+                </tr>
+
+                <tr>
+                    <td>30</td>
+                    <td class="stock-code">sz.000651</td>
+                    <td>格力电器</td>
+                    <td>3.0000</td>
+                    <td>40.36</td>
+                    <td class="high-yield">7.43%</td>
+                </tr>
+
+                <tr>
+                    <td>31</td>
+                    <td class="stock-code">sz.000915</td>
+                    <td>华特达因</td>
+                    <td>2.5000</td>
+                    <td>34.05</td>
+                    <td class="high-yield">7.34%</td>
+                </tr>
+
+                <tr>
+                    <td>32</td>
+                    <td class="stock-code">sh.603551</td>
+                    <td>奥普科技</td>
+                    <td>0.8500</td>
+                    <td>11.64</td>
+                    <td class="high-yield">7.30%</td>
+                </tr>
+
+                <tr>
+                    <td>33</td>
+                    <td class="stock-code">sz.301047</td>
+                    <td>义翘神州</td>
+                    <td>5.0000</td>
+                    <td>68.60</td>
+                    <td class="high-yield">7.29%</td>
+                </tr>
+
+                <tr>
+                    <td>34</td>
+                    <td class="stock-code">sh.601825</td>
+                    <td>沪农商行</td>
+                    <td>0.6750</td>
+                    <td>9.42</td>
+                    <td class="high-yield">7.17%</td>
+                </tr>
+
+                <tr>
+                    <td>35</td>
+                    <td class="stock-code">sz.002572</td>
+                    <td>索菲亚</td>
+                    <td>1.0000</td>
+                    <td>13.97</td>
+                    <td class="high-yield">7.16%</td>
+                </tr>
+
+                <tr>
+                    <td>36</td>
+                    <td class="stock-code">sz.002749</td>
+                    <td>国光股份</td>
+                    <td>1.0000</td>
+                    <td>14.03</td>
+                    <td class="high-yield">7.13%</td>
+                </tr>
+
+                <tr>
+                    <td>37</td>
+                    <td class="stock-code">sz.301004</td>
+                    <td>嘉益股份</td>
+                    <td>4.0000</td>
+                    <td>56.22</td>
+                    <td class="high-yield">7.11%</td>
+                </tr>
+
+                <tr>
+                    <td>38</td>
+                    <td class="stock-code">sz.002867</td>
+                    <td>周大生</td>
+                    <td>0.9000</td>
+                    <td>12.97</td>
+                    <td class="high-yield">6.94%</td>
+                </tr>
+
+                <tr>
+                    <td>39</td>
+                    <td class="stock-code">sh.601886</td>
+                    <td>江河集团</td>
+                    <td>0.5500</td>
+                    <td>7.98</td>
+                    <td class="high-yield">6.89%</td>
+                </tr>
+
+                <tr>
+                    <td>40</td>
+                    <td class="stock-code">sh.603156</td>
+                    <td>养元饮品</td>
+                    <td>1.8600</td>
+                    <td>27.20</td>
+                    <td class="high-yield">6.84%</td>
+                </tr>
+
+                <tr>
+                    <td>41</td>
+                    <td class="stock-code">sz.002088</td>
+                    <td>鲁阳节能</td>
+                    <td>0.8000</td>
+                    <td>11.70</td>
+                    <td class="high-yield">6.84%</td>
+                </tr>
+
+                <tr>
+                    <td>42</td>
+                    <td class="stock-code">sh.603326</td>
+                    <td>我乐家居</td>
+                    <td>0.6500</td>
+                    <td>9.58</td>
+                    <td class="high-yield">6.78%</td>
+                </tr>
+
+                <tr>
+                    <td>43</td>
+                    <td class="stock-code">sh.603897</td>
+                    <td>长城科技</td>
+                    <td>1.8000</td>
+                    <td>26.57</td>
+                    <td class="high-yield">6.77%</td>
+                </tr>
+
+                <tr>
+                    <td>44</td>
+                    <td class="stock-code">sh.600023</td>
+                    <td>浙能电力</td>
+                    <td>0.3400</td>
+                    <td>5.03</td>
+                    <td class="high-yield">6.76%</td>
+                </tr>
+
+                <tr>
+                    <td>45</td>
+                    <td class="stock-code">sz.300406</td>
+                    <td>九强生物</td>
+                    <td>0.9000</td>
+                    <td>13.33</td>
+                    <td class="high-yield">6.75%</td>
+                </tr>
+
+                <tr>
+                    <td>46</td>
+                    <td class="stock-code">sz.300737</td>
+                    <td>科顺股份</td>
+                    <td>0.3500</td>
+                    <td>5.20</td>
+                    <td class="high-yield">6.73%</td>
+                </tr>
+
+                <tr>
+                    <td>47</td>
+                    <td class="stock-code">sz.002839</td>
+                    <td>张家港行</td>
+                    <td>0.3000</td>
+                    <td>4.54</td>
+                    <td class="high-yield">6.61%</td>
+                </tr>
+
+                <tr>
+                    <td>48</td>
+                    <td class="stock-code">sh.601390</td>
+                    <td>中国中铁</td>
+                    <td>0.3560</td>
+                    <td>5.43</td>
+                    <td class="high-yield">6.56%</td>
+                </tr>
+
+                <tr>
+                    <td>49</td>
+                    <td class="stock-code">sz.002998</td>
+                    <td>优彩资源</td>
+                    <td>0.5200</td>
+                    <td>7.95</td>
+                    <td class="high-yield">6.54%</td>
+                </tr>
+
+                <tr>
+                    <td>50</td>
+                    <td class="stock-code">sh.600546</td>
+                    <td>山煤国际</td>
+                    <td>0.6900</td>
+                    <td>10.59</td>
+                    <td class="high-yield">6.52%</td>
+                </tr>
+
+                <tr>
+                    <td>51</td>
+                    <td class="stock-code">sh.603801</td>
+                    <td>志邦家居</td>
+                    <td>0.6000</td>
+                    <td>9.25</td>
+                    <td class="high-yield">6.49%</td>
+                </tr>
+
+                <tr>
+                    <td>52</td>
+                    <td class="stock-code">sh.601577</td>
+                    <td>长沙银行</td>
+                    <td>0.6200</td>
+                    <td>9.64</td>
+                    <td class="high-yield">6.43%</td>
+                </tr>
+
+                <tr>
+                    <td>53</td>
+                    <td class="stock-code">sz.300616</td>
+                    <td>尚品宅配</td>
+                    <td>0.9000</td>
+                    <td>14.17</td>
+                    <td class="high-yield">6.35%</td>
+                </tr>
+
+                <tr>
+                    <td>54</td>
+                    <td class="stock-code">sz.002932</td>
+                    <td>明德生物</td>
+                    <td>1.2000</td>
+                    <td>18.95</td>
+                    <td class="high-yield">6.33%</td>
+                </tr>
+
+                <tr>
+                    <td>55</td>
+                    <td class="stock-code">sz.002293</td>
+                    <td>罗莱生活</td>
+                    <td>0.6000</td>
+                    <td>9.53</td>
+                    <td class="high-yield">6.30%</td>
+                </tr>
+
+                <tr>
+                    <td>56</td>
+                    <td class="stock-code">sz.301109</td>
+                    <td>军信股份</td>
+                    <td>0.9000</td>
+                    <td>14.31</td>
+                    <td class="high-yield">6.29%</td>
+                </tr>
+
+                <tr>
+                    <td>57</td>
+                    <td class="stock-code">sh.603027</td>
+                    <td>千禾味业</td>
+                    <td>0.6000</td>
+                    <td>9.57</td>
+                    <td class="high-yield">6.27%</td>
+                </tr>
+
+                <tr>
+                    <td>58</td>
+                    <td class="stock-code">sz.002807</td>
+                    <td>江阴银行</td>
+                    <td>0.3000</td>
+                    <td>4.82</td>
+                    <td class="high-yield">6.22%</td>
+                </tr>
+
+                <tr>
+                    <td>59</td>
+                    <td class="stock-code">sh.601101</td>
+                    <td>昊华能源</td>
+                    <td>0.4580</td>
+                    <td>7.38</td>
+                    <td class="high-yield">6.21%</td>
+                </tr>
+
+                <tr>
+                    <td>60</td>
+                    <td class="stock-code">sh.600901</td>
+                    <td>江苏金租</td>
+                    <td>0.4000</td>
+                    <td>6.46</td>
+                    <td class="high-yield">6.19%</td>
+                </tr>
+
+                <tr>
+                    <td>61</td>
+                    <td class="stock-code">sh.605337</td>
+                    <td>李子园</td>
+                    <td>0.7400</td>
+                    <td>12.09</td>
+                    <td class="high-yield">6.12%</td>
+                </tr>
+
+                <tr>
+                    <td>62</td>
+                    <td class="stock-code">sh.600985</td>
+                    <td>淮北矿业</td>
+                    <td>0.7500</td>
+                    <td>12.30</td>
+                    <td class="high-yield">6.10%</td>
+                </tr>
+
+                <tr>
+                    <td>63</td>
+                    <td class="stock-code">sh.601567</td>
+                    <td>三星医疗</td>
+                    <td>1.3750</td>
+                    <td>22.65</td>
+                    <td class="high-yield">6.07%</td>
+                </tr>
+
+                <tr>
+                    <td>64</td>
+                    <td class="stock-code">sh.601928</td>
+                    <td>凤凰传媒</td>
+                    <td>0.6000</td>
+                    <td>9.99</td>
+                    <td class="high-yield">6.01%</td>
+                </tr>
+
+                <tr>
+                    <td>65</td>
+                    <td class="stock-code">sz.002763</td>
+                    <td>汇洁股份</td>
+                    <td>0.4500</td>
+                    <td>7.50</td>
+                    <td class="high-yield">6.00%</td>
+                </tr>
+
+                <tr>
+                    <td>66</td>
+                    <td class="stock-code">sh.600177</td>
+                    <td>雅戈尔</td>
+                    <td>0.4600</td>
+                    <td>7.72</td>
+                    <td class="high-yield">5.96%</td>
+                </tr>
+
+                <tr>
+                    <td>67</td>
+                    <td class="stock-code">sz.002372</td>
+                    <td>伟星新材</td>
+                    <td>0.6000</td>
+                    <td>10.22</td>
+                    <td class="high-yield">5.87%</td>
+                </tr>
+
+                <tr>
+                    <td>68</td>
+                    <td class="stock-code">sz.000672</td>
+                    <td>上峰水泥</td>
+                    <td>0.6300</td>
+                    <td>10.77</td>
+                    <td class="high-yield">5.85%</td>
+                </tr>
+
+                <tr>
+                    <td>69</td>
+                    <td class="stock-code">sh.600887</td>
+                    <td>伊利股份</td>
+                    <td>1.7000</td>
+                    <td>29.38</td>
+                    <td class="high-yield">5.79%</td>
+                </tr>
+
+                <tr>
+                    <td>70</td>
+                    <td class="stock-code">sz.000913</td>
+                    <td>钱江摩托</td>
+                    <td>0.9000</td>
+                    <td>15.66</td>
+                    <td class="high-yield">5.75%</td>
+                </tr>
+
+                <tr>
+                    <td>71</td>
+                    <td class="stock-code">sz.002884</td>
+                    <td>凌霄泵业</td>
+                    <td>1.0000</td>
+                    <td>17.42</td>
+                    <td class="high-yield">5.74%</td>
+                </tr>
+
+                <tr>
+                    <td>72</td>
+                    <td class="stock-code">sh.603006</td>
+                    <td>联明股份</td>
+                    <td>0.7600</td>
+                    <td>13.31</td>
+                    <td class="high-yield">5.71%</td>
+                </tr>
+
+                <tr>
+                    <td>73</td>
+                    <td class="stock-code">sh.600803</td>
+                    <td>新奥股份</td>
+                    <td>1.2100</td>
+                    <td>21.30</td>
+                    <td class="high-yield">5.68%</td>
+                </tr>
+
+                <tr>
+                    <td>74</td>
+                    <td class="stock-code">sh.600502</td>
+                    <td>安徽建工</td>
+                    <td>0.2700</td>
+                    <td>4.76</td>
+                    <td class="high-yield">5.67%</td>
+                </tr>
+
+                <tr>
+                    <td>75</td>
+                    <td class="stock-code">sh.600694</td>
+                    <td>大商股份</td>
+                    <td>1.0000</td>
+                    <td>17.68</td>
+                    <td class="high-yield">5.66%</td>
+                </tr>
+
+                <tr>
+                    <td>76</td>
+                    <td class="stock-code">sh.603113</td>
+                    <td>金能科技</td>
+                    <td>0.3550</td>
+                    <td>6.29</td>
+                    <td class="high-yield">5.64%</td>
+                </tr>
+
+                <tr>
+                    <td>77</td>
+                    <td class="stock-code">sh.600008</td>
+                    <td>首创环保</td>
+                    <td>0.1700</td>
+                    <td>3.02</td>
+                    <td class="high-yield">5.63%</td>
+                </tr>
+
+                <tr>
+                    <td>78</td>
+                    <td class="stock-code">sh.601128</td>
+                    <td>常熟银行</td>
+                    <td>0.4000</td>
+                    <td>7.13</td>
+                    <td class="high-yield">5.61%</td>
+                </tr>
+
+                <tr>
+                    <td>79</td>
+                    <td class="stock-code">sh.600987</td>
+                    <td>航民股份</td>
+                    <td>0.4000</td>
+                    <td>7.14</td>
+                    <td class="high-yield">5.60%</td>
+                </tr>
+
+                <tr>
+                    <td>80</td>
+                    <td class="stock-code">sh.603195</td>
+                    <td>公牛集团</td>
+                    <td>2.4000</td>
+                    <td>42.85</td>
+                    <td class="high-yield">5.60%</td>
+                </tr>
+
+                <tr>
+                    <td>81</td>
+                    <td class="stock-code">sh.605098</td>
+                    <td>行动教育</td>
+                    <td>2.2500</td>
+                    <td>40.42</td>
+                    <td class="high-yield">5.57%</td>
+                </tr>
+
+                <tr>
+                    <td>82</td>
+                    <td class="stock-code">sh.600866</td>
+                    <td>星湖科技</td>
+                    <td>0.3800</td>
+                    <td>6.84</td>
+                    <td class="high-yield">5.56%</td>
+                </tr>
+
+                <tr>
+                    <td>83</td>
+                    <td class="stock-code">sz.002032</td>
+                    <td>苏泊尔</td>
+                    <td>2.8100</td>
+                    <td>50.58</td>
+                    <td class="high-yield">5.56%</td>
+                </tr>
+
+                <tr>
+                    <td>84</td>
+                    <td class="stock-code">sh.600742</td>
+                    <td>富维股份</td>
+                    <td>0.5300</td>
+                    <td>9.57</td>
+                    <td class="high-yield">5.54%</td>
+                </tr>
+
+                <tr>
+                    <td>85</td>
+                    <td class="stock-code">sh.600681</td>
+                    <td>百川能源</td>
+                    <td>0.2350</td>
+                    <td>4.26</td>
+                    <td class="high-yield">5.52%</td>
+                </tr>
+
+                <tr>
+                    <td>86</td>
+                    <td class="stock-code">sh.600750</td>
+                    <td>江中药业</td>
+                    <td>1.2000</td>
+                    <td>21.72</td>
+                    <td class="high-yield">5.52%</td>
+                </tr>
+
+                <tr>
+                    <td>87</td>
+                    <td class="stock-code">sh.600007</td>
+                    <td>中国国贸</td>
+                    <td>1.1000</td>
+                    <td>20.05</td>
+                    <td class="high-yield">5.49%</td>
+                </tr>
+
+                <tr>
+                    <td>88</td>
+                    <td class="stock-code">sh.600098</td>
+                    <td>广州发展</td>
+                    <td>0.3700</td>
+                    <td>6.75</td>
+                    <td class="high-yield">5.48%</td>
+                </tr>
+
+                <tr>
+                    <td>89</td>
+                    <td class="stock-code">sh.605266</td>
+                    <td>健之佳</td>
+                    <td>1.1000</td>
+                    <td>20.10</td>
+                    <td class="high-yield">5.47%</td>
+                </tr>
+
+                <tr>
+                    <td>90</td>
+                    <td class="stock-code">sh.600908</td>
+                    <td>无锡银行</td>
+                    <td>0.3300</td>
+                    <td>6.05</td>
+                    <td class="high-yield">5.45%</td>
+                </tr>
+
+                <tr>
+                    <td>91</td>
+                    <td class="stock-code">sh.600295</td>
+                    <td>鄂尔多斯</td>
+                    <td>0.6000</td>
+                    <td>11.09</td>
+                    <td class="high-yield">5.41%</td>
+                </tr>
+
+                <tr>
+                    <td>92</td>
+                    <td class="stock-code">sh.603279</td>
+                    <td>景津装备</td>
+                    <td>0.9000</td>
+                    <td>16.63</td>
+                    <td class="high-yield">5.41%</td>
+                </tr>
+
+                <tr>
+                    <td>93</td>
+                    <td class="stock-code">sz.000048</td>
+                    <td>京基智农</td>
+                    <td>0.7300</td>
+                    <td>13.49</td>
+                    <td class="high-yield">5.41%</td>
+                </tr>
+
+                <tr>
+                    <td>94</td>
+                    <td class="stock-code">sz.300979</td>
+                    <td>华利集团</td>
+                    <td>3.3000</td>
+                    <td>61.10</td>
+                    <td class="high-yield">5.40%</td>
+                </tr>
+
+                <tr>
+                    <td>95</td>
+                    <td class="stock-code">sh.600067</td>
+                    <td>冠城新材</td>
+                    <td>0.2200</td>
+                    <td>4.09</td>
+                    <td class="high-yield">5.38%</td>
+                </tr>
+
+                <tr>
+                    <td>96</td>
+                    <td class="stock-code">sz.000423</td>
+                    <td>东阿阿胶</td>
+                    <td>2.5431</td>
+                    <td>47.27</td>
+                    <td class="high-yield">5.38%</td>
+                </tr>
+
+                <tr>
+                    <td>97</td>
+                    <td class="stock-code">sh.600642</td>
+                    <td>申能股份</td>
+                    <td>0.4500</td>
+                    <td>8.40</td>
+                    <td class="high-yield">5.36%</td>
+                </tr>
+
+                <tr>
+                    <td>98</td>
+                    <td class="stock-code">sz.002441</td>
+                    <td>众业达</td>
+                    <td>0.5000</td>
+                    <td>9.34</td>
+                    <td class="high-yield">5.35%</td>
+                </tr>
+
+                <tr>
+                    <td>99</td>
+                    <td class="stock-code">sh.600582</td>
+                    <td>天地科技</td>
+                    <td>0.3170</td>
+                    <td>5.94</td>
+                    <td class="high-yield">5.34%</td>
+                </tr>
+
+                <tr>
+                    <td>100</td>
+                    <td class="stock-code">sh.603682</td>
+                    <td>锦和商管</td>
+                    <td>0.3300</td>
+                    <td>6.18</td>
+                    <td class="high-yield">5.34%</td>
+                </tr>
+
+                <tr>
+                    <td>101</td>
+                    <td class="stock-code">sz.002322</td>
+                    <td>理工能科</td>
+                    <td>0.6600</td>
+                    <td>12.37</td>
+                    <td class="high-yield">5.34%</td>
+                </tr>
+
+                <tr>
+                    <td>102</td>
+                    <td class="stock-code">sz.300628</td>
+                    <td>亿联网络</td>
+                    <td>1.8000</td>
+                    <td>33.76</td>
+                    <td class="high-yield">5.33%</td>
+                </tr>
+
+                <tr>
+                    <td>103</td>
+                    <td class="stock-code">sh.601001</td>
+                    <td>晋控煤业</td>
+                    <td>0.7550</td>
+                    <td>14.20</td>
+                    <td class="high-yield">5.32%</td>
+                </tr>
+
+                <tr>
+                    <td>104</td>
+                    <td class="stock-code">sh.601838</td>
+                    <td>成都银行</td>
+                    <td>0.8910</td>
+                    <td>16.87</td>
+                    <td class="high-yield">5.28%</td>
+                </tr>
+
+                <tr>
+                    <td>105</td>
+                    <td class="stock-code">sh.601229</td>
+                    <td>上海银行</td>
+                    <td>0.5200</td>
+                    <td>9.88</td>
+                    <td class="high-yield">5.26%</td>
+                </tr>
+
+                <tr>
+                    <td>106</td>
+                    <td class="stock-code">sh.688516</td>
+                    <td>奥特维</td>
+                    <td>2.1000</td>
+                    <td>39.90</td>
+                    <td class="high-yield">5.26%</td>
+                </tr>
+
+                <tr>
+                    <td>107</td>
+                    <td class="stock-code">sz.002233</td>
+                    <td>塔牌集团</td>
+                    <td>0.4500</td>
+                    <td>8.57</td>
+                    <td class="high-yield">5.25%</td>
+                </tr>
+
+                <tr>
+                    <td>108</td>
+                    <td class="stock-code">sh.603855</td>
+                    <td>华荣股份</td>
+                    <td>1.0000</td>
+                    <td>19.12</td>
+                    <td class="high-yield">5.23%</td>
+                </tr>
+
+                <tr>
+                    <td>109</td>
+                    <td class="stock-code">sh.601668</td>
+                    <td>中国建筑</td>
+                    <td>0.2715</td>
+                    <td>5.20</td>
+                    <td class="high-yield">5.22%</td>
+                </tr>
+
+                <tr>
+                    <td>110</td>
+                    <td class="stock-code">sh.601000</td>
+                    <td>唐山港</td>
+                    <td>0.2000</td>
+                    <td>3.84</td>
+                    <td class="high-yield">5.21%</td>
+                </tr>
+
+                <tr>
+                    <td>111</td>
+                    <td class="stock-code">sh.603967</td>
+                    <td>中创物流</td>
+                    <td>0.6000</td>
+                    <td>11.53</td>
+                    <td class="high-yield">5.20%</td>
+                </tr>
+
+                <tr>
+                    <td>112</td>
+                    <td class="stock-code">sh.603323</td>
+                    <td>苏农银行</td>
+                    <td>0.2700</td>
+                    <td>5.20</td>
+                    <td class="high-yield">5.19%</td>
+                </tr>
+
+                <tr>
+                    <td>113</td>
+                    <td class="stock-code">sz.000895</td>
+                    <td>双汇发展</td>
+                    <td>1.4000</td>
+                    <td>26.99</td>
+                    <td class="high-yield">5.19%</td>
+                </tr>
+
+                <tr>
+                    <td>114</td>
+                    <td class="stock-code">sh.600188</td>
+                    <td>兖矿能源</td>
+                    <td>0.7200</td>
+                    <td>13.91</td>
+                    <td class="high-yield">5.18%</td>
+                </tr>
+
+                <tr>
+                    <td>115</td>
+                    <td class="stock-code">sh.601225</td>
+                    <td>陕西煤业</td>
+                    <td>1.1750</td>
+                    <td>22.68</td>
+                    <td class="high-yield">5.18%</td>
+                </tr>
+
+                <tr>
+                    <td>116</td>
+                    <td class="stock-code">sh.600096</td>
+                    <td>云天化</td>
+                    <td>1.6000</td>
+                    <td>30.97</td>
+                    <td class="high-yield">5.17%</td>
+                </tr>
+
+                <tr>
+                    <td>117</td>
+                    <td class="stock-code">sz.002027</td>
+                    <td>分众传媒</td>
+                    <td>0.3800</td>
+                    <td>7.35</td>
+                    <td class="high-yield">5.17%</td>
+                </tr>
+
+                <tr>
+                    <td>118</td>
+                    <td class="stock-code">sz.000001</td>
+                    <td>平安银行</td>
+                    <td>0.5980</td>
+                    <td>11.61</td>
+                    <td class="high-yield">5.15%</td>
+                </tr>
+
+                <tr>
+                    <td>119</td>
+                    <td class="stock-code">sh.603515</td>
+                    <td>欧普照明</td>
+                    <td>0.9000</td>
+                    <td>17.61</td>
+                    <td class="high-yield">5.11%</td>
+                </tr>
+
+                <tr>
+                    <td>120</td>
+                    <td class="stock-code">sz.002091</td>
+                    <td>江苏国泰</td>
+                    <td>0.4700</td>
+                    <td>9.21</td>
+                    <td class="high-yield">5.10%</td>
+                </tr>
+
+                <tr>
+                    <td>121</td>
+                    <td class="stock-code">sz.301056</td>
+                    <td>森赫股份</td>
+                    <td>0.6000</td>
+                    <td>11.78</td>
+                    <td class="high-yield">5.09%</td>
+                </tr>
+
+                <tr>
+                    <td>122</td>
+                    <td class="stock-code">sh.601916</td>
+                    <td>浙商银行</td>
+                    <td>0.1560</td>
+                    <td>3.07</td>
+                    <td class="high-yield">5.08%</td>
+                </tr>
+
+                <tr>
+                    <td>123</td>
+                    <td class="stock-code">sh.603277</td>
+                    <td>银都股份</td>
+                    <td>0.8500</td>
+                    <td>16.72</td>
+                    <td class="high-yield">5.08%</td>
+                </tr>
+
+                <tr>
+                    <td>124</td>
+                    <td class="stock-code">sh.601921</td>
+                    <td>浙版传媒</td>
+                    <td>0.4000</td>
+                    <td>7.91</td>
+                    <td class="high-yield">5.06%</td>
+                </tr>
+
+                <tr>
+                    <td>125</td>
+                    <td class="stock-code">sh.601166</td>
+                    <td>兴业银行</td>
+                    <td>1.0600</td>
+                    <td>21.11</td>
+                    <td class="high-yield">5.02%</td>
+                </tr>
+
+                <tr>
+                    <td>126</td>
+                    <td class="stock-code">sz.000333</td>
+                    <td>美的集团</td>
+                    <td>4.0000</td>
+                    <td>79.86</td>
+                    <td class="high-yield">5.01%</td>
+                </tr>
+
+                <tr>
+                    <td>127</td>
+                    <td class="stock-code">sz.002966</td>
+                    <td>苏州银行</td>
+                    <td>0.4100</td>
+                    <td>8.20</td>
+                    <td class="medium-yield">5.00%</td>
+                </tr>
+
+                <tr>
+                    <td>128</td>
+                    <td class="stock-code">sh.600755</td>
+                    <td>厦门国贸</td>
+                    <td>0.3300</td>
+                    <td>6.65</td>
+                    <td class="medium-yield">4.96%</td>
+                </tr>
+
+                <tr>
+                    <td>129</td>
+                    <td class="stock-code">sz.000521</td>
+                    <td>长虹美菱</td>
+                    <td>0.3300</td>
+                    <td>6.65</td>
+                    <td class="medium-yield">4.96%</td>
+                </tr>
+
+                <tr>
+                    <td>130</td>
+                    <td class="stock-code">sh.601098</td>
+                    <td>中南传媒</td>
+                    <td>0.5500</td>
+                    <td>11.11</td>
+                    <td class="medium-yield">4.95%</td>
+                </tr>
+
+                <tr>
+                    <td>131</td>
+                    <td class="stock-code">sh.600729</td>
+                    <td>重庆百货</td>
+                    <td>1.3622</td>
+                    <td>27.58</td>
+                    <td class="medium-yield">4.94%</td>
+                </tr>
+
+                <tr>
+                    <td>132</td>
+                    <td class="stock-code">sz.000088</td>
+                    <td>盐田港</td>
+                    <td>0.2180</td>
+                    <td>4.41</td>
+                    <td class="medium-yield">4.94%</td>
+                </tr>
+
+                <tr>
+                    <td>133</td>
+                    <td class="stock-code">sz.000581</td>
+                    <td>威孚高科</td>
+                    <td>1.0000</td>
+                    <td>20.26</td>
+                    <td class="medium-yield">4.94%</td>
+                </tr>
+
+                <tr>
+                    <td>134</td>
+                    <td class="stock-code">sh.600461</td>
+                    <td>洪城环境</td>
+                    <td>0.4640</td>
+                    <td>9.41</td>
+                    <td class="medium-yield">4.93%</td>
+                </tr>
+
+                <tr>
+                    <td>135</td>
+                    <td class="stock-code">sh.601717</td>
+                    <td>中创智领</td>
+                    <td>1.1200</td>
+                    <td>22.76</td>
+                    <td class="medium-yield">4.92%</td>
+                </tr>
+
+                <tr>
+                    <td>136</td>
+                    <td class="stock-code">sz.000719</td>
+                    <td>中原传媒</td>
+                    <td>0.6000</td>
+                    <td>12.22</td>
+                    <td class="medium-yield">4.91%</td>
+                </tr>
+
+                <tr>
+                    <td>137</td>
+                    <td class="stock-code">sh.601369</td>
+                    <td>陕鼓动力</td>
+                    <td>0.4300</td>
+                    <td>8.82</td>
+                    <td class="medium-yield">4.88%</td>
+                </tr>
+
+                <tr>
+                    <td>138</td>
+                    <td class="stock-code">sz.002508</td>
+                    <td>老板电器</td>
+                    <td>1.0000</td>
+                    <td>20.49</td>
+                    <td class="medium-yield">4.88%</td>
+                </tr>
+
+                <tr>
+                    <td>139</td>
+                    <td class="stock-code">sz.002555</td>
+                    <td>三七互娱</td>
+                    <td>1.0000</td>
+                    <td>20.58</td>
+                    <td class="medium-yield">4.86%</td>
+                </tr>
+
+                <tr>
+                    <td>140</td>
+                    <td class="stock-code">sh.600863</td>
+                    <td>内蒙华电</td>
+                    <td>0.2200</td>
+                    <td>4.54</td>
+                    <td class="medium-yield">4.85%</td>
+                </tr>
+
+                <tr>
+                    <td>141</td>
+                    <td class="stock-code">sh.603689</td>
+                    <td>皖天然气</td>
+                    <td>0.4000</td>
+                    <td>8.24</td>
+                    <td class="medium-yield">4.85%</td>
+                </tr>
+
+                <tr>
+                    <td>142</td>
+                    <td class="stock-code">sh.600016</td>
+                    <td>民生银行</td>
+                    <td>0.1980</td>
+                    <td>4.09</td>
+                    <td class="medium-yield">4.84%</td>
+                </tr>
+
+                <tr>
+                    <td>143</td>
+                    <td class="stock-code">sz.002469</td>
+                    <td>三维化学</td>
+                    <td>0.4000</td>
+                    <td>8.27</td>
+                    <td class="medium-yield">4.84%</td>
+                </tr>
+
+                <tr>
+                    <td>144</td>
+                    <td class="stock-code">sh.600970</td>
+                    <td>中材国际</td>
+                    <td>0.4500</td>
+                    <td>9.31</td>
+                    <td class="medium-yield">4.83%</td>
+                </tr>
+
+                <tr>
+                    <td>145</td>
+                    <td class="stock-code">sh.601997</td>
+                    <td>贵阳银行</td>
+                    <td>0.2900</td>
+                    <td>6.00</td>
+                    <td class="medium-yield">4.83%</td>
+                </tr>
+
+                <tr>
+                    <td>146</td>
+                    <td class="stock-code">sh.688399</td>
+                    <td>硕世生物</td>
+                    <td>3.4000</td>
+                    <td>70.45</td>
+                    <td class="medium-yield">4.83%</td>
+                </tr>
+
+                <tr>
+                    <td>147</td>
+                    <td class="stock-code">sz.002274</td>
+                    <td>华昌化工</td>
+                    <td>0.3000</td>
+                    <td>6.21</td>
+                    <td class="medium-yield">4.83%</td>
+                </tr>
+
+                <tr>
+                    <td>148</td>
+                    <td class="stock-code">sh.600066</td>
+                    <td>宇通客车</td>
+                    <td>1.5000</td>
+                    <td>31.11</td>
+                    <td class="medium-yield">4.82%</td>
+                </tr>
+
+                <tr>
+                    <td>149</td>
+                    <td class="stock-code">sh.601857</td>
+                    <td>中国石油</td>
+                    <td>0.4700</td>
+                    <td>9.75</td>
+                    <td class="medium-yield">4.82%</td>
+                </tr>
+
+                <tr>
+                    <td>150</td>
+                    <td class="stock-code">sh.603558</td>
+                    <td>健盛集团</td>
+                    <td>0.5500</td>
+                    <td>11.42</td>
+                    <td class="medium-yield">4.82%</td>
+                </tr>
+
+                <tr>
+                    <td>151</td>
+                    <td class="stock-code">sz.002035</td>
+                    <td>华帝股份</td>
+                    <td>0.3000</td>
+                    <td>6.23</td>
+                    <td class="medium-yield">4.82%</td>
+                </tr>
+
+                <tr>
+                    <td>152</td>
+                    <td class="stock-code">sh.600273</td>
+                    <td>嘉化能源</td>
+                    <td>0.4000</td>
+                    <td>8.32</td>
+                    <td class="medium-yield">4.81%</td>
+                </tr>
+
+                <tr>
+                    <td>153</td>
+                    <td class="stock-code">sh.600757</td>
+                    <td>长江传媒</td>
+                    <td>0.4100</td>
+                    <td>8.61</td>
+                    <td class="medium-yield">4.76%</td>
+                </tr>
+
+                <tr>
+                    <td>154</td>
+                    <td class="stock-code">sh.601107</td>
+                    <td>四川成渝</td>
+                    <td>0.2900</td>
+                    <td>6.09</td>
+                    <td class="medium-yield">4.76%</td>
+                </tr>
+
+                <tr>
+                    <td>155</td>
+                    <td class="stock-code">sh.600820</td>
+                    <td>隧道股份</td>
+                    <td>0.3000</td>
+                    <td>6.32</td>
+                    <td class="medium-yield">4.75%</td>
+                </tr>
+
+                <tr>
+                    <td>156</td>
+                    <td class="stock-code">sz.002303</td>
+                    <td>美盈森</td>
+                    <td>0.1970</td>
+                    <td>4.18</td>
+                    <td class="medium-yield">4.71%</td>
+                </tr>
+
+                <tr>
+                    <td>157</td>
+                    <td class="stock-code">sz.000708</td>
+                    <td>中信特钢</td>
+                    <td>0.7072</td>
+                    <td>15.15</td>
+                    <td class="medium-yield">4.67%</td>
+                </tr>
+
+                <tr>
+                    <td>158</td>
+                    <td class="stock-code">sh.600036</td>
+                    <td>招商银行</td>
+                    <td>2.0000</td>
+                    <td>42.95</td>
+                    <td class="medium-yield">4.66%</td>
+                </tr>
+
+                <tr>
+                    <td>159</td>
+                    <td class="stock-code">sh.603833</td>
+                    <td>欧派家居</td>
+                    <td>2.4800</td>
+                    <td>53.19</td>
+                    <td class="medium-yield">4.66%</td>
+                </tr>
+
+                <tr>
+                    <td>160</td>
+                    <td class="stock-code">sh.603995</td>
+                    <td>甬金股份</td>
+                    <td>0.8000</td>
+                    <td>17.15</td>
+                    <td class="medium-yield">4.66%</td>
+                </tr>
+
+                <tr>
+                    <td>161</td>
+                    <td class="stock-code">sh.600551</td>
+                    <td>时代出版</td>
+                    <td>0.4000</td>
+                    <td>8.62</td>
+                    <td class="medium-yield">4.64%</td>
+                </tr>
+
+                <tr>
+                    <td>162</td>
+                    <td class="stock-code">sh.601598</td>
+                    <td>中国外运</td>
+                    <td>0.2900</td>
+                    <td>6.25</td>
+                    <td class="medium-yield">4.64%</td>
+                </tr>
+
+                <tr>
+                    <td>163</td>
+                    <td class="stock-code">sh.601998</td>
+                    <td>中信银行</td>
+                    <td>0.3602</td>
+                    <td>7.76</td>
+                    <td class="medium-yield">4.64%</td>
+                </tr>
+
+                <tr>
+                    <td>164</td>
+                    <td class="stock-code">sh.605599</td>
+                    <td>菜百股份</td>
+                    <td>0.7200</td>
+                    <td>15.51</td>
+                    <td class="medium-yield">4.64%</td>
+                </tr>
+
+                <tr>
+                    <td>165</td>
+                    <td class="stock-code">sz.000921</td>
+                    <td>海信家电</td>
+                    <td>1.2300</td>
+                    <td>26.52</td>
+                    <td class="medium-yield">4.64%</td>
+                </tr>
+
+                <tr>
+                    <td>166</td>
+                    <td class="stock-code">sz.002557</td>
+                    <td>洽洽食品</td>
+                    <td>1.0000</td>
+                    <td>21.65</td>
+                    <td class="medium-yield">4.62%</td>
+                </tr>
+
+                <tr>
+                    <td>167</td>
+                    <td class="stock-code">sz.301003</td>
+                    <td>江苏博云</td>
+                    <td>1.8000</td>
+                    <td>39.00</td>
+                    <td class="medium-yield">4.62%</td>
+                </tr>
+
+                <tr>
+                    <td>168</td>
+                    <td class="stock-code">sh.600662</td>
+                    <td>外服控股</td>
+                    <td>0.2400</td>
+                    <td>5.21</td>
+                    <td class="medium-yield">4.61%</td>
+                </tr>
+
+                <tr>
+                    <td>169</td>
+                    <td class="stock-code">sh.600350</td>
+                    <td>山东高速</td>
+                    <td>0.4200</td>
+                    <td>9.18</td>
+                    <td class="medium-yield">4.58%</td>
+                </tr>
+
+                <tr>
+                    <td>170</td>
+                    <td class="stock-code">sh.600612</td>
+                    <td>老凤祥</td>
+                    <td>2.0500</td>
+                    <td>44.75</td>
+                    <td class="medium-yield">4.58%</td>
+                </tr>
+
+                <tr>
+                    <td>171</td>
+                    <td class="stock-code">sh.605117</td>
+                    <td>德业股份</td>
+                    <td>3.7080</td>
+                    <td>81.00</td>
+                    <td class="medium-yield">4.58%</td>
+                </tr>
+
+                <tr>
+                    <td>172</td>
+                    <td class="stock-code">sz.000690</td>
+                    <td>宝新能源</td>
+                    <td>0.2000</td>
+                    <td>4.37</td>
+                    <td class="medium-yield">4.58%</td>
+                </tr>
+
+                <tr>
+                    <td>173</td>
+                    <td class="stock-code">sz.000928</td>
+                    <td>中钢国际</td>
+                    <td>0.2990</td>
+                    <td>6.53</td>
+                    <td class="medium-yield">4.58%</td>
+                </tr>
+
+                <tr>
+                    <td>174</td>
+                    <td class="stock-code">sz.002483</td>
+                    <td>润邦股份</td>
+                    <td>0.3000</td>
+                    <td>6.55</td>
+                    <td class="medium-yield">4.58%</td>
+                </tr>
+
+                <tr>
+                    <td>175</td>
+                    <td class="stock-code">sh.600938</td>
+                    <td>中国海油</td>
+                    <td>1.2712</td>
+                    <td>27.79</td>
+                    <td class="medium-yield">4.57%</td>
+                </tr>
+
+                <tr>
+                    <td>176</td>
+                    <td class="stock-code">sz.002540</td>
+                    <td>亚太科技</td>
+                    <td>0.3000</td>
+                    <td>6.56</td>
+                    <td class="medium-yield">4.57%</td>
+                </tr>
+
+                <tr>
+                    <td>177</td>
+                    <td class="stock-code">sz.301362</td>
+                    <td>民爆光电</td>
+                    <td>1.8950</td>
+                    <td>41.52</td>
+                    <td class="medium-yield">4.56%</td>
+                </tr>
+
+                <tr>
+                    <td>178</td>
+                    <td class="stock-code">sh.600351</td>
+                    <td>亚宝药业</td>
+                    <td>0.3000</td>
+                    <td>6.60</td>
+                    <td class="medium-yield">4.55%</td>
+                </tr>
+
+                <tr>
+                    <td>179</td>
+                    <td class="stock-code">sh.603569</td>
+                    <td>长久物流</td>
+                    <td>0.3600</td>
+                    <td>7.93</td>
+                    <td class="medium-yield">4.54%</td>
+                </tr>
+
+                <tr>
+                    <td>180</td>
+                    <td class="stock-code">sz.002007</td>
+                    <td>华兰生物</td>
+                    <td>0.7000</td>
+                    <td>15.57</td>
+                    <td class="medium-yield">4.50%</td>
+                </tr>
+
+                <tr>
+                    <td>181</td>
+                    <td class="stock-code">sh.600690</td>
+                    <td>海尔智家</td>
+                    <td>1.2342</td>
+                    <td>27.58</td>
+                    <td class="medium-yield">4.48%</td>
+                </tr>
+
+                <tr>
+                    <td>182</td>
+                    <td class="stock-code">sz.002043</td>
+                    <td>兔宝宝</td>
+                    <td>0.6000</td>
+                    <td>13.39</td>
+                    <td class="medium-yield">4.48%</td>
+                </tr>
+
+                <tr>
+                    <td>183</td>
+                    <td class="stock-code">sz.002521</td>
+                    <td>齐峰新材</td>
+                    <td>0.4000</td>
+                    <td>8.93</td>
+                    <td class="medium-yield">4.48%</td>
+                </tr>
+
+                <tr>
+                    <td>184</td>
+                    <td class="stock-code">sh.603566</td>
+                    <td>普莱柯</td>
+                    <td>0.6000</td>
+                    <td>13.45</td>
+                    <td class="medium-yield">4.46%</td>
+                </tr>
+
+                <tr>
+                    <td>185</td>
+                    <td class="stock-code">sh.600941</td>
+                    <td>中国移动</td>
+                    <td>4.7941</td>
+                    <td>107.70</td>
+                    <td class="medium-yield">4.45%</td>
+                </tr>
+
+                <tr>
+                    <td>186</td>
+                    <td class="stock-code">sh.603071</td>
+                    <td>物产环能</td>
+                    <td>0.6000</td>
+                    <td>13.51</td>
+                    <td class="medium-yield">4.44%</td>
+                </tr>
+
+                <tr>
+                    <td>187</td>
+                    <td class="stock-code">sh.603706</td>
+                    <td>东方环宇</td>
+                    <td>0.9000</td>
+                    <td>20.32</td>
+                    <td class="medium-yield">4.43%</td>
+                </tr>
+
+                <tr>
+                    <td>188</td>
+                    <td class="stock-code">sh.600015</td>
+                    <td>华夏银行</td>
+                    <td>0.3050</td>
+                    <td>6.93</td>
+                    <td class="medium-yield">4.40%</td>
+                </tr>
+
+                <tr>
+                    <td>189</td>
+                    <td class="stock-code">sh.601766</td>
+                    <td>中国中车</td>
+                    <td>0.3200</td>
+                    <td>7.27</td>
+                    <td class="medium-yield">4.40%</td>
+                </tr>
+
+                <tr>
+                    <td>190</td>
+                    <td class="stock-code">sz.000404</td>
+                    <td>长虹华意</td>
+                    <td>0.3000</td>
+                    <td>6.82</td>
+                    <td class="medium-yield">4.40%</td>
+                </tr>
+
+                <tr>
+                    <td>191</td>
+                    <td class="stock-code">sz.000739</td>
+                    <td>普洛药业</td>
+                    <td>0.7044</td>
+                    <td>16.00</td>
+                    <td class="medium-yield">4.40%</td>
+                </tr>
+
+                <tr>
+                    <td>192</td>
+                    <td class="stock-code">sz.002267</td>
+                    <td>陕天然气</td>
+                    <td>0.3500</td>
+                    <td>7.96</td>
+                    <td class="medium-yield">4.40%</td>
+                </tr>
+
+                <tr>
+                    <td>193</td>
+                    <td class="stock-code">sh.601009</td>
+                    <td>南京银行</td>
+                    <td>0.5055</td>
+                    <td>11.57</td>
+                    <td class="medium-yield">4.37%</td>
+                </tr>
+
+                <tr>
+                    <td>194</td>
+                    <td class="stock-code">sh.603788</td>
+                    <td>宁波高发</td>
+                    <td>0.7000</td>
+                    <td>16.03</td>
+                    <td class="medium-yield">4.37%</td>
+                </tr>
+
+                <tr>
+                    <td>195</td>
+                    <td class="stock-code">sh.605077</td>
+                    <td>华康股份</td>
+                    <td>0.7000</td>
+                    <td>16.01</td>
+                    <td class="medium-yield">4.37%</td>
+                </tr>
+
+                <tr>
+                    <td>196</td>
+                    <td class="stock-code">sh.603816</td>
+                    <td>顾家家居</td>
+                    <td>1.3800</td>
+                    <td>31.63</td>
+                    <td class="medium-yield">4.36%</td>
+                </tr>
+
+                <tr>
+                    <td>197</td>
+                    <td class="stock-code">sh.603871</td>
+                    <td>嘉友国际</td>
+                    <td>0.6000</td>
+                    <td>13.77</td>
+                    <td class="medium-yield">4.36%</td>
+                </tr>
+
+                <tr>
+                    <td>198</td>
+                    <td class="stock-code">sh.600916</td>
+                    <td>中国黄金</td>
+                    <td>0.3500</td>
+                    <td>8.04</td>
+                    <td class="medium-yield">4.35%</td>
+                </tr>
+
+                <tr>
+                    <td>199</td>
+                    <td class="stock-code">sh.601019</td>
+                    <td>山东出版</td>
+                    <td>0.3700</td>
+                    <td>8.51</td>
+                    <td class="medium-yield">4.35%</td>
+                </tr>
+
+                <tr>
+                    <td>200</td>
+                    <td class="stock-code">sh.601083</td>
+                    <td>锦江航运</td>
+                    <td>0.4880</td>
+                    <td>11.21</td>
+                    <td class="medium-yield">4.35%</td>
+                </tr>
+
+                <tr>
+                    <td>201</td>
+                    <td class="stock-code">sh.601168</td>
+                    <td>西部矿业</td>
+                    <td>1.0000</td>
+                    <td>22.98</td>
+                    <td class="medium-yield">4.35%</td>
+                </tr>
+
+                <tr>
+                    <td>202</td>
+                    <td class="stock-code">sz.000429</td>
+                    <td>粤高速A</td>
+                    <td>0.5230</td>
+                    <td>12.03</td>
+                    <td class="medium-yield">4.35%</td>
+                </tr>
+
+                <tr>
+                    <td>203</td>
+                    <td class="stock-code">sz.003008</td>
+                    <td>开普检测</td>
+                    <td>1.0000</td>
+                    <td>22.98</td>
+                    <td class="medium-yield">4.35%</td>
+                </tr>
+
+                <tr>
+                    <td>204</td>
+                    <td class="stock-code">sh.600039</td>
+                    <td>四川路桥</td>
+                    <td>0.4090</td>
+                    <td>9.43</td>
+                    <td class="medium-yield">4.34%</td>
+                </tr>
+
+                <tr>
+                    <td>205</td>
+                    <td class="stock-code">sz.002404</td>
+                    <td>嘉欣丝绸</td>
+                    <td>0.3000</td>
+                    <td>6.94</td>
+                    <td class="medium-yield">4.32%</td>
+                </tr>
+
+                <tr>
+                    <td>206</td>
+                    <td class="stock-code">sz.002833</td>
+                    <td>弘亚数控</td>
+                    <td>0.7000</td>
+                    <td>16.22</td>
+                    <td class="medium-yield">4.32%</td>
+                </tr>
+
+                <tr>
+                    <td>207</td>
+                    <td class="stock-code">sz.000951</td>
+                    <td>中国重汽</td>
+                    <td>0.7200</td>
+                    <td>16.70</td>
+                    <td class="medium-yield">4.31%</td>
+                </tr>
+
+                <tr>
+                    <td>208</td>
+                    <td class="stock-code">sz.002332</td>
+                    <td>仙琚制药</td>
+                    <td>0.4000</td>
+                    <td>9.27</td>
+                    <td class="medium-yield">4.31%</td>
+                </tr>
+
+                <tr>
+                    <td>209</td>
+                    <td class="stock-code">sh.600352</td>
+                    <td>浙江龙盛</td>
+                    <td>0.4500</td>
+                    <td>10.47</td>
+                    <td class="medium-yield">4.30%</td>
+                </tr>
+
+                <tr>
+                    <td>210</td>
+                    <td class="stock-code">sh.601811</td>
+                    <td>新华文轩</td>
+                    <td>0.6000</td>
+                    <td>13.95</td>
+                    <td class="medium-yield">4.30%</td>
+                </tr>
+
+                <tr>
+                    <td>211</td>
+                    <td class="stock-code">sh.601330</td>
+                    <td>绿色动力</td>
+                    <td>0.3000</td>
+                    <td>7.00</td>
+                    <td class="medium-yield">4.29%</td>
+                </tr>
+
+                <tr>
+                    <td>212</td>
+                    <td class="stock-code">sh.603299</td>
+                    <td>苏盐井神</td>
+                    <td>0.4430</td>
+                    <td>10.35</td>
+                    <td class="medium-yield">4.28%</td>
+                </tr>
+
+                <tr>
+                    <td>213</td>
+                    <td class="stock-code">sh.603730</td>
+                    <td>岱美股份</td>
+                    <td>0.3500</td>
+                    <td>8.18</td>
+                    <td class="medium-yield">4.28%</td>
+                </tr>
+
+                <tr>
+                    <td>214</td>
+                    <td class="stock-code">sz.001227</td>
+                    <td>兰州银行</td>
+                    <td>0.1010</td>
+                    <td>2.36</td>
+                    <td class="medium-yield">4.28%</td>
+                </tr>
+
+                <tr>
+                    <td>215</td>
+                    <td class="stock-code">sh.600027</td>
+                    <td>华电国际</td>
+                    <td>0.2200</td>
+                    <td>5.15</td>
+                    <td class="medium-yield">4.27%</td>
+                </tr>
+
+                <tr>
+                    <td>216</td>
+                    <td class="stock-code">sz.002056</td>
+                    <td>横店东磁</td>
+                    <td>0.8322</td>
+                    <td>19.49</td>
+                    <td class="medium-yield">4.27%</td>
+                </tr>
+
+                <tr>
+                    <td>217</td>
+                    <td class="stock-code">sh.600057</td>
+                    <td>厦门象屿</td>
+                    <td>0.3500</td>
+                    <td>8.22</td>
+                    <td class="medium-yield">4.26%</td>
+                </tr>
+
+                <tr>
+                    <td>218</td>
+                    <td class="stock-code">sh.603317</td>
+                    <td>天味食品</td>
+                    <td>0.5500</td>
+                    <td>12.90</td>
+                    <td class="medium-yield">4.26%</td>
+                </tr>
+
+                <tr>
+                    <td>219</td>
+                    <td class="stock-code">sh.600035</td>
+                    <td>楚天高速</td>
+                    <td>0.1700</td>
+                    <td>4.00</td>
+                    <td class="medium-yield">4.25%</td>
+                </tr>
+
+                <tr>
+                    <td>220</td>
+                    <td class="stock-code">sz.002228</td>
+                    <td>合兴包装</td>
+                    <td>0.1800</td>
+                    <td>4.24</td>
+                    <td class="medium-yield">4.25%</td>
+                </tr>
+
+                <tr>
+                    <td>221</td>
+                    <td class="stock-code">sz.002416</td>
+                    <td>爱施德</td>
+                    <td>0.5000</td>
+                    <td>11.76</td>
+                    <td class="medium-yield">4.25%</td>
+                </tr>
+
+                <tr>
+                    <td>222</td>
+                    <td class="stock-code">sh.603589</td>
+                    <td>口子窖</td>
+                    <td>1.3000</td>
+                    <td>30.64</td>
+                    <td class="medium-yield">4.24%</td>
+                </tr>
+
+                <tr>
+                    <td>223</td>
+                    <td class="stock-code">sz.000828</td>
+                    <td>东莞控股</td>
+                    <td>0.4750</td>
+                    <td>11.20</td>
+                    <td class="medium-yield">4.24%</td>
+                </tr>
+
+                <tr>
+                    <td>224</td>
+                    <td class="stock-code">sz.301087</td>
+                    <td>可孚医疗</td>
+                    <td>1.8000</td>
+                    <td>42.50</td>
+                    <td class="medium-yield">4.24%</td>
+                </tr>
+
+                <tr>
+                    <td>225</td>
+                    <td class="stock-code">sh.600926</td>
+                    <td>杭州银行</td>
+                    <td>0.6600</td>
+                    <td>15.59</td>
+                    <td class="medium-yield">4.23%</td>
+                </tr>
+
+                <tr>
+                    <td>226</td>
+                    <td class="stock-code">sz.000683</td>
+                    <td>博源化工</td>
+                    <td>0.3000</td>
+                    <td>7.10</td>
+                    <td class="medium-yield">4.23%</td>
+                </tr>
+
+                <tr>
+                    <td>227</td>
+                    <td class="stock-code">sz.002895</td>
+                    <td>川恒股份</td>
+                    <td>1.5000</td>
+                    <td>35.44</td>
+                    <td class="medium-yield">4.23%</td>
+                </tr>
+
+                <tr>
+                    <td>228</td>
+                    <td class="stock-code">sh.603357</td>
+                    <td>设计总院</td>
+                    <td>0.3500</td>
+                    <td>8.31</td>
+                    <td class="medium-yield">4.21%</td>
+                </tr>
+
+                <tr>
+                    <td>229</td>
+                    <td class="stock-code">sh.600873</td>
+                    <td>梅花生物</td>
+                    <td>0.4260</td>
+                    <td>10.14</td>
+                    <td class="medium-yield">4.20%</td>
+                </tr>
+
+                <tr>
+                    <td>230</td>
+                    <td class="stock-code">sh.601187</td>
+                    <td>厦门银行</td>
+                    <td>0.3000</td>
+                    <td>7.15</td>
+                    <td class="medium-yield">4.20%</td>
+                </tr>
+
+                <tr>
+                    <td>231</td>
+                    <td class="stock-code">sh.601555</td>
+                    <td>东吴证券</td>
+                    <td>0.3750</td>
+                    <td>8.93</td>
+                    <td class="medium-yield">4.20%</td>
+                </tr>
+
+                <tr>
+                    <td>232</td>
+                    <td class="stock-code">sh.603365</td>
+                    <td>水星家纺</td>
+                    <td>0.9000</td>
+                    <td>21.45</td>
+                    <td class="medium-yield">4.20%</td>
+                </tr>
+
+                <tr>
+                    <td>233</td>
+                    <td class="stock-code">sh.600997</td>
+                    <td>开滦股份</td>
+                    <td>0.2600</td>
+                    <td>6.20</td>
+                    <td class="medium-yield">4.19%</td>
+                </tr>
+
+                <tr>
+                    <td>234</td>
+                    <td class="stock-code">sh.603096</td>
+                    <td>新经典</td>
+                    <td>0.8000</td>
+                    <td>19.08</td>
+                    <td class="medium-yield">4.19%</td>
+                </tr>
+
+                <tr>
+                    <td>235</td>
+                    <td class="stock-code">sh.603368</td>
+                    <td>柳药集团</td>
+                    <td>0.7510</td>
+                    <td>17.93</td>
+                    <td class="medium-yield">4.19%</td>
+                </tr>
+
+                <tr>
+                    <td>236</td>
+                    <td class="stock-code">sz.001965</td>
+                    <td>招商公路</td>
+                    <td>0.4170</td>
+                    <td>9.95</td>
+                    <td class="medium-yield">4.19%</td>
+                </tr>
+
+                <tr>
+                    <td>237</td>
+                    <td class="stock-code">sz.002004</td>
+                    <td>华邦健康</td>
+                    <td>0.2000</td>
+                    <td>4.79</td>
+                    <td class="medium-yield">4.18%</td>
+                </tr>
+
+                <tr>
+                    <td>238</td>
+                    <td class="stock-code">sz.002367</td>
+                    <td>康力电梯</td>
+                    <td>0.3000</td>
+                    <td>7.17</td>
+                    <td class="medium-yield">4.18%</td>
+                </tr>
+
+                <tr>
+                    <td>239</td>
+                    <td class="stock-code">sz.002594</td>
+                    <td>比亚迪</td>
+                    <td>3.9740</td>
+                    <td>95.17</td>
+                    <td class="medium-yield">4.18%</td>
+                </tr>
+
+                <tr>
+                    <td>240</td>
+                    <td class="stock-code">sh.600585</td>
+                    <td>海螺水泥</td>
+                    <td>0.9500</td>
+                    <td>22.85</td>
+                    <td class="medium-yield">4.16%</td>
+                </tr>
+
+                <tr>
+                    <td>241</td>
+                    <td class="stock-code">sz.300864</td>
+                    <td>南大环境</td>
+                    <td>0.8500</td>
+                    <td>20.48</td>
+                    <td class="medium-yield">4.15%</td>
+                </tr>
+
+                <tr>
+                    <td>242</td>
+                    <td class="stock-code">sz.002283</td>
+                    <td>天润工业</td>
+                    <td>0.2500</td>
+                    <td>6.05</td>
+                    <td class="medium-yield">4.13%</td>
+                </tr>
+
+                <tr>
+                    <td>243</td>
+                    <td class="stock-code">sh.600210</td>
+                    <td>紫江企业</td>
+                    <td>0.3000</td>
+                    <td>7.28</td>
+                    <td class="medium-yield">4.12%</td>
+                </tr>
+
+                <tr>
+                    <td>244</td>
+                    <td class="stock-code">sh.600285</td>
+                    <td>羚锐制药</td>
+                    <td>0.9000</td>
+                    <td>21.84</td>
+                    <td class="medium-yield">4.12%</td>
+                </tr>
+
+                <tr>
+                    <td>245</td>
+                    <td class="stock-code">sh.600741</td>
+                    <td>华域汽车</td>
+                    <td>0.8000</td>
+                    <td>19.42</td>
+                    <td class="medium-yield">4.12%</td>
+                </tr>
+
+                <tr>
+                    <td>246</td>
+                    <td class="stock-code">sz.301077</td>
+                    <td>星华新材</td>
+                    <td>1.1000</td>
+                    <td>26.78</td>
+                    <td class="medium-yield">4.11%</td>
+                </tr>
+
+                <tr>
+                    <td>247</td>
+                    <td class="stock-code">sh.600660</td>
+                    <td>福耀玻璃</td>
+                    <td>2.7000</td>
+                    <td>65.88</td>
+                    <td class="medium-yield">4.10%</td>
+                </tr>
+
+                <tr>
+                    <td>248</td>
+                    <td class="stock-code">sh.600998</td>
+                    <td>九州通</td>
+                    <td>0.2000</td>
+                    <td>4.90</td>
+                    <td class="medium-yield">4.08%</td>
+                </tr>
+
+                <tr>
+                    <td>249</td>
+                    <td class="stock-code">sz.002597</td>
+                    <td>金禾实业</td>
+                    <td>0.8300</td>
+                    <td>20.34</td>
+                    <td class="medium-yield">4.08%</td>
+                </tr>
+
+                <tr>
+                    <td>250</td>
+                    <td class="stock-code">sz.000338</td>
+                    <td>潍柴动力</td>
+                    <td>0.7050</td>
+                    <td>17.31</td>
+                    <td class="medium-yield">4.07%</td>
+                </tr>
+
+                <tr>
+                    <td>251</td>
+                    <td class="stock-code">sh.601939</td>
+                    <td>建设银行</td>
+                    <td>0.3918</td>
+                    <td>9.66</td>
+                    <td class="medium-yield">4.06%</td>
+                </tr>
+
+                <tr>
+                    <td>252</td>
+                    <td class="stock-code">sh.601336</td>
+                    <td>新华保险</td>
+                    <td>2.6600</td>
+                    <td>65.67</td>
+                    <td class="medium-yield">4.05%</td>
+                </tr>
+
+                <tr>
+                    <td>253</td>
+                    <td class="stock-code">sh.600348</td>
+                    <td>华阳股份</td>
+                    <td>0.3090</td>
+                    <td>7.65</td>
+                    <td class="medium-yield">4.04%</td>
+                </tr>
+
+                <tr>
+                    <td>254</td>
+                    <td class="stock-code">sh.601881</td>
+                    <td>中国银河</td>
+                    <td>0.6420</td>
+                    <td>15.90</td>
+                    <td class="medium-yield">4.04%</td>
+                </tr>
+
+                <tr>
+                    <td>255</td>
+                    <td class="stock-code">sz.002705</td>
+                    <td>新宝股份</td>
+                    <td>0.6000</td>
+                    <td>14.84</td>
+                    <td class="medium-yield">4.04%</td>
+                </tr>
+
+                <tr>
+                    <td>256</td>
+                    <td class="stock-code">sz.002746</td>
+                    <td>仙坛股份</td>
+                    <td>0.2500</td>
+                    <td>6.19</td>
+                    <td class="medium-yield">4.04%</td>
+                </tr>
+
+                <tr>
+                    <td>257</td>
+                    <td class="stock-code">sz.301552</td>
+                    <td>科力装备</td>
+                    <td>1.5000</td>
+                    <td>37.20</td>
+                    <td class="medium-yield">4.03%</td>
+                </tr>
+
+                <tr>
+                    <td>258</td>
+                    <td class="stock-code">sh.600153</td>
+                    <td>建发股份</td>
+                    <td>0.4000</td>
+                    <td>9.95</td>
+                    <td class="medium-yield">4.02%</td>
+                </tr>
+
+                <tr>
+                    <td>259</td>
+                    <td class="stock-code">sh.600261</td>
+                    <td>阳光照明</td>
+                    <td>0.1400</td>
+                    <td>3.48</td>
+                    <td class="medium-yield">4.02%</td>
+                </tr>
+
+                <tr>
+                    <td>260</td>
+                    <td class="stock-code">sh.600428</td>
+                    <td>中远海特</td>
+                    <td>0.2790</td>
+                    <td>6.94</td>
+                    <td class="medium-yield">4.02%</td>
+                </tr>
+
+                <tr>
+                    <td>261</td>
+                    <td class="stock-code">sh.688628</td>
+                    <td>优利德</td>
+                    <td>1.3000</td>
+                    <td>32.33</td>
+                    <td class="medium-yield">4.02%</td>
+                </tr>
+
+                <tr>
+                    <td>262</td>
+                    <td class="stock-code">sz.000601</td>
+                    <td>韶能股份</td>
+                    <td>0.2000</td>
+                    <td>4.98</td>
+                    <td class="medium-yield">4.02%</td>
+                </tr>
+
+                <tr>
+                    <td>263</td>
+                    <td class="stock-code">sz.300770</td>
+                    <td>新媒股份</td>
+                    <td>1.7600</td>
+                    <td>43.80</td>
+                    <td class="medium-yield">4.02%</td>
+                </tr>
+
+                <tr>
+                    <td>264</td>
+                    <td class="stock-code">sh.600971</td>
+                    <td>恒源煤电</td>
+                    <td>0.2700</td>
+                    <td>6.74</td>
+                    <td class="medium-yield">4.01%</td>
+                </tr>
+
+                <tr>
+                    <td>265</td>
+                    <td class="stock-code">sh.601006</td>
+                    <td>大秦铁路</td>
+                    <td>0.2200</td>
+                    <td>5.48</td>
+                    <td class="medium-yield">4.01%</td>
+                </tr>
+
+                <tr>
+                    <td>266</td>
+                    <td class="stock-code">sz.000731</td>
+                    <td>四川美丰</td>
+                    <td>0.2700</td>
+                    <td>6.73</td>
+                    <td class="medium-yield">4.01%</td>
+                </tr>
+
+                <tr>
+                    <td>267</td>
+                    <td class="stock-code">sh.603116</td>
+                    <td>红蜻蜓</td>
+                    <td>0.2500</td>
+                    <td>6.25</td>
+                    <td class="medium-yield">4.00%</td>
+                </tr>
+
+                <tr>
+                    <td>268</td>
+                    <td class="stock-code">sh.601728</td>
+                    <td>中国电信</td>
+                    <td>0.2739</td>
+                    <td>6.86</td>
+                    <td class="medium-yield">3.99%</td>
+                </tr>
+
+                <tr>
+                    <td>269</td>
+                    <td class="stock-code">sz.000543</td>
+                    <td>皖能电力</td>
+                    <td>0.3190</td>
+                    <td>7.99</td>
+                    <td class="medium-yield">3.99%</td>
+                </tr>
+
+                <tr>
+                    <td>270</td>
+                    <td class="stock-code">sh.603529</td>
+                    <td>爱玛科技</td>
+                    <td>1.2200</td>
+                    <td>30.81</td>
+                    <td class="medium-yield">3.96%</td>
+                </tr>
+
+                <tr>
+                    <td>271</td>
+                    <td class="stock-code">sh.600017</td>
+                    <td>日照港</td>
+                    <td>0.1190</td>
+                    <td>3.01</td>
+                    <td class="medium-yield">3.95%</td>
+                </tr>
+
+                <tr>
+                    <td>272</td>
+                    <td class="stock-code">sh.601900</td>
+                    <td>南方传媒</td>
+                    <td>0.5500</td>
+                    <td>13.92</td>
+                    <td class="medium-yield">3.95%</td>
+                </tr>
+
+                <tr>
+                    <td>273</td>
+                    <td class="stock-code">sh.600028</td>
+                    <td>中国石化</td>
+                    <td>0.2280</td>
+                    <td>5.78</td>
+                    <td class="medium-yield">3.94%</td>
+                </tr>
+
+                <tr>
+                    <td>274</td>
+                    <td class="stock-code">sz.002991</td>
+                    <td>甘源食品</td>
+                    <td>2.3640</td>
+                    <td>60.06</td>
+                    <td class="medium-yield">3.94%</td>
+                </tr>
+
+                <tr>
+                    <td>275</td>
+                    <td class="stock-code">sz.300529</td>
+                    <td>健帆生物</td>
+                    <td>0.8000</td>
+                    <td>20.33</td>
+                    <td class="medium-yield">3.94%</td>
+                </tr>
+
+                <tr>
+                    <td>276</td>
+                    <td class="stock-code">sh.600012</td>
+                    <td>皖通高速</td>
+                    <td>0.6040</td>
+                    <td>15.39</td>
+                    <td class="medium-yield">3.92%</td>
+                </tr>
+
+                <tr>
+                    <td>277</td>
+                    <td class="stock-code">sh.603639</td>
+                    <td>海利尔</td>
+                    <td>0.5000</td>
+                    <td>12.76</td>
+                    <td class="medium-yield">3.92%</td>
+                </tr>
+
+                <tr>
+                    <td>278</td>
+                    <td class="stock-code">sh.603889</td>
+                    <td>新澳股份</td>
+                    <td>0.3000</td>
+                    <td>7.66</td>
+                    <td class="medium-yield">3.92%</td>
+                </tr>
+
+                <tr>
+                    <td>279</td>
+                    <td class="stock-code">sh.688697</td>
+                    <td>纽威数控</td>
+                    <td>0.6000</td>
+                    <td>15.29</td>
+                    <td class="medium-yield">3.92%</td>
+                </tr>
+
+                <tr>
+                    <td>280</td>
+                    <td class="stock-code">sz.002033</td>
+                    <td>丽江股份</td>
+                    <td>0.3500</td>
+                    <td>8.93</td>
+                    <td class="medium-yield">3.92%</td>
+                </tr>
+
+                <tr>
+                    <td>281</td>
+                    <td class="stock-code">sh.600704</td>
+                    <td>物产中大</td>
+                    <td>0.2100</td>
+                    <td>5.39</td>
+                    <td class="medium-yield">3.90%</td>
+                </tr>
+
+                <tr>
+                    <td>282</td>
+                    <td class="stock-code">sh.601033</td>
+                    <td>永兴股份</td>
+                    <td>0.6000</td>
+                    <td>15.37</td>
+                    <td class="medium-yield">3.90%</td>
+                </tr>
+
+                <tr>
+                    <td>283</td>
+                    <td class="stock-code">sh.603062</td>
+                    <td>麦加芯彩</td>
+                    <td>1.7600</td>
+                    <td>45.09</td>
+                    <td class="medium-yield">3.90%</td>
+                </tr>
+
+                <tr>
+                    <td>284</td>
+                    <td class="stock-code">sh.603611</td>
+                    <td>诺力股份</td>
+                    <td>0.8970</td>
+                    <td>23.00</td>
+                    <td class="medium-yield">3.90%</td>
+                </tr>
+
+                <tr>
+                    <td>285</td>
+                    <td class="stock-code">sz.002318</td>
+                    <td>久立特材</td>
+                    <td>0.9700</td>
+                    <td>24.85</td>
+                    <td class="medium-yield">3.90%</td>
+                </tr>
+
+                <tr>
+                    <td>286</td>
+                    <td class="stock-code">sh.600483</td>
+                    <td>福能股份</td>
+                    <td>0.3830</td>
+                    <td>9.88</td>
+                    <td class="medium-yield">3.88%</td>
+                </tr>
+
+                <tr>
+                    <td>287</td>
+                    <td class="stock-code">sh.600861</td>
+                    <td>北京人力</td>
+                    <td>0.6990</td>
+                    <td>18.07</td>
+                    <td class="medium-yield">3.87%</td>
+                </tr>
+
+                <tr>
+                    <td>288</td>
+                    <td class="stock-code">sh.600020</td>
+                    <td>中原高速</td>
+                    <td>0.1700</td>
+                    <td>4.40</td>
+                    <td class="medium-yield">3.86%</td>
+                </tr>
+
+                <tr>
+                    <td>289</td>
+                    <td class="stock-code">sz.002727</td>
+                    <td>一心堂</td>
+                    <td>0.5000</td>
+                    <td>12.99</td>
+                    <td class="medium-yield">3.85%</td>
+                </tr>
+
+                <tr>
+                    <td>290</td>
+                    <td class="stock-code">sz.300441</td>
+                    <td>鲍斯股份</td>
+                    <td>0.3000</td>
+                    <td>7.79</td>
+                    <td class="medium-yield">3.85%</td>
+                </tr>
+
+                <tr>
+                    <td>291</td>
+                    <td class="stock-code">sh.603408</td>
+                    <td>建霖家居</td>
+                    <td>0.5000</td>
+                    <td>13.01</td>
+                    <td class="medium-yield">3.84%</td>
+                </tr>
+
+                <tr>
+                    <td>292</td>
+                    <td class="stock-code">sh.600989</td>
+                    <td>宝丰能源</td>
+                    <td>0.6900</td>
+                    <td>18.00</td>
+                    <td class="medium-yield">3.83%</td>
+                </tr>
+
+                <tr>
+                    <td>293</td>
+                    <td class="stock-code">sh.603008</td>
+                    <td>喜临门</td>
+                    <td>0.8000</td>
+                    <td>20.87</td>
+                    <td class="medium-yield">3.83%</td>
+                </tr>
+
+                <tr>
+                    <td>294</td>
+                    <td class="stock-code">sh.603661</td>
+                    <td>恒林股份</td>
+                    <td>1.2700</td>
+                    <td>33.17</td>
+                    <td class="medium-yield">3.83%</td>
+                </tr>
+
+                <tr>
+                    <td>295</td>
+                    <td class="stock-code">sz.000550</td>
+                    <td>江铃汽车</td>
+                    <td>0.7191</td>
+                    <td>18.84</td>
+                    <td class="medium-yield">3.82%</td>
+                </tr>
+
+                <tr>
+                    <td>296</td>
+                    <td class="stock-code">sz.002958</td>
+                    <td>青农商行</td>
+                    <td>0.1200</td>
+                    <td>3.14</td>
+                    <td class="medium-yield">3.82%</td>
+                </tr>
+
+                <tr>
+                    <td>297</td>
+                    <td class="stock-code">sh.600211</td>
+                    <td>西藏药业</td>
+                    <td>1.6090</td>
+                    <td>42.28</td>
+                    <td class="medium-yield">3.81%</td>
+                </tr>
+
+                <tr>
+                    <td>298</td>
+                    <td class="stock-code">sh.601988</td>
+                    <td>中国银行</td>
+                    <td>0.2310</td>
+                    <td>6.07</td>
+                    <td class="medium-yield">3.81%</td>
+                </tr>
+
+                <tr>
+                    <td>299</td>
+                    <td class="stock-code">sh.603230</td>
+                    <td>内蒙新华</td>
+                    <td>0.4800</td>
+                    <td>12.60</td>
+                    <td class="medium-yield">3.81%</td>
+                </tr>
+
+                <tr>
+                    <td>300</td>
+                    <td class="stock-code">sz.000983</td>
+                    <td>山西焦煤</td>
+                    <td>0.2560</td>
+                    <td>6.73</td>
+                    <td class="medium-yield">3.80%</td>
+                </tr>
+
+                <tr>
+                    <td>301</td>
+                    <td class="stock-code">sh.600182</td>
+                    <td>S佳通</td>
+                    <td>0.5900</td>
+                    <td>15.56</td>
+                    <td class="medium-yield">3.79%</td>
+                </tr>
+
+                <tr>
+                    <td>302</td>
+                    <td class="stock-code">sh.600821</td>
+                    <td>金开新能</td>
+                    <td>0.2000</td>
+                    <td>5.28</td>
+                    <td class="medium-yield">3.79%</td>
+                </tr>
+
+                <tr>
+                    <td>303</td>
+                    <td class="stock-code">sh.603202</td>
+                    <td>天有为</td>
+                    <td>3.4900</td>
+                    <td>92.06</td>
+                    <td class="medium-yield">3.79%</td>
+                </tr>
+
+                <tr>
+                    <td>304</td>
+                    <td class="stock-code">sh.600373</td>
+                    <td>中文传媒</td>
+                    <td>0.4000</td>
+                    <td>10.57</td>
+                    <td class="medium-yield">3.78%</td>
+                </tr>
+
+                <tr>
+                    <td>305</td>
+                    <td class="stock-code">sz.000897</td>
+                    <td>津滨发展</td>
+                    <td>0.0950</td>
+                    <td>2.51</td>
+                    <td class="medium-yield">3.78%</td>
+                </tr>
+
+                <tr>
+                    <td>306</td>
+                    <td class="stock-code">sz.300349</td>
+                    <td>金卡智能</td>
+                    <td>0.5000</td>
+                    <td>13.24</td>
+                    <td class="medium-yield">3.78%</td>
+                </tr>
+
+                <tr>
+                    <td>307</td>
+                    <td class="stock-code">sh.601398</td>
+                    <td>工商银行</td>
+                    <td>0.3060</td>
+                    <td>8.11</td>
+                    <td class="medium-yield">3.77%</td>
+                </tr>
+
+                <tr>
+                    <td>308</td>
+                    <td class="stock-code">sh.603587</td>
+                    <td>地素时尚</td>
+                    <td>0.5000</td>
+                    <td>13.25</td>
+                    <td class="medium-yield">3.77%</td>
+                </tr>
+
+                <tr>
+                    <td>309</td>
+                    <td class="stock-code">sz.001872</td>
+                    <td>招商港口</td>
+                    <td>0.7400</td>
+                    <td>19.63</td>
+                    <td class="medium-yield">3.77%</td>
+                </tr>
+
+                <tr>
+                    <td>310</td>
+                    <td class="stock-code">sh.600377</td>
+                    <td>宁沪高速</td>
+                    <td>0.4900</td>
+                    <td>13.03</td>
+                    <td class="medium-yield">3.76%</td>
+                </tr>
+
+                <tr>
+                    <td>311</td>
+                    <td class="stock-code">sh.603444</td>
+                    <td>吉比特</td>
+                    <td>16.1000</td>
+                    <td>429.18</td>
+                    <td class="medium-yield">3.75%</td>
+                </tr>
+
+                <tr>
+                    <td>312</td>
+                    <td class="stock-code">sz.000755</td>
+                    <td>山西高速</td>
+                    <td>0.2000</td>
+                    <td>5.33</td>
+                    <td class="medium-yield">3.75%</td>
+                </tr>
+
+                <tr>
+                    <td>313</td>
+                    <td class="stock-code">sz.301088</td>
+                    <td>戎美股份</td>
+                    <td>0.5710</td>
+                    <td>15.24</td>
+                    <td class="medium-yield">3.75%</td>
+                </tr>
+
+                <tr>
+                    <td>314</td>
+                    <td class="stock-code">sh.603948</td>
+                    <td>建业股份</td>
+                    <td>1.0000</td>
+                    <td>26.71</td>
+                    <td class="medium-yield">3.74%</td>
+                </tr>
+
+                <tr>
+                    <td>315</td>
+                    <td class="stock-code">sh.688606</td>
+                    <td>奥泰生物</td>
+                    <td>2.5000</td>
+                    <td>66.76</td>
+                    <td class="medium-yield">3.74%</td>
+                </tr>
+
+                <tr>
+                    <td>316</td>
+                    <td class="stock-code">sh.600795</td>
+                    <td>国电电力</td>
+                    <td>0.2100</td>
+                    <td>5.63</td>
+                    <td class="medium-yield">3.73%</td>
+                </tr>
+
+                <tr>
+                    <td>317</td>
+                    <td class="stock-code">sh.600583</td>
+                    <td>海油工程</td>
+                    <td>0.2010</td>
+                    <td>5.41</td>
+                    <td class="medium-yield">3.72%</td>
+                </tr>
+
+                <tr>
+                    <td>318</td>
+                    <td class="stock-code">sh.603600</td>
+                    <td>永艺股份</td>
+                    <td>0.4600</td>
+                    <td>12.38</td>
+                    <td class="medium-yield">3.72%</td>
+                </tr>
+
+                <tr>
+                    <td>319</td>
+                    <td class="stock-code">sh.600598</td>
+                    <td>北大荒</td>
+                    <td>0.5500</td>
+                    <td>14.84</td>
+                    <td class="medium-yield">3.71%</td>
+                </tr>
+
+                <tr>
+                    <td>320</td>
+                    <td class="stock-code">sz.000157</td>
+                    <td>中联重科</td>
+                    <td>0.3000</td>
+                    <td>8.08</td>
+                    <td class="medium-yield">3.71%</td>
+                </tr>
+
+                <tr>
+                    <td>321</td>
+                    <td class="stock-code">sz.301175</td>
+                    <td>中科环保</td>
+                    <td>0.1950</td>
+                    <td>5.26</td>
+                    <td class="medium-yield">3.71%</td>
+                </tr>
+
+                <tr>
+                    <td>322</td>
+                    <td class="stock-code">sh.600282</td>
+                    <td>南钢股份</td>
+                    <td>0.2036</td>
+                    <td>5.51</td>
+                    <td class="medium-yield">3.70%</td>
+                </tr>
+
+                <tr>
+                    <td>323</td>
+                    <td class="stock-code">sh.601619</td>
+                    <td>嘉泽新能</td>
+                    <td>0.1600</td>
+                    <td>4.33</td>
+                    <td class="medium-yield">3.70%</td>
+                </tr>
+
+                <tr>
+                    <td>324</td>
+                    <td class="stock-code">sz.002003</td>
+                    <td>伟星股份</td>
+                    <td>0.4000</td>
+                    <td>10.82</td>
+                    <td class="medium-yield">3.70%</td>
+                </tr>
+
+                <tr>
+                    <td>325</td>
+                    <td class="stock-code">sh.601018</td>
+                    <td>宁波港</td>
+                    <td>0.1380</td>
+                    <td>3.75</td>
+                    <td class="medium-yield">3.68%</td>
+                </tr>
+
+                <tr>
+                    <td>326</td>
+                    <td class="stock-code">sh.603233</td>
+                    <td>大参林</td>
+                    <td>0.6500</td>
+                    <td>17.67</td>
+                    <td class="medium-yield">3.68%</td>
+                </tr>
+
+                <tr>
+                    <td>327</td>
+                    <td class="stock-code">sh.605090</td>
+                    <td>九丰能源</td>
+                    <td>1.2307</td>
+                    <td>33.50</td>
+                    <td class="medium-yield">3.67%</td>
+                </tr>
+
+                <tr>
+                    <td>328</td>
+                    <td class="stock-code">sz.001286</td>
+                    <td>陕西能源</td>
+                    <td>0.3600</td>
+                    <td>9.80</td>
+                    <td class="medium-yield">3.67%</td>
+                </tr>
+
+                <tr>
+                    <td>329</td>
+                    <td class="stock-code">sh.601016</td>
+                    <td>节能风电</td>
+                    <td>0.1092</td>
+                    <td>2.98</td>
+                    <td class="medium-yield">3.66%</td>
+                </tr>
+
+                <tr>
+                    <td>330</td>
+                    <td class="stock-code">sh.603309</td>
+                    <td>维力医疗</td>
+                    <td>0.5000</td>
+                    <td>13.67</td>
+                    <td class="medium-yield">3.66%</td>
+                </tr>
+
+                <tr>
+                    <td>331</td>
+                    <td class="stock-code">sz.002415</td>
+                    <td>海康威视</td>
+                    <td>1.1000</td>
+                    <td>30.02</td>
+                    <td class="medium-yield">3.66%</td>
+                </tr>
+
+                <tr>
+                    <td>332</td>
+                    <td class="stock-code">sh.600323</td>
+                    <td>瀚蓝环境</td>
+                    <td>1.0500</td>
+                    <td>28.76</td>
+                    <td class="medium-yield">3.65%</td>
+                </tr>
+
+                <tr>
+                    <td>333</td>
+                    <td class="stock-code">sz.002170</td>
+                    <td>芭田股份</td>
+                    <td>0.4400</td>
+                    <td>12.04</td>
+                    <td class="medium-yield">3.65%</td>
+                </tr>
+
+                <tr>
+                    <td>334</td>
+                    <td class="stock-code">sz.002275</td>
+                    <td>桂林三金</td>
+                    <td>0.5500</td>
+                    <td>15.05</td>
+                    <td class="medium-yield">3.65%</td>
+                </tr>
+
+                <tr>
+                    <td>335</td>
+                    <td class="stock-code">sh.601163</td>
+                    <td>三角轮胎</td>
+                    <td>0.5300</td>
+                    <td>14.58</td>
+                    <td class="medium-yield">3.64%</td>
+                </tr>
+
+                <tr>
+                    <td>336</td>
+                    <td class="stock-code">sz.002951</td>
+                    <td>金时科技</td>
+                    <td>0.5000</td>
+                    <td>13.72</td>
+                    <td class="medium-yield">3.64%</td>
+                </tr>
+
+                <tr>
+                    <td>337</td>
+                    <td class="stock-code">sz.002060</td>
+                    <td>广东建工</td>
+                    <td>0.1400</td>
+                    <td>3.86</td>
+                    <td class="medium-yield">3.63%</td>
+                </tr>
+
+                <tr>
+                    <td>338</td>
+                    <td class="stock-code">sh.601528</td>
+                    <td>瑞丰银行</td>
+                    <td>0.2000</td>
+                    <td>5.52</td>
+                    <td class="medium-yield">3.62%</td>
+                </tr>
+
+                <tr>
+                    <td>339</td>
+                    <td class="stock-code">sh.603281</td>
+                    <td>江瀚新材</td>
+                    <td>1.0000</td>
+                    <td>27.65</td>
+                    <td class="medium-yield">3.62%</td>
+                </tr>
+
+                <tr>
+                    <td>340</td>
+                    <td class="stock-code">sz.002788</td>
+                    <td>鹭燕医药</td>
+                    <td>0.3500</td>
+                    <td>9.68</td>
+                    <td class="medium-yield">3.62%</td>
+                </tr>
+
+                <tr>
+                    <td>341</td>
+                    <td class="stock-code">sz.301206</td>
+                    <td>三元生物</td>
+                    <td>1.0000</td>
+                    <td>27.63</td>
+                    <td class="medium-yield">3.62%</td>
+                </tr>
+
+                <tr>
+                    <td>342</td>
+                    <td class="stock-code">sh.600968</td>
+                    <td>海油发展</td>
+                    <td>0.1350</td>
+                    <td>3.74</td>
+                    <td class="medium-yield">3.61%</td>
+                </tr>
+
+                <tr>
+                    <td>343</td>
+                    <td class="stock-code">sh.603899</td>
+                    <td>晨光股份</td>
+                    <td>1.0000</td>
+                    <td>27.68</td>
+                    <td class="medium-yield">3.61%</td>
+                </tr>
+
+                <tr>
+                    <td>344</td>
+                    <td class="stock-code">sz.301371</td>
+                    <td>敷尔佳</td>
+                    <td>1.0000</td>
+                    <td>27.71</td>
+                    <td class="medium-yield">3.61%</td>
+                </tr>
+
+                <tr>
+                    <td>345</td>
+                    <td class="stock-code">sh.600300</td>
+                    <td>维维股份</td>
+                    <td>0.1280</td>
+                    <td>3.56</td>
+                    <td class="medium-yield">3.60%</td>
+                </tr>
+
+                <tr>
+                    <td>346</td>
+                    <td class="stock-code">sz.000987</td>
+                    <td>越秀资本</td>
+                    <td>0.2600</td>
+                    <td>7.23</td>
+                    <td class="medium-yield">3.60%</td>
+                </tr>
+
+                <tr>
+                    <td>347</td>
+                    <td class="stock-code">sh.603111</td>
+                    <td>康尼机电</td>
+                    <td>0.2500</td>
+                    <td>6.97</td>
+                    <td class="medium-yield">3.59%</td>
+                </tr>
+
+                <tr>
+                    <td>348</td>
+                    <td class="stock-code">sh.688036</td>
+                    <td>传音控股</td>
+                    <td>2.3000</td>
+                    <td>64.11</td>
+                    <td class="medium-yield">3.59%</td>
+                </tr>
+
+                <tr>
+                    <td>349</td>
+                    <td class="stock-code">sz.002774</td>
+                    <td>快意电梯</td>
+                    <td>0.3600</td>
+                    <td>10.04</td>
+                    <td class="medium-yield">3.59%</td>
+                </tr>
+
+                <tr>
+                    <td>350</td>
+                    <td class="stock-code">sh.600064</td>
+                    <td>南京高科</td>
+                    <td>0.3000</td>
+                    <td>8.39</td>
+                    <td class="medium-yield">3.58%</td>
+                </tr>
+
+                <tr>
+                    <td>351</td>
+                    <td class="stock-code">sh.600761</td>
+                    <td>安徽合力</td>
+                    <td>0.7000</td>
+                    <td>19.58</td>
+                    <td class="medium-yield">3.58%</td>
+                </tr>
+
+                <tr>
+                    <td>352</td>
+                    <td class="stock-code">sh.600000</td>
+                    <td>浦发银行</td>
+                    <td>0.4100</td>
+                    <td>11.48</td>
+                    <td class="medium-yield">3.57%</td>
+                </tr>
+
+                <tr>
+                    <td>353</td>
+                    <td class="stock-code">sh.600801</td>
+                    <td>华新建材</td>
+                    <td>0.8000</td>
+                    <td>22.42</td>
+                    <td class="medium-yield">3.57%</td>
+                </tr>
+
+                <tr>
+                    <td>354</td>
+                    <td class="stock-code">sh.603198</td>
+                    <td>迎驾贡酒</td>
+                    <td>1.5000</td>
+                    <td>42.10</td>
+                    <td class="medium-yield">3.56%</td>
+                </tr>
+
+                <tr>
+                    <td>355</td>
+                    <td class="stock-code">sz.002677</td>
+                    <td>浙江美大</td>
+                    <td>0.3000</td>
+                    <td>8.42</td>
+                    <td class="medium-yield">3.56%</td>
+                </tr>
+
+                <tr>
+                    <td>356</td>
+                    <td class="stock-code">sz.003012</td>
+                    <td>东鹏控股</td>
+                    <td>0.2500</td>
+                    <td>7.02</td>
+                    <td class="medium-yield">3.56%</td>
+                </tr>
+
+                <tr>
+                    <td>357</td>
+                    <td class="stock-code">sz.000848</td>
+                    <td>承德露露</td>
+                    <td>0.3000</td>
+                    <td>8.45</td>
+                    <td class="medium-yield">3.55%</td>
+                </tr>
+
+                <tr>
+                    <td>358</td>
+                    <td class="stock-code">sh.600655</td>
+                    <td>豫园股份</td>
+                    <td>0.1900</td>
+                    <td>5.36</td>
+                    <td class="medium-yield">3.54%</td>
+                </tr>
+
+                <tr>
+                    <td>359</td>
+                    <td class="stock-code">sh.601010</td>
+                    <td>文峰股份</td>
+                    <td>0.1050</td>
+                    <td>2.97</td>
+                    <td class="medium-yield">3.54%</td>
+                </tr>
+
+                <tr>
+                    <td>360</td>
+                    <td class="stock-code">sh.601169</td>
+                    <td>北京银行</td>
+                    <td>0.2000</td>
+                    <td>5.68</td>
+                    <td class="medium-yield">3.52%</td>
+                </tr>
+
+                <tr>
+                    <td>361</td>
+                    <td class="stock-code">sz.000900</td>
+                    <td>现代投资</td>
+                    <td>0.1500</td>
+                    <td>4.26</td>
+                    <td class="medium-yield">3.52%</td>
+                </tr>
+
+                <tr>
+                    <td>362</td>
+                    <td class="stock-code">sz.002690</td>
+                    <td>美亚光电</td>
+                    <td>0.7000</td>
+                    <td>19.86</td>
+                    <td class="medium-yield">3.52%</td>
+                </tr>
+
+                <tr>
+                    <td>363</td>
+                    <td class="stock-code">sz.300181</td>
+                    <td>佐力药业</td>
+                    <td>0.6000</td>
+                    <td>17.08</td>
+                    <td class="medium-yield">3.51%</td>
+                </tr>
+
+                <tr>
+                    <td>364</td>
+                    <td class="stock-code">sz.002304</td>
+                    <td>洋河股份</td>
+                    <td>2.3170</td>
+                    <td>66.20</td>
+                    <td class="medium-yield">3.50%</td>
+                </tr>
+
+                <tr>
+                    <td>365</td>
+                    <td class="stock-code">sz.301023</td>
+                    <td>江南奕帆</td>
+                    <td>1.3000</td>
+                    <td>37.18</td>
+                    <td class="medium-yield">3.50%</td>
+                </tr>
+
+                <tr>
+                    <td>366</td>
+                    <td class="stock-code">sh.600888</td>
+                    <td>新疆众和</td>
+                    <td>0.2700</td>
+                    <td>7.74</td>
+                    <td class="medium-yield">3.49%</td>
+                </tr>
+
+                <tr>
+                    <td>367</td>
+                    <td class="stock-code">sh.603699</td>
+                    <td>纽威股份</td>
+                    <td>1.7200</td>
+                    <td>49.23</td>
+                    <td class="medium-yield">3.49%</td>
+                </tr>
+
+                <tr>
+                    <td>368</td>
+                    <td class="stock-code">sh.600011</td>
+                    <td>华能国际</td>
+                    <td>0.2700</td>
+                    <td>7.78</td>
+                    <td class="medium-yield">3.47%</td>
+                </tr>
+
+                <tr>
+                    <td>369</td>
+                    <td class="stock-code">sh.600710</td>
+                    <td>苏美达</td>
+                    <td>0.3690</td>
+                    <td>10.62</td>
+                    <td class="medium-yield">3.47%</td>
+                </tr>
+
+                <tr>
+                    <td>370</td>
+                    <td class="stock-code">sz.301207</td>
+                    <td>华兰疫苗</td>
+                    <td>0.8000</td>
+                    <td>23.07</td>
+                    <td class="medium-yield">3.47%</td>
+                </tr>
+
+                <tr>
+                    <td>371</td>
+                    <td class="stock-code">sh.600600</td>
+                    <td>青岛啤酒</td>
+                    <td>2.2000</td>
+                    <td>63.55</td>
+                    <td class="medium-yield">3.46%</td>
+                </tr>
+
+                <tr>
+                    <td>372</td>
+                    <td class="stock-code">sz.000589</td>
+                    <td>贵州轮胎</td>
+                    <td>0.1700</td>
+                    <td>4.91</td>
+                    <td class="medium-yield">3.46%</td>
+                </tr>
+
+                <tr>
+                    <td>373</td>
+                    <td class="stock-code">sh.603658</td>
+                    <td>安图生物</td>
+                    <td>1.2600</td>
+                    <td>36.57</td>
+                    <td class="medium-yield">3.45%</td>
+                </tr>
+
+                <tr>
+                    <td>374</td>
+                    <td class="stock-code">sh.600480</td>
+                    <td>凌云股份</td>
+                    <td>0.4000</td>
+                    <td>11.64</td>
+                    <td class="medium-yield">3.44%</td>
+                </tr>
+
+                <tr>
+                    <td>375</td>
+                    <td class="stock-code">sz.002556</td>
+                    <td>辉隆股份</td>
+                    <td>0.2000</td>
+                    <td>5.81</td>
+                    <td class="medium-yield">3.44%</td>
+                </tr>
+
+                <tr>
+                    <td>376</td>
+                    <td class="stock-code">sz.300896</td>
+                    <td>爱美客</td>
+                    <td>5.0000</td>
+                    <td>145.37</td>
+                    <td class="medium-yield">3.44%</td>
+                </tr>
+
+                <tr>
+                    <td>377</td>
+                    <td class="stock-code">sh.600817</td>
+                    <td>宇通重工</td>
+                    <td>0.3800</td>
+                    <td>11.07</td>
+                    <td class="medium-yield">3.43%</td>
+                </tr>
+
+                <tr>
+                    <td>378</td>
+                    <td class="stock-code">sz.003000</td>
+                    <td>劲仔食品</td>
+                    <td>0.4000</td>
+                    <td>11.66</td>
+                    <td class="medium-yield">3.43%</td>
+                </tr>
+
+                <tr>
+                    <td>379</td>
+                    <td class="stock-code">sh.603970</td>
+                    <td>中农立华</td>
+                    <td>0.4500</td>
+                    <td>13.14</td>
+                    <td class="medium-yield">3.42%</td>
+                </tr>
+
+                <tr>
+                    <td>380</td>
+                    <td class="stock-code">sz.000786</td>
+                    <td>北新建材</td>
+                    <td>0.8650</td>
+                    <td>25.31</td>
+                    <td class="medium-yield">3.42%</td>
+                </tr>
+
+                <tr>
+                    <td>381</td>
+                    <td class="stock-code">sz.301015</td>
+                    <td>百洋医药</td>
+                    <td>0.7620</td>
+                    <td>22.32</td>
+                    <td class="medium-yield">3.41%</td>
+                </tr>
+
+                <tr>
+                    <td>382</td>
+                    <td class="stock-code">sh.600060</td>
+                    <td>海信视像</td>
+                    <td>0.8800</td>
+                    <td>25.91</td>
+                    <td class="medium-yield">3.40%</td>
+                </tr>
+
+                <tr>
+                    <td>383</td>
+                    <td class="stock-code">sh.605066</td>
+                    <td>天正电气</td>
+                    <td>0.2500</td>
+                    <td>7.35</td>
+                    <td class="medium-yield">3.40%</td>
+                </tr>
+
+                <tr>
+                    <td>384</td>
+                    <td class="stock-code">sh.688517</td>
+                    <td>金冠电气</td>
+                    <td>0.5500</td>
+                    <td>16.17</td>
+                    <td class="medium-yield">3.40%</td>
+                </tr>
+
+                <tr>
+                    <td>385</td>
+                    <td class="stock-code">sz.002737</td>
+                    <td>葵花药业</td>
+                    <td>0.5000</td>
+                    <td>14.72</td>
+                    <td class="medium-yield">3.40%</td>
+                </tr>
+
+                <tr>
+                    <td>386</td>
+                    <td class="stock-code">sz.002236</td>
+                    <td>大华股份</td>
+                    <td>0.6430</td>
+                    <td>18.94</td>
+                    <td class="medium-yield">3.39%</td>
+                </tr>
+
+                <tr>
+                    <td>387</td>
+                    <td class="stock-code">sz.000568</td>
+                    <td>泸州老窖</td>
+                    <td>4.5920</td>
+                    <td>135.88</td>
+                    <td class="medium-yield">3.38%</td>
+                </tr>
+
+                <tr>
+                    <td>388</td>
+                    <td class="stock-code">sz.002831</td>
+                    <td>裕同科技</td>
+                    <td>1.0341</td>
+                    <td>30.63</td>
+                    <td class="medium-yield">3.38%</td>
+                </tr>
+
+                <tr>
+                    <td>389</td>
+                    <td class="stock-code">sh.600479</td>
+                    <td>千金药业</td>
+                    <td>0.3600</td>
+                    <td>10.67</td>
+                    <td class="medium-yield">3.37%</td>
+                </tr>
+
+                <tr>
+                    <td>390</td>
+                    <td class="stock-code">sh.603697</td>
+                    <td>有友食品</td>
+                    <td>0.4400</td>
+                    <td>13.05</td>
+                    <td class="medium-yield">3.37%</td>
+                </tr>
+
+                <tr>
+                    <td>391</td>
+                    <td class="stock-code">sh.600559</td>
+                    <td>老白干酒</td>
+                    <td>0.5500</td>
+                    <td>16.37</td>
+                    <td class="medium-yield">3.36%</td>
+                </tr>
+
+                <tr>
+                    <td>392</td>
+                    <td class="stock-code">sh.600713</td>
+                    <td>南京医药</td>
+                    <td>0.1700</td>
+                    <td>5.06</td>
+                    <td class="medium-yield">3.36%</td>
+                </tr>
+
+                <tr>
+                    <td>393</td>
+                    <td class="stock-code">sh.600982</td>
+                    <td>宁波能源</td>
+                    <td>0.1500</td>
+                    <td>4.49</td>
+                    <td class="medium-yield">3.34%</td>
+                </tr>
+
+                <tr>
+                    <td>394</td>
+                    <td class="stock-code">sh.601158</td>
+                    <td>重庆水务</td>
+                    <td>0.1570</td>
+                    <td>4.70</td>
+                    <td class="medium-yield">3.34%</td>
+                </tr>
+
+                <tr>
+                    <td>395</td>
+                    <td class="stock-code">sh.600587</td>
+                    <td>新华医疗</td>
+                    <td>0.5000</td>
+                    <td>15.02</td>
+                    <td class="medium-yield">3.33%</td>
+                </tr>
+
+                <tr>
+                    <td>396</td>
+                    <td class="stock-code">sh.603187</td>
+                    <td>海容冷链</td>
+                    <td>0.5000</td>
+                    <td>15.00</td>
+                    <td class="medium-yield">3.33%</td>
+                </tr>
+
+                <tr>
+                    <td>397</td>
+                    <td class="stock-code">sz.300982</td>
+                    <td>苏文电能</td>
+                    <td>0.6000</td>
+                    <td>18.02</td>
+                    <td class="medium-yield">3.33%</td>
+                </tr>
+
+                <tr>
+                    <td>398</td>
+                    <td class="stock-code">sh.600368</td>
+                    <td>五洲交通</td>
+                    <td>0.1310</td>
+                    <td>3.95</td>
+                    <td class="medium-yield">3.32%</td>
+                </tr>
+
+                <tr>
+                    <td>399</td>
+                    <td class="stock-code">sh.600886</td>
+                    <td>国投电力</td>
+                    <td>0.4565</td>
+                    <td>13.77</td>
+                    <td class="medium-yield">3.32%</td>
+                </tr>
+
+                <tr>
+                    <td>400</td>
+                    <td class="stock-code">sh.601991</td>
+                    <td>大唐发电</td>
+                    <td>0.1171</td>
+                    <td>3.53</td>
+                    <td class="medium-yield">3.32%</td>
+                </tr>
+
+                <tr>
+                    <td>401</td>
+                    <td class="stock-code">sz.000906</td>
+                    <td>浙商中拓</td>
+                    <td>0.2000</td>
+                    <td>6.03</td>
+                    <td class="medium-yield">3.32%</td>
+                </tr>
+
+                <tr>
+                    <td>402</td>
+                    <td class="stock-code">sz.300232</td>
+                    <td>洲明科技</td>
+                    <td>0.2400</td>
+                    <td>7.23</td>
+                    <td class="medium-yield">3.32%</td>
+                </tr>
+
+                <tr>
+                    <td>403</td>
+                    <td class="stock-code">sz.002948</td>
+                    <td>青岛银行</td>
+                    <td>0.1600</td>
+                    <td>4.84</td>
+                    <td class="medium-yield">3.31%</td>
+                </tr>
+
+                <tr>
+                    <td>404</td>
+                    <td class="stock-code">sh.600031</td>
+                    <td>三一重工</td>
+                    <td>0.6700</td>
+                    <td>20.32</td>
+                    <td class="medium-yield">3.30%</td>
+                </tr>
+
+                <tr>
+                    <td>405</td>
+                    <td class="stock-code">sh.603115</td>
+                    <td>海星股份</td>
+                    <td>0.6000</td>
+                    <td>18.18</td>
+                    <td class="medium-yield">3.30%</td>
+                </tr>
+
+                <tr>
+                    <td>406</td>
+                    <td class="stock-code">sz.300861</td>
+                    <td>美畅股份</td>
+                    <td>0.5000</td>
+                    <td>15.14</td>
+                    <td class="medium-yield">3.30%</td>
+                </tr>
+
+                <tr>
+                    <td>407</td>
+                    <td class="stock-code">sz.000899</td>
+                    <td>赣能股份</td>
+                    <td>0.3300</td>
+                    <td>10.02</td>
+                    <td class="medium-yield">3.29%</td>
+                </tr>
+
+                <tr>
+                    <td>408</td>
+                    <td class="stock-code">sh.603929</td>
+                    <td>亚翔集成</td>
+                    <td>2.0000</td>
+                    <td>60.96</td>
+                    <td class="medium-yield">3.28%</td>
+                </tr>
+
+                <tr>
+                    <td>409</td>
+                    <td class="stock-code">sh.605319</td>
+                    <td>无锡振华</td>
+                    <td>0.6700</td>
+                    <td>20.40</td>
+                    <td class="medium-yield">3.28%</td>
+                </tr>
+
+                <tr>
+                    <td>410</td>
+                    <td class="stock-code">sh.688009</td>
+                    <td>中国通号</td>
+                    <td>0.1700</td>
+                    <td>5.20</td>
+                    <td class="medium-yield">3.27%</td>
+                </tr>
+
+                <tr>
+                    <td>411</td>
+                    <td class="stock-code">sz.301598</td>
+                    <td>博科测试</td>
+                    <td>2.0000</td>
+                    <td>61.25</td>
+                    <td class="medium-yield">3.27%</td>
+                </tr>
+
+                <tr>
+                    <td>412</td>
+                    <td class="stock-code">sz.002980</td>
+                    <td>华盛昌</td>
+                    <td>0.7300</td>
+                    <td>22.42</td>
+                    <td class="medium-yield">3.26%</td>
+                </tr>
+
+                <tr>
+                    <td>413</td>
+                    <td class="stock-code">sh.600572</td>
+                    <td>康恩贝</td>
+                    <td>0.1500</td>
+                    <td>4.62</td>
+                    <td class="medium-yield">3.25%</td>
+                </tr>
+
+                <tr>
+                    <td>414</td>
+                    <td class="stock-code">sz.002215</td>
+                    <td>诺普信</td>
+                    <td>0.3500</td>
+                    <td>10.78</td>
+                    <td class="medium-yield">3.25%</td>
+                </tr>
+
+                <tr>
+                    <td>415</td>
+                    <td class="stock-code">sh.688032</td>
+                    <td>禾迈股份</td>
+                    <td>3.2000</td>
+                    <td>98.77</td>
+                    <td class="medium-yield">3.24%</td>
+                </tr>
+
+                <tr>
+                    <td>416</td>
+                    <td class="stock-code">sz.300453</td>
+                    <td>三鑫医疗</td>
+                    <td>0.3000</td>
+                    <td>9.26</td>
+                    <td class="medium-yield">3.24%</td>
+                </tr>
+
+                <tr>
+                    <td>417</td>
+                    <td class="stock-code">sh.600648</td>
+                    <td>外高桥</td>
+                    <td>0.3500</td>
+                    <td>10.83</td>
+                    <td class="medium-yield">3.23%</td>
+                </tr>
+
+                <tr>
+                    <td>418</td>
+                    <td class="stock-code">sz.000498</td>
+                    <td>山东路桥</td>
+                    <td>0.1930</td>
+                    <td>5.98</td>
+                    <td class="medium-yield">3.23%</td>
+                </tr>
+
+                <tr>
+                    <td>419</td>
+                    <td class="stock-code">sz.002588</td>
+                    <td>史丹利</td>
+                    <td>0.3050</td>
+                    <td>9.45</td>
+                    <td class="medium-yield">3.23%</td>
+                </tr>
+
+                <tr>
+                    <td>420</td>
+                    <td class="stock-code">sh.600269</td>
+                    <td>赣粤高速</td>
+                    <td>0.1700</td>
+                    <td>5.28</td>
+                    <td class="medium-yield">3.22%</td>
+                </tr>
+
+                <tr>
+                    <td>421</td>
+                    <td class="stock-code">sz.002206</td>
+                    <td>海利得</td>
+                    <td>0.1800</td>
+                    <td>5.59</td>
+                    <td class="medium-yield">3.22%</td>
+                </tr>
+
+                <tr>
+                    <td>422</td>
+                    <td class="stock-code">sz.002507</td>
+                    <td>涪陵榨菜</td>
+                    <td>0.4200</td>
+                    <td>13.04</td>
+                    <td class="medium-yield">3.22%</td>
+                </tr>
+
+                <tr>
+                    <td>423</td>
+                    <td class="stock-code">sz.300641</td>
+                    <td>正丹股份</td>
+                    <td>0.6000</td>
+                    <td>18.61</td>
+                    <td class="medium-yield">3.22%</td>
+                </tr>
+
+                <tr>
+                    <td>424</td>
+                    <td class="stock-code">sh.600050</td>
+                    <td>中国联通</td>
+                    <td>0.1733</td>
+                    <td>5.40</td>
+                    <td class="medium-yield">3.21%</td>
+                </tr>
+
+                <tr>
+                    <td>425</td>
+                    <td class="stock-code">sz.301277</td>
+                    <td>新天地</td>
+                    <td>0.4000</td>
+                    <td>12.45</td>
+                    <td class="medium-yield">3.21%</td>
+                </tr>
+
+                <tr>
+                    <td>426</td>
+                    <td class="stock-code">sz.301016</td>
+                    <td>雷尔伟</td>
+                    <td>0.6000</td>
+                    <td>18.74</td>
+                    <td class="medium-yield">3.20%</td>
+                </tr>
+
+                <tr>
+                    <td>427</td>
+                    <td class="stock-code">sz.002832</td>
+                    <td>比音勒芬</td>
+                    <td>0.5000</td>
+                    <td>15.66</td>
+                    <td class="medium-yield">3.19%</td>
+                </tr>
+
+                <tr>
+                    <td>428</td>
+                    <td class="stock-code">sh.601311</td>
+                    <td>骆驼股份</td>
+                    <td>0.2900</td>
+                    <td>9.11</td>
+                    <td class="medium-yield">3.18%</td>
+                </tr>
+
+                <tr>
+                    <td>429</td>
+                    <td class="stock-code">sh.603369</td>
+                    <td>今世缘</td>
+                    <td>1.2000</td>
+                    <td>37.79</td>
+                    <td class="medium-yield">3.18%</td>
+                </tr>
+
+                <tr>
+                    <td>430</td>
+                    <td class="stock-code">sh.688208</td>
+                    <td>道通科技</td>
+                    <td>1.0800</td>
+                    <td>34.00</td>
+                    <td class="medium-yield">3.18%</td>
+                </tr>
+
+                <tr>
+                    <td>431</td>
+                    <td class="stock-code">sz.000411</td>
+                    <td>英特集团</td>
+                    <td>0.3832</td>
+                    <td>12.04</td>
+                    <td class="medium-yield">3.18%</td>
+                </tr>
+
+                <tr>
+                    <td>432</td>
+                    <td class="stock-code">sh.603075</td>
+                    <td>热威股份</td>
+                    <td>0.7000</td>
+                    <td>22.09</td>
+                    <td class="medium-yield">3.17%</td>
+                </tr>
+
+                <tr>
+                    <td>433</td>
+                    <td class="stock-code">sz.000989</td>
+                    <td>九芝堂</td>
+                    <td>0.3000</td>
+                    <td>9.45</td>
+                    <td class="medium-yield">3.17%</td>
+                </tr>
+
+                <tr>
+                    <td>434</td>
+                    <td class="stock-code">sz.002142</td>
+                    <td>宁波银行</td>
+                    <td>0.9000</td>
+                    <td>28.37</td>
+                    <td class="medium-yield">3.17%</td>
+                </tr>
+
+                <tr>
+                    <td>435</td>
+                    <td class="stock-code">sz.003013</td>
+                    <td>地铁设计</td>
+                    <td>0.4800</td>
+                    <td>15.13</td>
+                    <td class="medium-yield">3.17%</td>
+                </tr>
+
+                <tr>
+                    <td>436</td>
+                    <td class="stock-code">sh.688358</td>
+                    <td>祥生医疗</td>
+                    <td>1.0000</td>
+                    <td>31.61</td>
+                    <td class="medium-yield">3.16%</td>
+                </tr>
+
+                <tr>
+                    <td>437</td>
+                    <td class="stock-code">sz.300099</td>
+                    <td>尤洛卡</td>
+                    <td>0.2290</td>
+                    <td>7.25</td>
+                    <td class="medium-yield">3.16%</td>
+                </tr>
+
+                <tr>
+                    <td>438</td>
+                    <td class="stock-code">sh.600790</td>
+                    <td>轻纺城</td>
+                    <td>0.1200</td>
+                    <td>3.81</td>
+                    <td class="medium-yield">3.15%</td>
+                </tr>
+
+                <tr>
+                    <td>439</td>
+                    <td class="stock-code">sh.601699</td>
+                    <td>潞安环能</td>
+                    <td>0.4100</td>
+                    <td>13.04</td>
+                    <td class="medium-yield">3.14%</td>
+                </tr>
+
+                <tr>
+                    <td>440</td>
+                    <td class="stock-code">sh.601898</td>
+                    <td>中煤能源</td>
+                    <td>0.4240</td>
+                    <td>13.52</td>
+                    <td class="medium-yield">3.14%</td>
+                </tr>
+
+                <tr>
+                    <td>441</td>
+                    <td class="stock-code">sz.300187</td>
+                    <td>永清环保</td>
+                    <td>0.1670</td>
+                    <td>5.32</td>
+                    <td class="medium-yield">3.14%</td>
+                </tr>
+
+                <tr>
+                    <td>442</td>
+                    <td class="stock-code">sz.300306</td>
+                    <td>远方信息</td>
+                    <td>0.4320</td>
+                    <td>13.75</td>
+                    <td class="medium-yield">3.14%</td>
+                </tr>
+
+                <tr>
+                    <td>443</td>
+                    <td class="stock-code">sz.301339</td>
+                    <td>通行宝</td>
+                    <td>0.4700</td>
+                    <td>14.99</td>
+                    <td class="medium-yield">3.14%</td>
+                </tr>
+
+                <tr>
+                    <td>444</td>
+                    <td class="stock-code">sh.600197</td>
+                    <td>伊力特</td>
+                    <td>0.4500</td>
+                    <td>14.39</td>
+                    <td class="medium-yield">3.13%</td>
+                </tr>
+
+                <tr>
+                    <td>445</td>
+                    <td class="stock-code">sz.002532</td>
+                    <td>天山铝业</td>
+                    <td>0.4000</td>
+                    <td>12.77</td>
+                    <td class="medium-yield">3.13%</td>
+                </tr>
+
+                <tr>
+                    <td>446</td>
+                    <td class="stock-code">sz.002258</td>
+                    <td>利尔化学</td>
+                    <td>0.4000</td>
+                    <td>12.84</td>
+                    <td class="medium-yield">3.12%</td>
+                </tr>
+
+                <tr>
+                    <td>447</td>
+                    <td class="stock-code">sz.002661</td>
+                    <td>克明食品</td>
+                    <td>0.3000</td>
+                    <td>9.60</td>
+                    <td class="medium-yield">3.12%</td>
+                </tr>
+
+                <tr>
+                    <td>448</td>
+                    <td class="stock-code">sh.601601</td>
+                    <td>中国太保</td>
+                    <td>1.0800</td>
+                    <td>34.75</td>
+                    <td class="medium-yield">3.11%</td>
+                </tr>
+
+                <tr>
+                    <td>449</td>
+                    <td class="stock-code">sh.603132</td>
+                    <td>金徽股份</td>
+                    <td>0.4200</td>
+                    <td>13.51</td>
+                    <td class="medium-yield">3.11%</td>
+                </tr>
+
+                <tr>
+                    <td>450</td>
+                    <td class="stock-code">sh.603518</td>
+                    <td>锦泓集团</td>
+                    <td>0.3100</td>
+                    <td>9.98</td>
+                    <td class="medium-yield">3.11%</td>
+                </tr>
+
+                <tr>
+                    <td>451</td>
+                    <td class="stock-code">sz.300833</td>
+                    <td>浩洋股份</td>
+                    <td>1.3000</td>
+                    <td>41.78</td>
+                    <td class="medium-yield">3.11%</td>
+                </tr>
+
+                <tr>
+                    <td>452</td>
+                    <td class="stock-code">sh.600332</td>
+                    <td>白云山</td>
+                    <td>0.8000</td>
+                    <td>25.80</td>
+                    <td class="medium-yield">3.10%</td>
+                </tr>
+
+                <tr>
+                    <td>453</td>
+                    <td class="stock-code">sh.603939</td>
+                    <td>益丰药房</td>
+                    <td>0.7000</td>
+                    <td>22.62</td>
+                    <td class="medium-yield">3.09%</td>
+                </tr>
+
+                <tr>
+                    <td>454</td>
+                    <td class="stock-code">sz.000513</td>
+                    <td>丽珠集团</td>
+                    <td>1.1000</td>
+                    <td>35.55</td>
+                    <td class="medium-yield">3.09%</td>
+                </tr>
+
+                <tr>
+                    <td>455</td>
+                    <td class="stock-code">sz.002299</td>
+                    <td>圣农发展</td>
+                    <td>0.5000</td>
+                    <td>16.16</td>
+                    <td class="medium-yield">3.09%</td>
+                </tr>
+
+                <tr>
+                    <td>456</td>
+                    <td class="stock-code">sh.600141</td>
+                    <td>兴发集团</td>
+                    <td>1.0000</td>
+                    <td>32.50</td>
+                    <td class="medium-yield">3.08%</td>
+                </tr>
+
+                <tr>
+                    <td>457</td>
+                    <td class="stock-code">sh.600639</td>
+                    <td>浦东金桥</td>
+                    <td>0.3227</td>
+                    <td>10.49</td>
+                    <td class="medium-yield">3.08%</td>
+                </tr>
+
+                <tr>
+                    <td>458</td>
+                    <td class="stock-code">sh.601816</td>
+                    <td>京沪高铁</td>
+                    <td>0.1567</td>
+                    <td>5.09</td>
+                    <td class="medium-yield">3.08%</td>
+                </tr>
+
+                <tr>
+                    <td>459</td>
+                    <td class="stock-code">sz.002061</td>
+                    <td>浙江交科</td>
+                    <td>0.1250</td>
+                    <td>4.06</td>
+                    <td class="medium-yield">3.08%</td>
+                </tr>
+
+                <tr>
+                    <td>460</td>
+                    <td class="stock-code">sh.601216</td>
+                    <td>君正集团</td>
+                    <td>0.1500</td>
+                    <td>4.88</td>
+                    <td class="medium-yield">3.07%</td>
+                </tr>
+
+                <tr>
+                    <td>461</td>
+                    <td class="stock-code">sz.002128</td>
+                    <td>电投能源</td>
+                    <td>0.8000</td>
+                    <td>26.03</td>
+                    <td class="medium-yield">3.07%</td>
+                </tr>
+
+                <tr>
+                    <td>462</td>
+                    <td class="stock-code">sz.002615</td>
+                    <td>哈尔斯</td>
+                    <td>0.2500</td>
+                    <td>8.15</td>
+                    <td class="medium-yield">3.07%</td>
+                </tr>
+
+                <tr>
+                    <td>463</td>
+                    <td class="stock-code">sz.300564</td>
+                    <td>筑博设计</td>
+                    <td>0.5000</td>
+                    <td>16.30</td>
+                    <td class="medium-yield">3.07%</td>
+                </tr>
+
+                <tr>
+                    <td>464</td>
+                    <td class="stock-code">sh.600720</td>
+                    <td>中交设计</td>
+                    <td>0.2290</td>
+                    <td>7.49</td>
+                    <td class="medium-yield">3.06%</td>
+                </tr>
+
+                <tr>
+                    <td>465</td>
+                    <td class="stock-code">sh.603998</td>
+                    <td>方盛制药</td>
+                    <td>0.3500</td>
+                    <td>11.45</td>
+                    <td class="medium-yield">3.06%</td>
+                </tr>
+
+                <tr>
+                    <td>466</td>
+                    <td class="stock-code">sz.002758</td>
+                    <td>浙农股份</td>
+                    <td>0.3000</td>
+                    <td>9.81</td>
+                    <td class="medium-yield">3.06%</td>
+                </tr>
+
+                <tr>
+                    <td>467</td>
+                    <td class="stock-code">sh.601288</td>
+                    <td>农业银行</td>
+                    <td>0.2450</td>
+                    <td>8.04</td>
+                    <td class="medium-yield">3.05%</td>
+                </tr>
+
+                <tr>
+                    <td>468</td>
+                    <td class="stock-code">sz.000544</td>
+                    <td>中原环保</td>
+                    <td>0.2600</td>
+                    <td>8.53</td>
+                    <td class="medium-yield">3.05%</td>
+                </tr>
+
+                <tr>
+                    <td>469</td>
+                    <td class="stock-code">sz.002034</td>
+                    <td>旺能环境</td>
+                    <td>0.5008</td>
+                    <td>16.42</td>
+                    <td class="medium-yield">3.05%</td>
+                </tr>
+
+                <tr>
+                    <td>470</td>
+                    <td class="stock-code">sz.301276</td>
+                    <td>嘉曼服饰</td>
+                    <td>0.7200</td>
+                    <td>23.62</td>
+                    <td class="medium-yield">3.05%</td>
+                </tr>
+
+                <tr>
+                    <td>471</td>
+                    <td class="stock-code">sh.600999</td>
+                    <td>招商证券</td>
+                    <td>0.4960</td>
+                    <td>16.29</td>
+                    <td class="medium-yield">3.04%</td>
+                </tr>
+
+                <tr>
+                    <td>472</td>
+                    <td class="stock-code">sh.600019</td>
+                    <td>宝钢股份</td>
+                    <td>0.2200</td>
+                    <td>7.25</td>
+                    <td class="medium-yield">3.03%</td>
+                </tr>
+
+                <tr>
+                    <td>473</td>
+                    <td class="stock-code">sh.603288</td>
+                    <td>海天味业</td>
+                    <td>1.1200</td>
+                    <td>36.96</td>
+                    <td class="medium-yield">3.03%</td>
+                </tr>
+
+                <tr>
+                    <td>474</td>
+                    <td class="stock-code">sz.002100</td>
+                    <td>天康生物</td>
+                    <td>0.2200</td>
+                    <td>7.26</td>
+                    <td class="medium-yield">3.03%</td>
+                </tr>
+
+                <tr>
+                    <td>475</td>
+                    <td class="stock-code">sz.300881</td>
+                    <td>盛德鑫泰</td>
+                    <td>1.0000</td>
+                    <td>32.99</td>
+                    <td class="medium-yield">3.03%</td>
+                </tr>
+
+                <tr>
+                    <td>476</td>
+                    <td class="stock-code">sz.002081</td>
+                    <td>金螳螂</td>
+                    <td>0.1000</td>
+                    <td>3.31</td>
+                    <td class="medium-yield">3.02%</td>
+                </tr>
+
+                <tr>
+                    <td>477</td>
+                    <td class="stock-code">sz.002479</td>
+                    <td>富春环保</td>
+                    <td>0.1500</td>
+                    <td>4.97</td>
+                    <td class="medium-yield">3.02%</td>
+                </tr>
+
+                <tr>
+                    <td>478</td>
+                    <td class="stock-code">sz.301043</td>
+                    <td>绿岛风</td>
+                    <td>1.4600</td>
+                    <td>48.42</td>
+                    <td class="medium-yield">3.02%</td>
+                </tr>
+
+                <tr>
+                    <td>479</td>
+                    <td class="stock-code">sz.301299</td>
+                    <td>卓创资讯</td>
+                    <td>1.7000</td>
+                    <td>56.35</td>
+                    <td class="medium-yield">3.02%</td>
+                </tr>
+
+                <tr>
+                    <td>480</td>
+                    <td class="stock-code">sz.000596</td>
+                    <td>古井贡酒</td>
+                    <td>5.0000</td>
+                    <td>166.30</td>
+                    <td class="medium-yield">3.01%</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        function sortTable(n) {
+            const table = document.getElementById("dividendTable");
+            const tbody = table.getElementsByTagName("tbody")[0];
+            const rows = Array.from(tbody.getElementsByTagName("tr"));
+            const headers = table.getElementsByTagName("th");
+            
+            // Reset sort indicators
+            for (let header of headers) {
+                header.querySelector(".sort-indicator").textContent = "";
+            }
+            
+            // Determine sort direction
+            const currentIndicator = headers[n].querySelector(".sort-indicator");
+            const isAscending = currentIndicator.textContent !== "▼";
+            
+            // Set sort indicator
+            currentIndicator.textContent = isAscending ? "▼" : "▲";
+            
+            // Sort rows
+            rows.sort((a, b) => {
+                const aVal = a.cells[n].textContent;
+                const bVal = b.cells[n].textContent;
+                
+                // Handle numeric values
+                if (!isNaN(parseFloat(aVal)) && isFinite(aVal)) {
+                    return isAscending 
+                        ? parseFloat(aVal) - parseFloat(bVal)
+                        : parseFloat(bVal) - parseFloat(aVal);
+                } else {
+                    // Handle text values
+                    return isAscending 
+                        ? aVal.localeCompare(bVal, "zh-CN")
+                        : bVal.localeCompare(aVal, "zh-CN");
+                }
+            });
+            
+            // Update row indices for rank column
+            rows.forEach((row, index) => {
+                row.cells[0].textContent = index + 1;
+            });
+            
+            // Append sorted rows back to tbody
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
+</body>
+</html>
