@@ -216,9 +216,7 @@ def generate_complete_html():
         .stock-table th:nth-child(1),
         .stock-table td:nth-child(1),
         .stock-table th:nth-child(2),
-        .stock-table td:nth-child(2),
-        .stock-table th:nth-child(3),
-        .stock-table td:nth-child(3) {
+        .stock-table td:nth-child(2) {
             position: sticky;
             left: 0;
             background: white;
@@ -226,18 +224,13 @@ def generate_complete_html():
         }
         
         .stock-table th:nth-child(1),
-        .stock-table th:nth-child(2),
-        .stock-table th:nth-child(3) {
+        .stock-table th:nth-child(2) {
             z-index: 11;
             background: #3498db;
         }
         
         .stock-table td:nth-child(2) {
             left: 50px;
-        }
-        
-        .stock-table td:nth-child(3) {
-            left: 170px;
         }
         
         /* 调整各列宽度 */
