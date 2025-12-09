@@ -78,7 +78,7 @@ class YearlyDataCollector:
             start_date=start_date,
             end_date=end_date,
             frequency="d",
-            adjustflag="3"
+            adjustflag="3"  # 3表示不复权
         )
         
         if rs.error_code != '0':
@@ -91,6 +91,67 @@ class YearlyDataCollector:
             close_price = float(row[1])
         
         return close_price
+    
+    def get_yearly_profit(self, code, year):
+        """获取单只股票单年度的净利润数据"""
+        # 使用baostock的query_profit_data方法获取利润表数据
+        try:
+            # 查询利润表数据（使用年报，第四季度）
+            rs = self.baostock.query_profit_data(
+                code=code,
+                year=year,
+                quarter=4
+            )
+            
+            if rs.error_code == '0':
+                while rs.next():
+                    row = rs.get_row_data()
+                    fields = rs.fields
+                    
+                    # 查找netProfit字段的索引
+                    if 'netProfit' in fields:
+                        net_profit_index = fields.index('netProfit')
+                        if net_profit_index < len(row):
+                            net_profit_val = row[net_profit_index]
+                            if net_profit_val and net_profit_val != '' and net_profit_val != '0':
+                                try:
+                                    # netProfit字段值的单位是元，需要转换为亿元
+                                    # 1亿元 = 100,000,000元
+                                    profit = float(net_profit_val) / 100000000
+                                    return round(profit, 4)
+                                except (ValueError, TypeError):
+                                    continue
+            
+            # 如果年报数据获取失败，尝试获取第三季度数据
+            rs = self.baostock.query_profit_data(
+                code=code,
+                year=year,
+                quarter=3
+            )
+            
+            if rs.error_code == '0':
+                while rs.next():
+                    row = rs.get_row_data()
+                    fields = rs.fields
+                    
+                    if 'netProfit' in fields:
+                        net_profit_index = fields.index('netProfit')
+                        if net_profit_index < len(row):
+                            net_profit_val = row[net_profit_index]
+                            if net_profit_val and net_profit_val != '' and net_profit_val != '0':
+                                try:
+                                    # netProfit字段值的单位是元，转换为亿元
+                                    profit = float(net_profit_val) / 100000000
+                                    return round(profit, 4)
+                                except (ValueError, TypeError):
+                                    continue
+        except Exception as e:
+            # 打印详细错误信息以便调试
+            # print(f"  获取{code} {year}年利润数据异常: {e}")
+            pass
+        
+        # 如果所有方法都失败，返回默认值0
+        return 0.0
     
     def collect_yearly_data(self):
         """收集2020-2025年的数据"""
@@ -124,14 +185,23 @@ class YearlyDataCollector:
                     yearly_data[f"{year}年股息率(%)"] = round(dividend_yield, 2)
                 else:
                     yearly_data[f"{year}年股息率(%)"] = 0.0
+                
+                # 获取利润
+                profit = self.get_yearly_profit(code, year)
+                yearly_data[f"{year}年利润(亿元)"] = round(profit, 4)
             
             # 计算2020-2025年累计分红和平均股息率
             total_dividend = sum(yearly_data[f"{year}年分红"] for year in self.years)
             valid_yields = [yearly_data[f"{year}年股息率(%)"] for year in self.years if yearly_data[f"{year}年股息率(%)"] > 0]
             avg_yield = sum(valid_yields) / len(valid_yields) if valid_yields else 0.0
             
+            # 计算2020-2025年平均利润
+            total_profit = sum(yearly_data[f"{year}年利润(亿元)"] for year in self.years)
+            avg_profit = total_profit / len(self.years)
+            
             yearly_data["2020-2025年累计分红"] = round(total_dividend, 4)
             yearly_data["2020-2025年平均股息率(%)"] = round(avg_yield, 2)
+            yearly_data["2020-2025年平均利润(亿元)"] = round(avg_profit, 4)
             
             all_data.append(yearly_data)
             
@@ -149,8 +219,8 @@ class YearlyDataCollector:
         # 构建字段名
         fields = ["股票代码", "股票名称"]
         for year in self.years:
-            fields.extend([f"{year}年分红", f"{year}年收盘价", f"{year}年股息率(%)"])
-        fields.extend(["2020-2025年累计分红", "2020-2025年平均股息率(%)"])
+            fields.extend([f"{year}年分红", f"{year}年收盘价", f"{year}年股息率(%)", f"{year}年利润(亿元)"])
+        fields.extend(["2020-2025年累计分红", "2020-2025年平均股息率(%)", "2020-2025年平均利润(亿元)"])
         
         # 保存到CSV
         with open(self.output_csv, 'w', newline='', encoding='utf-8') as f:

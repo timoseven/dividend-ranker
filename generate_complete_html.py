@@ -48,26 +48,33 @@ def generate_complete_html():
                     "股票名称": row["股票名称"],
                     "2020-2025年累计分红": float(row["2020-2025年累计分红"]),
                     "2020-2025年平均股息率(%)": float(row["2020-2025年平均股息率(%)"]),
+                    "2020-2025年平均利润(亿元)": float(row["2020-2025年平均利润(亿元)"]),
                     "最近6年股息率方差": variance,
                     # 按2025年到2020年的顺序
                     "2025年分红": float(row["2025年分红"]),
                     "2025年收盘价": float(row["2025年收盘价"]),
                     "2025年股息率(%)": float(row["2025年股息率(%)"]),
+                    "2025年利润(亿元)": float(row["2025年利润(亿元)"]),
                     "2024年分红": float(row["2024年分红"]),
                     "2024年收盘价": float(row["2024年收盘价"]),
                     "2024年股息率(%)": float(row["2024年股息率(%)"]),
+                    "2024年利润(亿元)": float(row["2024年利润(亿元)"]),
                     "2023年分红": float(row["2023年分红"]),
                     "2023年收盘价": float(row["2023年收盘价"]),
                     "2023年股息率(%)": float(row["2023年股息率(%)"]),
+                    "2023年利润(亿元)": float(row["2023年利润(亿元)"]),
                     "2022年分红": float(row["2022年分红"]),
                     "2022年收盘价": float(row["2022年收盘价"]),
                     "2022年股息率(%)": float(row["2022年股息率(%)"]),
+                    "2022年利润(亿元)": float(row["2022年利润(亿元)"]),
                     "2021年分红": float(row["2021年分红"]),
                     "2021年收盘价": float(row["2021年收盘价"]),
                     "2021年股息率(%)": float(row["2021年股息率(%)"]),
+                    "2021年利润(亿元)": float(row["2021年利润(亿元)"]),
                     "2020年分红": float(row["2020年分红"]),
                     "2020年收盘价": float(row["2020年收盘价"]),
-                    "2020年股息率(%)": float(row["2020年股息率(%)"])
+                    "2020年股息率(%)": float(row["2020年股息率(%)"]),
+                    "2020年利润(亿元)": float(row["2020年利润(亿元)"])
                 })
             except (ValueError, KeyError) as e:
                 continue
@@ -268,20 +275,14 @@ def generate_complete_html():
         }
         
         /* 年份相关列的宽度 */
-        .stock-table th:nth-child(n+6):nth-child(-n+23),
-        .stock-table td:nth-child(n+6):nth-child(-n+23) {
+        .stock-table th:nth-child(n+6):nth-child(-n+29),
+        .stock-table td:nth-child(n+6):nth-child(-n+29) {
             width: 80px;
             min-width: 80px;
             text-align: right;
         }
         
-        /* 累计分红列宽度 */
-        .stock-table th:nth-child(24),
-        .stock-table td:nth-child(24) {
-            width: 120px;
-            min-width: 120px;
-            text-align: right;
-        }
+
         
         /* 排序指示器样式 */
         .sort-indicator {
@@ -381,6 +382,43 @@ def generate_complete_html():
         .filter-actions button:active {
             background-color: #21618c;
         }
+        
+        /* 数据标签样式 */
+        .tag-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 10px 0;
+        }
+        
+        .tag {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .tag:hover {
+            background-color: #bdbdbd;
+        }
+        
+        .tag.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        /* 数据列样式 */
+        .data-column {
+            display: none; /* 默认隐藏 */
+        }
+        
+        .data-column.visible {
+            display: table-cell; /* 显示 */
+        }
     </style>
 </head>
 <body>
@@ -410,6 +448,10 @@ def generate_complete_html():
                     <input type="number" id="avgYieldFilter" placeholder="例如: 5" step="0.1">
                 </div>
                 <div class="filter-item">
+                    <label for="avgProfitFilter">2020-2025年平均利润 > </label>
+                    <input type="number" id="avgProfitFilter" placeholder="例如: 15" step="0.1">
+                </div>
+                <div class="filter-item">
                     <label for="varianceFilter">最近6年股息率方差 < </label>
                     <input type="number" id="varianceFilter" placeholder="例如: 1.5" step="0.1">
                 </div>
@@ -417,6 +459,16 @@ def generate_complete_html():
                     <button onclick="applyFilters()">应用筛选</button>
                     <button onclick="resetFilters()">重置</button>
                 </div>
+            </div>
+        </div>
+        
+        <div class="section" style="background-color: #e3f2fd; border-radius: 5px;">
+            <h2>数据显示控制</h2>
+            <div class="tag-container">
+                <span class="tag" onclick="toggleData('close_price')">收盘价</span>
+                <span class="tag" onclick="toggleData('dividend_yield')">股息率</span>
+                <span class="tag" onclick="toggleData('profit')">利润</span>
+                <span class="tag" onclick="toggleData('dividend')">分红</span>
             </div>
         </div>
         
@@ -429,26 +481,33 @@ def generate_complete_html():
                         <th onclick="sortTable(1)">股票名称 <span class="sort-indicator"></span></th>
                         <th onclick="sortTable(2)">股票代码 <span class="sort-indicator"></span></th>
                         <th onclick="sortTable(3)">2020-2025年平均股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(4)">最近6年股息率方差 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(5)">2025年分红 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(6)">2025年收盘价 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(7)">2025年股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(8)">2024年分红 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(9)">2024年收盘价 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(10)">2024年股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(11)">2023年分红 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(12)">2023年收盘价 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(13)">2023年股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(14)">2022年分红 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(15)">2022年收盘价 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(16)">2022年股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(17)">2021年分红 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(18)">2021年收盘价 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(19)">2021年股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(20)">2020年分红 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(21)">2020年收盘价 <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(22)">2020年股息率(%) <span class="sort-indicator"></span></th>
-                        <th onclick="sortTable(23)">2020-2025年累计分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(4)">2020-2025年平均利润(亿元) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(5)">最近6年股息率方差 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(6)" class="data-column dividend">2025年分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(7)" class="data-column close_price">2025年收盘价 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(8)" class="data-column dividend_yield">2025年股息率(%) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(9)" class="data-column profit">2025年利润(亿元) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(10)" class="data-column dividend">2024年分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(11)" class="data-column close_price">2024年收盘价 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(12)" class="data-column dividend_yield">2024年股息率(%) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(13)" class="data-column profit">2024年利润(亿元) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(14)" class="data-column dividend">2023年分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(15)" class="data-column close_price">2023年收盘价 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(16)" class="data-column dividend_yield">2023年股息率(%) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(17)" class="data-column profit">2023年利润(亿元) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(18)" class="data-column dividend">2022年分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(19)" class="data-column close_price">2022年收盘价 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(20)" class="data-column dividend_yield">2022年股息率(%) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(21)" class="data-column profit">2022年利润(亿元) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(22)" class="data-column dividend">2021年分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(23)" class="data-column close_price">2021年收盘价 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(24)" class="data-column dividend_yield">2021年股息率(%) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(25)" class="data-column profit">2021年利润(亿元) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(26)" class="data-column dividend">2020年分红 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(27)" class="data-column close_price">2020年收盘价 <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(28)" class="data-column dividend_yield">2020年股息率(%) <span class="sort-indicator"></span></th>
+                        <th onclick="sortTable(29)" class="data-column profit">2020年利润(亿元) <span class="sort-indicator"></span></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -462,26 +521,33 @@ def generate_complete_html():
                         <td class="stock-info">{stock['股票名称']}</td>
                         <td class="stock-info">{stock['股票代码']}</td>
                         <td class="dividend-yield"><strong>{stock['2020-2025年平均股息率(%)']:.2f}%</strong></td>
+                        <td>{stock['2020-2025年平均利润(亿元)']:.2f}</td>
                         <td>{stock['最近6年股息率方差']:.4f}</td>
-                        <td>{stock['2025年分红']:.4f}</td>
-                        <td class="price">{stock['2025年收盘价']:.2f}</td>
-                        <td class="dividend-yield">{stock['2025年股息率(%)']:.2f}%</td>
-                        <td>{stock['2024年分红']:.4f}</td>
-                        <td class="price">{stock['2024年收盘价']:.2f}</td>
-                        <td class="dividend-yield">{stock['2024年股息率(%)']:.2f}%</td>
-                        <td>{stock['2023年分红']:.4f}</td>
-                        <td class="price">{stock['2023年收盘价']:.2f}</td>
-                        <td class="dividend-yield">{stock['2023年股息率(%)']:.2f}%</td>
-                        <td>{stock['2022年分红']:.4f}</td>
-                        <td class="price">{stock['2022年收盘价']:.2f}</td>
-                        <td class="dividend-yield">{stock['2022年股息率(%)']:.2f}%</td>
-                        <td>{stock['2021年分红']:.4f}</td>
-                        <td class="price">{stock['2021年收盘价']:.2f}</td>
-                        <td class="dividend-yield">{stock['2021年股息率(%)']:.2f}%</td>
-                        <td>{stock['2020年分红']:.4f}</td>
-                        <td class="price">{stock['2020年收盘价']:.2f}</td>
-                        <td class="dividend-yield">{stock['2020年股息率(%)']:.2f}%</td>
-                        <td>{stock['2020-2025年累计分红']:.4f}</td>
+                        <td class="data-column dividend">{stock['2025年分红']:.4f}</td>
+                        <td class="price data-column close_price">{stock['2025年收盘价']:.2f}</td>
+                        <td class="dividend-yield data-column dividend_yield">{stock['2025年股息率(%)']:.2f}%</td>
+                        <td class="data-column profit">{stock['2025年利润(亿元)']:.2f}</td>
+                        <td class="data-column dividend">{stock['2024年分红']:.4f}</td>
+                        <td class="price data-column close_price">{stock['2024年收盘价']:.2f}</td>
+                        <td class="dividend-yield data-column dividend_yield">{stock['2024年股息率(%)']:.2f}%</td>
+                        <td class="data-column profit">{stock['2024年利润(亿元)']:.2f}</td>
+                        <td class="data-column dividend">{stock['2023年分红']:.4f}</td>
+                        <td class="price data-column close_price">{stock['2023年收盘价']:.2f}</td>
+                        <td class="dividend-yield data-column dividend_yield">{stock['2023年股息率(%)']:.2f}%</td>
+                        <td class="data-column profit">{stock['2023年利润(亿元)']:.2f}</td>
+                        <td class="data-column dividend">{stock['2022年分红']:.4f}</td>
+                        <td class="price data-column close_price">{stock['2022年收盘价']:.2f}</td>
+                        <td class="dividend-yield data-column dividend_yield">{stock['2022年股息率(%)']:.2f}%</td>
+                        <td class="data-column profit">{stock['2022年利润(亿元)']:.2f}</td>
+                        <td class="data-column dividend">{stock['2021年分红']:.4f}</td>
+                        <td class="price data-column close_price">{stock['2021年收盘价']:.2f}</td>
+                        <td class="dividend-yield data-column dividend_yield">{stock['2021年股息率(%)']:.2f}%</td>
+                        <td class="data-column profit">{stock['2021年利润(亿元)']:.2f}</td>
+                        <td class="data-column dividend">{stock['2020年分红']:.4f}</td>
+                        <td class="price data-column close_price">{stock['2020年收盘价']:.2f}</td>
+                        <td class="dividend-yield data-column dividend_yield">{stock['2020年股息率(%)']:.2f}%</td>
+                        <td class="data-column profit">{stock['2020年利润(亿元)']:.2f}</td>
+
                     </tr>
 """
     
@@ -565,24 +631,28 @@ def generate_complete_html():
             
             // 获取筛选条件
             const avgYieldFilter = parseFloat(document.getElementById('avgYieldFilter').value);
+            const avgProfitFilter = parseFloat(document.getElementById('avgProfitFilter').value);
             const varianceFilter = parseFloat(document.getElementById('varianceFilter').value);
             
             let visibleCount = 0;
             
-            // 遍历所有行
+            // 遍历所有行，先隐藏所有不符合条件的行
             rows.forEach(row => {
                 const avgYieldCell = row.cells[3];
-                const varianceCell = row.cells[4];
+                const avgProfitCell = row.cells[4];
+                const varianceCell = row.cells[5];
                 
                 // 获取数值
                 const avgYield = parseFloat(avgYieldCell.textContent.replace('%', ''));
+                const avgProfit = parseFloat(avgProfitCell.textContent);
                 const variance = parseFloat(varianceCell.textContent);
                 
                 // 检查是否符合筛选条件
                 const meetsAvgYield = isNaN(avgYieldFilter) || avgYield > avgYieldFilter;
+                const meetsAvgProfit = isNaN(avgProfitFilter) || avgProfit > avgProfitFilter;
                 const meetsVariance = isNaN(varianceFilter) || variance < varianceFilter;
                 
-                if (meetsAvgYield && meetsVariance) {
+                if (meetsAvgYield && meetsAvgProfit && meetsVariance) {
                     row.style.display = '';
                     visibleCount++;
                 } else {
@@ -595,21 +665,26 @@ def generate_complete_html():
             
             // 显示筛选结果数量
             const headerInfo = document.querySelector('.header-info');
-            const existingCount = headerInfo.querySelector('.filter-count');
-            if (existingCount) {
-                existingCount.textContent = `，筛选后显示${visibleCount}只股票`;
-            } else {
-                const countSpan = document.createElement('span');
-                countSpan.className = 'filter-count';
-                countSpan.textContent = `，筛选后显示${visibleCount}只股票`;
-                headerInfo.lastElementChild.appendChild(countSpan);
+            let existingCount = headerInfo.querySelector('.filter-count');
+            
+            // 如果不存在，创建一个新的p元素来显示筛选结果
+            if (!existingCount) {
+                existingCount = document.createElement('p');
+                existingCount.className = 'filter-count';
+                existingCount.style.color = '#e74c3c';
+                existingCount.style.fontWeight = 'bold';
+                headerInfo.appendChild(existingCount);
             }
+            
+            // 更新筛选结果数量
+            existingCount.textContent = `筛选后显示${visibleCount}只股票`;
         }
         
         // 重置筛选条件
         function resetFilters() {
             // 清除输入
             document.getElementById('avgYieldFilter').value = '';
+            document.getElementById('avgProfitFilter').value = '';
             document.getElementById('varianceFilter').value = '';
             
             // 显示所有行
@@ -645,6 +720,68 @@ def generate_complete_html():
                 }
             });
         }
+        
+        // 数据显示控制
+        const activeDataTypes = new Set();
+        
+        function toggleData(dataType) {
+            // 切换数据类型的状态
+            if (activeDataTypes.has(dataType)) {
+                activeDataTypes.delete(dataType);
+            } else {
+                activeDataTypes.add(dataType);
+            }
+            
+            // 更新标签样式
+            updateTagStyle(dataType);
+            
+            // 更新数据列显示
+            updateDataColumns();
+        }
+        
+        function updateTagStyle(dataType) {
+            const tag = document.querySelector(`.tag[onclick="toggleData('${dataType}')"]`);
+            if (tag) {
+                if (activeDataTypes.has(dataType)) {
+                    tag.classList.add('active');
+                } else {
+                    tag.classList.remove('active');
+                }
+            }
+        }
+        
+        function updateDataColumns() {
+            const columns = document.querySelectorAll('.data-column');
+            
+            columns.forEach(column => {
+                // 检查列是否属于任何激活的数据类型
+                const columnClasses = column.classList;
+                let shouldShow = false;
+                
+                if (activeDataTypes.size === 0) {
+                    // 如果没有选中任何标签，显示所有数据列
+                    shouldShow = true;
+                } else {
+                    // 检查列是否匹配任何激活的数据类型
+                    activeDataTypes.forEach(dataType => {
+                        if (columnClasses.contains(dataType)) {
+                            shouldShow = true;
+                        }
+                    });
+                }
+                
+                if (shouldShow) {
+                    column.classList.add('visible');
+                } else {
+                    column.classList.remove('visible');
+                }
+            });
+        }
+        
+        // 初始显示所有数据列
+        window.onload = function() {
+            updateDataColumns();
+        };
         
         // Initial sort
         sortTable(3);
